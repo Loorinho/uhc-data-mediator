@@ -4,11 +4,20 @@ import {  FieldGroup } from '@/components/ui/field'
 import { Spinner } from '@/components/ui/spinner'
 import { toast } from '@/components/ui/toast'
 import { useAppForm } from '@/hooks/form'
-import { loginFn } from '@/server-functions/auth.api'
-import { createFileRoute, useNavigate } from '@tanstack/react-router'
+import { getCurrentUser, loginFn } from '@/server-functions/auth.api'
+import { createFileRoute, redirect, useNavigate } from '@tanstack/react-router'
 import {z} from "zod"
 
-export const Route = createFileRoute('/')({ 
+export const Route = createFileRoute('/')({
+  // Users who already have a session should never see the login page —
+  // send them straight to the dashboard instead.
+  beforeLoad: async () => {
+		const { user } = await getCurrentUser();
+
+		if (user) {
+			throw redirect({ to: "/dashboard" });
+		}
+	},
   component: Home,
   head: () => ({
 		meta: [
