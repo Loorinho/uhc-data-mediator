@@ -4,6 +4,7 @@ import api from "./api.server";
 import type { TypedApiResponse } from "@/types/types";
 import axios from "axios";
 import { getAppSession } from "./session.server";
+import { redirect } from "@tanstack/react-router";
 
 type LoginResponse = {
     username: string,
@@ -60,3 +61,13 @@ export const loginFn = createServerFn({ method: "POST" })
 			}
 		}
 	});
+
+	export const logoutFn = createServerFn({ method: "POST" }).handler(async () => {
+
+	const session = await getAppSession();
+	await session.destroy();
+	
+	throw redirect({
+		to: "/",
+	});
+});
