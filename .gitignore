@@ -1,0 +1,79 @@
+# ===== Sensitive files =====
+# Environment variables (keep .env.example committed as a template)
+.env
+.env.*
+!.env.example
+
+# Secrets, credentials, and keys
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.keystore
+secrets.json
+credentials.json
+*-credentials.json
+*service-account*.json
+
+# Local database files & dumps
+*.sqlite3
+*.db
+*.dump
+*.backup
+pgdata/
+
+# ===== Python / Django =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+venv/
+.venv/
+env/
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Django-generated content
+/staticfiles/
+/media/
+backend/staticfiles/
+backend/media/
+
+# ===== Node / TanStack Start =====
+node_modules/
+
+# Build output
+dist/
+.output/
+.vinxi/
+.nitro/
+.tanstack/
+*.tsbuildinfo
+
+
+# Package manager & tooling caches
+.npm/
+.pnpm-store/
+.yarn/cache/
+.yarn/install-state.gz
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===== Editors & OS =====
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.DS_Store
+Thumbs.db
