@@ -50,12 +50,18 @@ node_modules/
 
 # Build output
 dist/
+dist-ssr/
 .output/
 .vinxi/
 .nitro/
 .tanstack/
+.wrangler/
+__unconfig*
 *.tsbuildinfo
 
+# Local env overrides & generated files
+*.local
+todos.json
 
 # Package manager & tooling caches
 .npm/
