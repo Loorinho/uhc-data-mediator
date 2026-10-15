@@ -44,3 +44,25 @@ class AcquisitionView(APIView):
             },
             status_code=status.HTTP_202_ACCEPTED,
         )
+
+    #Get all acquisition attempts
+    def get(self, request):
+        attempts = AcquisitionAttempt.objects.all().order_by("-requested_at")
+        data = [
+            {
+                "id": attempt.id,
+                "mode": attempt.mode,
+                "status": attempt.status,
+                "errorMessage": attempt.error_message,
+                "requestedBy": attempt.requested_by.username,
+                "startedAt": attempt.started_at,
+                "completedAt": attempt.completed_at,
+                "requestedAt": attempt.requested_at,
+            }
+            for attempt in attempts
+        ]
+        return api_response(
+            message="Acquisition attempts retrieved successfully.",
+            data=data,
+            status_code=status.HTTP_200_OK,
+        )
