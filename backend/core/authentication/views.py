@@ -31,7 +31,7 @@ class LoginView(APIView):
             message="Login successful.",
             data={
                 "username": user.username,
-                "role": list(user.groups.values_list("name", flat=True)),
+                "roles": list(user.groups.values_list("name", flat=True)),
                 "tokens": tokens,
             },
         )
@@ -72,7 +72,7 @@ class RegisterView(generics.CreateAPIView):
             message="Registration successful.",
             data={
                 "username": user.username,
-                "role": list(user.groups.values_list("name", flat=True)),
+                "roles": list(user.groups.values_list("name", flat=True)),
             },
         )
 
