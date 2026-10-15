@@ -6,17 +6,17 @@ from django.core.management.base import BaseCommand
 
 User = get_user_model()
 
-DATA_PROVIDER_GROUP = "data_provider"
+ADMIN_GROUP = "admin"
 
 
 class Command(BaseCommand):
-    help = "Seed the database with roles and an initial data-provider user."
+    help = "Seed the database with the admin role and an initial admin user."
 
     def handle(self, *args, **options):
-        group, _ = Group.objects.get_or_create(name=DATA_PROVIDER_GROUP)
+        group, _ = Group.objects.get_or_create(name=ADMIN_GROUP)
 
-        username = os.environ.get("SEED_PROVIDER_USERNAME", "dataprovider")
-        password = os.environ.get("SEED_PROVIDER_PASSWORD", "ProviderPass123!")
+        username = os.environ.get("SEED_ADMIN_USERNAME", "admin")
+        password = os.environ.get("SEED_ADMIN_PASSWORD", "admin")
 
         user, created = User.objects.get_or_create(username=username)
         if created:
@@ -27,4 +27,4 @@ class Command(BaseCommand):
             self.stdout.write(f"User '{username}' already exists")
 
         user.groups.add(group)
-        self.stdout.write(self.style.SUCCESS(f"User '{username}' has role '{DATA_PROVIDER_GROUP}'"))
+        self.stdout.write(self.style.SUCCESS(f"User '{username}' has role '{ADMIN_GROUP}'"))

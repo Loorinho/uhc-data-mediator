@@ -58,10 +58,11 @@ class RefreshView(APIView):
 
 
 class RegisterView(generics.CreateAPIView):
-    """POST username + password -> create a user (unique username)."""
+    """POST username + password + role -> create a user (unique username).
+
+    Requires authentication — only a logged-in user can create accounts."""
 
     serializer_class = RegisterSerializer
-    permission_classes = (permissions.AllowAny,)
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
