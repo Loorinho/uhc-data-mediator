@@ -55,6 +55,22 @@ services:
       sh -c "python manage.py migrate &&
              python manage.py runserver 0.0.0.0:8000"
 
+  uhc-worker:
+    build:
+      context: ./backend
+    env_file:
+      - .env
+    environment:
+      DB_HOST: uhc-db
+      DB_PORT: 5432
+    command: >
+      sh -c "python manage.py run_acquisition_worker --poll-seconds 3"
+    restart: unless-stopped
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - uhc-api
+   
 volumes:
   postgres_data:
   frontend_node_modules:

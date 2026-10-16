@@ -2,7 +2,6 @@
 from django.urls import include, path
 
 from .authentication.views import RoleListCreateView, UserListView
-from .ingestion.views import AcquisitionView
 from .views import health_check
 
 urlpatterns = [

@@ -1,0 +1,1455 @@
+{
+  "indicators": [
+    {
+      "name": "Dropout rate Penta 1 - Measles",
+      "lastUpdated": "2013-03-15T16:08:57.701",
+      "shortName": "Dropout Penta 1 - Measles",
+      "indicatorType": {
+        "name": "Per cent",
+        "id": "bWuNrMHEoZ0"
+      },
+      "numerator": "(#{fClA2Erf6IO.Prlt0C1RF0s}+#{fClA2Erf6IO.V6L425pT3A0})-(#{YtbsuPPo010.Prlt0C1RF0s}+#{YtbsuPPo010.V6L425pT3A0})",
+      "numeratorDescription": "SUM (Penta1 fixed and outreach) - SUM ( Measles vaccinations among children 0 to 11 months)",
+      "denominator": "(#{fClA2Erf6IO.Prlt0C1RF0s}+#{fClA2Erf6IO.V6L425pT3A0})",
+      "denominatorDescription": "SUM (Penta1 0 to 11 months fixed and outreach)",
+      "displayName": "Dropout rate Penta 1 - Measles",
+      "id": "d9thHOJMROr"
+    },
+    {
+      "name": "Inpatient cases per 10 000 population",
+      "lastUpdated": "2015-12-13T12:44:29.960",
+      "shortName": "Inpatient cases per 10 000 population",
+      "indicatorType": {
+        "name": "Per ten thousand",
+        "id": "wB7vTGTafMI"
+      },
+      "numerator": "I{luLGbE2WKGP}",
+      "numeratorDescription": "Inpatient cases",
+      "denominator": "#{WUg3MYWQ7pt}",
+      "denominatorDescription": "Total population",
+      "displayName": "Inpatient cases per 10 000 population",
+      "id": "gKv1pdjF3wM"
+    },
+    {
+      "name": "Inpatient cases under 5 y per 100 00 population",
+      "lastUpdated": "2015-12-13T12:48:09.228",
+      "shortName": "Inpatient cases under 5 y per 100 00 population",
+      "indicatorType": {
+        "name": "Per ten thousand",
+        "id": "wB7vTGTafMI"
+      },
+      "numerator": "I{vDdRoZYybP2}",
+      "numeratorDescription": "Inpatient cases <5y",
+      "denominator": "#{DTtCy7Nx5jH}",
+      "denominatorDescription": "Population <5y",
+      "displayName": "Inpatient cases under 5 y per 100 00 population",
+      "id": "TwdhB9Db4Po"
+    },
+    {
+      "name": "Inpatient visits per 10 000 people",
+      "lastUpdated": "2016-01-15T18:08:56.776",
+      "shortName": "Inpatient visits per 10 000 people",
+      "indicatorType": {
+        "name": "Per ten thousand",
+        "id": "wB7vTGTafMI"
+      },
+      "numerator": "I{luLGbE2WKGP}",
+      "numeratorDescription": "Inpatient cases",
+      "denominator": "#{WUg3MYWQ7pt}",
+      "denominatorDescription": "Total population",
+      "displayName": "Inpatient visits per 10 000 people",
+      "id": "zkukIvlFlhy"
+    },
+    {
+      "name": "Live births in the PHU",
+      "lastUpdated": "2013-03-15T16:08:57.746",
+      "shortName": "Live births in the PHU",
+      "description": "Total number of live births in the PHU (health facility).",
+      "indicatorType": {
+        "name": "Number (Factor 1)",
+        "id": "JkWynlWMjJR"
+      },
+      "numerator": "#{gQNFkFkObU8.L4P9VSgHkF6}+#{gQNFkFkObU8.YEmiuCcgNQI}+#{gQNFkFkObU8.Tzg8I9KyEwd}+#{gQNFkFkObU8.PvFFIeF2J9x}+#{gQNFkFkObU8.Gmbgme7z9BF}+#{gQNFkFkObU8.s3jlIgFCbUb}",
+      "numeratorDescription": "Total live births in the PHU",
+      "denominator": "1",
+      "denominatorDescription": "",
+      "displayName": "Live births in the PHU",
+      "id": "Rigf2d2Zbjp"
+    },
+    {
+      "name": "Maternal death rate by registered live births",
+      "lastUpdated": "2013-11-06T17:05:34.484",
+      "shortName": "Mat death rate reg birth",
+      "description": "Ratio of maternal deaths by 100 000 registered live births.",
+      "indicatorType": {
+        "name": "Per hundred thousand",
+        "id": "vQ0dGV9EDrw"
+      },
+      "numerator": "#{FUrCpcvMAmC}",
+      "numeratorDescription": "Maternal deaths",
+      "denominator": "#{gQNFkFkObU8.AKQ15Z2uqit}+#{gQNFkFkObU8.YEmiuCcgNQI}+#{gQNFkFkObU8.HVFCn1yjoGx}+#{gQNFkFkObU8.CYHGl18lR0W}+#{gQNFkFkObU8.w3BcsdjOcfk}+#{gQNFkFkObU8.L4P9VSgHkF6}+#{gQNFkFkObU8.b19Ye0TWs1D}+#{gQNFkFkObU8.Gmbgme7z9BF}+#{gQNFkFkObU8.Tzg8I9KyEwd}+#{gQNFkFkObU8.s3jlIgFCbUb}+#{gQNFkFkObU8.PvFFIeF2J9x}+#{gQNFkFkObU8.MaXD86iob3M}",
+      "denominatorDescription": "Registered live births",
+      "displayName": "Maternal death rate by registered live births",
+      "id": "tcs5YGnjiKo"
+    },
+    {
+      "name": "Measles Coverage <1y",
+      "lastUpdated": "2014-04-06T10:57:26.223",
+      "shortName": "Measles Coverage <1y",
+      "indicatorType": {
+        "name": "Per cent",
+        "id": "bWuNrMHEoZ0"
+      },
+      "numerator": "#{YtbsuPPo010.Prlt0C1RF0s}+#{YtbsuPPo010.V6L425pT3A0}",
+      "numeratorDescription": "SUM (Measles vaccinations among children 0 to 11 months)",
+      "denominator": "#{DTVRnCGamkV}",
+      "denominatorDescription": "Estimated number of infants <1y",
+      "displayName": "Measles Coverage <1y",
+      "id": "FbKK4ofIv5R"
+    },
+    {
+      "name": "PHU delivery rate (by ANC1)",
+      "lastUpdated": "2013-03-15T16:08:57.729",
+      "shortName": "PHU del. rate (by ANC 1)",
+      "description": "Registered deliveries in the PHU by ANC 1st visits.",
+      "indicatorType": {
+        "name": "Per cent",
+        "id": "bWuNrMHEoZ0"
+      },
+      "numerator": "#{gQNFkFkObU8.YEmiuCcgNQI}+#{gQNFkFkObU8.L4P9VSgHkF6}+#{gQNFkFkObU8.Gmbgme7z9BF}+#{gQNFkFkObU8.Tzg8I9KyEwd}+#{gQNFkFkObU8.s3jlIgFCbUb}+#{gQNFkFkObU8.PvFFIeF2J9x}",
+      "numeratorDescription": "Total live births in the PHU",
+      "denominator": "#{fbfJHSPpUQD.pq2XI5kz2BY}+#{fbfJHSPpUQD.PT59n8BQbqM}",
+      "denominatorDescription": "ANC 1st visits",
+      "displayName": "PHU delivery rate (by ANC1)",
+      "id": "n0GE1ISYrdM"
+    },
+    {
+      "name": "PHU delivery rate (by expected pregnancies)",
+      "lastUpdated": "2013-03-15T16:08:57.731",
+      "shortName": "PHU del. rate (by pop)",
+      "description": "All registered deliveries in the PHU by the number of expected pregnanicies estimated as 4.5% of the total population.\r\n\r\nAnnulalised indcator.",
+      "indicatorType": {
+        "name": "Per cent",
+        "id": "bWuNrMHEoZ0"
+      },
+      "numerator": "#{gQNFkFkObU8.YEmiuCcgNQI}+#{gQNFkFkObU8.L4P9VSgHkF6}+#{gQNFkFkObU8.Gmbgme7z9BF}+#{gQNFkFkObU8.Tzg8I9KyEwd}+#{gQNFkFkObU8.s3jlIgFCbUb}+#{gQNFkFkObU8.PvFFIeF2J9x}",
+      "numeratorDescription": "Total live births in the PHU",
+      "denominator": "#{h0xKKjijTdI}",
+      "denominatorDescription": "Estimated number of pregnancies as 20 percent of total",
+      "displayName": "PHU delivery rate (by expected pregnancies)",
+      "id": "Q3M7Htpzg1Y"
+    },
+    {
+      "name": "PHU delivery rate (by registered live births)",
+      "lastUpdated": "2013-03-15T16:08:57.744",
+      "shortName": "PHU del. rate (by births)",
+      "description": "All registered live births at the PHU divided by all registered live births in PHU and in the community.",
+      "indicatorType": {
+        "name": "Per cent",
+        "id": "bWuNrMHEoZ0"
+      },
+      "numerator": "#{gQNFkFkObU8.YEmiuCcgNQI}+#{gQNFkFkObU8.L4P9VSgHkF6}+#{gQNFkFkObU8.Gmbgme7z9BF}+#{gQNFkFkObU8.Tzg8I9KyEwd}+#{gQNFkFkObU8.s3jlIgFCbUb}+#{gQNFkFkObU8.PvFFIeF2J9x}",
+      "numeratorDescription": "Live births in the PHU",
+      "denominator": "#{gQNFkFkObU8.AKQ15Z2uqit}+#{gQNFkFkObU8.YEmiuCcgNQI}+#{gQNFkFkObU8.HVFCn1yjoGx}+#{gQNFkFkObU8.CYHGl18lR0W}+#{gQNFkFkObU8.w3BcsdjOcfk}+#{gQNFkFkObU8.L4P9VSgHkF6}+#{gQNFkFkObU8.b19Ye0TWs1D}+#{gQNFkFkObU8.Gmbgme7z9BF}+#{gQNFkFkObU8.Tzg8I9KyEwd}+#{gQNFkFkObU8.s3jlIgFCbUb}+#{gQNFkFkObU8.PvFFIeF2J9x}+#{gQNFkFkObU8.MaXD86iob3M}",
+      "denominatorDescription": "Total live births",
+      "displayName": "PHU delivery rate (by registered live births)",
+      "id": "EoYar8UxddG"
+    },
+    {
+      "name": "ZDV and 3TC after delivery rate",
+      "lastUpdated": "2013-03-15T16:08:57.703",
+      "shortName": "ZDV 3TC delivery rate",
+      "indicatorType": {
+        "name": "Per cent",
+        "id": "bWuNrMHEoZ0"
+      },
+      "numerator": "#{HPZd1WtTArI.YBhrfw1dP2J}+#{HPZd1WtTArI.u5fU9rr67xo}+#{HPZd1WtTArI.LbkJRbDblhe}+#{HPZd1WtTArI.z858fbdqWwF}",
+      "numeratorDescription": "Women received ZDV and 3TC after delivery",
+      "denominator": "#{TvQ1myd6oTE.YBhrfw1dP2J}+#{TvQ1myd6oTE.u5fU9rr67xo}+#{TvQ1myd6oTE.LbkJRbDblhe}+#{TvQ1myd6oTE.z858fbdqWwF}",
+      "denominatorDescription": "Women HIV positive PMTCT",
+      "displayName": "ZDV and 3TC after delivery rate",
+      "id": "cTB6uRdmxUB"
+    }
+  ],
+  "data_elements": [
+    {
+      "name": "Additional medication",
+      "lastUpdated": "2019-08-21T13:08:02.032",
+      "shortName": "Additional medication",
+      "description": "Identifies any additional malaria medication provided to the case",
+      "aggregationType": "NONE",
+      "valueType": "TEXT",
+      "domainType": "TRACKER",
+      "displayName": "Additional medication",
+      "id": "WO8yRIZb7nb",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "CMC Most recent delivery of FP and CAC commodities match the request made through the RRF",
+      "lastUpdated": "2014-11-11T21:56:05.485",
+      "shortName": "CMC Most recent delivery of FP and CAC",
+      "description": "bool",
+      "aggregationType": "SUM",
+      "valueType": "BOOLEAN",
+      "domainType": "AGGREGATE",
+      "displayName": "CMC Most recent delivery of FP and CAC commodities match the request made through the RRF",
+      "id": "sjir9Ki2vuA",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Case species classification",
+      "lastUpdated": "2019-08-21T13:08:02.031",
+      "shortName": "Case species classification",
+      "description": "The malaria species classification of the case",
+      "aggregationType": "NONE",
+      "valueType": "TEXT",
+      "domainType": "TRACKER",
+      "displayName": "Case species classification",
+      "id": "lvx6qda7SN0",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Clinical status",
+      "lastUpdated": "2019-08-21T13:08:02.032",
+      "shortName": "Clinical status",
+      "description": "Determines the clinical status of the case's malaria (simple or severs)",
+      "aggregationType": "NONE",
+      "valueType": "TEXT",
+      "domainType": "TRACKER",
+      "displayName": "Clinical status",
+      "id": "SzVk2KvkSSd",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Commodities - Antenatal Corticosteroids",
+      "lastUpdated": "2014-11-11T21:56:05.637",
+      "shortName": "Commodities - Antenatal Corticosteroids",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER_ZERO_OR_POSITIVE",
+      "domainType": "AGGREGATE",
+      "displayName": "Commodities - Antenatal Corticosteroids",
+      "id": "d9vZ3HOlzAd",
+      "categoryCombo": {
+        "name": "Commodities",
+        "id": "gbvX3pogf7p"
+      }
+    },
+    {
+      "name": "Date of previous malaria episode",
+      "lastUpdated": "2019-08-21T13:08:02.032",
+      "shortName": "Date of previous malaria episode",
+      "description": "The date of previous malaria episode",
+      "aggregationType": "COUNT",
+      "valueType": "DATE",
+      "domainType": "TRACKER",
+      "displayName": "Date of previous malaria episode",
+      "id": "Urz28endlF6",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Distance of inhabitants (with malaria) from breeding site",
+      "lastUpdated": "2019-08-21T13:08:43.418",
+      "shortName": "Distance of inhabitants from breeding site",
+      "description": "Distance of inhabitants (with malaria) from breeding site",
+      "aggregationType": "NONE",
+      "valueType": "TEXT",
+      "domainType": "TRACKER",
+      "displayName": "Distance of inhabitants (with malaria) from breeding site",
+      "id": "okV7juK4t4M",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Foci malaria positive",
+      "lastUpdated": "2019-08-21T13:08:42.350",
+      "shortName": "Foci malaria positive",
+      "description": "Number of people in foci malaria positive",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER_ZERO_OR_POSITIVE",
+      "domainType": "TRACKER",
+      "displayName": "Foci malaria positive",
+      "id": "JmZ0m8Q3gwh",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Foci malaria test",
+      "lastUpdated": "2019-08-21T13:08:42.349",
+      "shortName": "Foci malaria test",
+      "description": "Number of people in foci tested for malaria",
+      "aggregationType": "NONE",
+      "valueType": "INTEGER_POSITIVE",
+      "domainType": "TRACKER",
+      "displayName": "Foci malaria test",
+      "id": "rFQNCGMYud2",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Household members malaria positive",
+      "lastUpdated": "2019-08-21T13:08:02.032",
+      "shortName": "HH members malaria positive",
+      "description": "The number of household members that are identified as malaria positive during case household investigation",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER_ZERO_OR_POSITIVE",
+      "domainType": "TRACKER",
+      "displayName": "Household members malaria positive",
+      "id": "qxWAgIAfZAh",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Household members tested for malaria",
+      "lastUpdated": "2019-08-21T13:08:02.031",
+      "shortName": "HH members Malaria tested ",
+      "description": "The number of household members tested for malaria as determined during case investigation",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER_ZERO_OR_POSITIVE",
+      "domainType": "TRACKER",
+      "displayName": "Household members tested for malaria",
+      "id": "y57kkdyw35d",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "IDSR Malaria",
+      "lastUpdated": "2017-05-22T15:21:48.450",
+      "shortName": "Malaria",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER_ZERO_OR_POSITIVE",
+      "domainType": "AGGREGATE",
+      "displayName": "IDSR Malaria",
+      "id": "vq2qO3eTrNi",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Infants delivered in the health facility female",
+      "lastUpdated": "2014-11-11T21:56:05.394",
+      "shortName": "Inf delivered PHU F",
+      "description": "Collected in the HIV Paed. form. Do not add together with delivery data from RH form (PHUF3) which is collected by PHU/Com.",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Infants delivered in the health facility female",
+      "id": "avs8Dhz3OoG",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Infants delivered in the health facility male",
+      "lastUpdated": "2014-11-11T21:56:05.878",
+      "shortName": "Inf delivered PHU M",
+      "description": "Collected in the HIV Paed. form. Do not add together with delivery data from RH form (PHUF3) which is collected by PHU/Community and delivered by.",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Infants delivered in the health facility male",
+      "id": "N9vniUuCcqY",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Inpatient Place of Infection",
+      "lastUpdated": "2016-10-11T18:25:57.013",
+      "shortName": "Inpatient Place of Infection",
+      "aggregationType": "NONE",
+      "valueType": "ORGANISATION_UNIT",
+      "domainType": "TRACKER",
+      "displayName": "Inpatient Place of Infection",
+      "id": "S33cRBsnXPo",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Inpatient cases",
+      "lastUpdated": "2014-11-11T21:56:05.441",
+      "shortName": "Inpatient cases",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER",
+      "domainType": "AGGREGATE",
+      "displayName": "Inpatient cases",
+      "id": "WHBtsCMZVAE",
+      "categoryCombo": {
+        "name": "Under 5/5 and above",
+        "id": "UnNIOt1uB0J"
+      }
+    },
+    {
+      "name": "Inpatient deaths",
+      "lastUpdated": "2014-11-11T21:56:05.441",
+      "shortName": "Inpatient deaths",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER",
+      "domainType": "AGGREGATE",
+      "displayName": "Inpatient deaths",
+      "id": "ZRVfMoPKK05",
+      "categoryCombo": {
+        "name": "Under 5/5 and above",
+        "id": "UnNIOt1uB0J"
+      }
+    },
+    {
+      "name": "Inpatient malaria cases",
+      "lastUpdated": "2014-11-11T21:56:05.432",
+      "shortName": "Inpatient malaria cases",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER",
+      "domainType": "AGGREGATE",
+      "displayName": "Inpatient malaria cases",
+      "id": "p4K11MFEWtw",
+      "categoryCombo": {
+        "name": "Under 5/5 and above",
+        "id": "UnNIOt1uB0J"
+      }
+    },
+    {
+      "name": "Inpatient malaria deaths",
+      "lastUpdated": "2014-11-11T21:56:05.442",
+      "shortName": "Inpatient malaria deaths",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER",
+      "domainType": "AGGREGATE",
+      "displayName": "Inpatient malaria deaths",
+      "id": "wWy5TE9cQ0V",
+      "categoryCombo": {
+        "name": "Under 5/5 and above",
+        "id": "UnNIOt1uB0J"
+      }
+    },
+    {
+      "name": "LLITN given after delivery",
+      "lastUpdated": "2014-11-11T21:56:05.813",
+      "shortName": "LLITN after delivery",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "LLITN given after delivery",
+      "id": "ntzmpYRSKGg",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "MCH Date of Delivery",
+      "lastUpdated": "2014-11-11T21:56:05.418",
+      "shortName": "Date of Delivery",
+      "description": "Date of delivery of the baby",
+      "aggregationType": "AVERAGE",
+      "valueType": "DATE",
+      "domainType": "TRACKER",
+      "displayName": "MCH Date of Delivery",
+      "id": "uxRgo9bGWhX",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "MCH Delivery Comment",
+      "lastUpdated": "2014-11-11T21:56:05.562",
+      "shortName": "Delivery Comment",
+      "aggregationType": "AVERAGE",
+      "valueType": "LONG_TEXT",
+      "domainType": "TRACKER",
+      "displayName": "MCH Delivery Comment",
+      "id": "tLn2UVJJ9kO",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "MCH Mode of Delivery",
+      "lastUpdated": "2014-11-11T21:56:05.558",
+      "shortName": "Mode of Delivery",
+      "aggregationType": "AVERAGE",
+      "valueType": "TEXT",
+      "domainType": "TRACKER",
+      "displayName": "MCH Mode of Delivery",
+      "id": "fIy3fOtkbdS",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "MNCH ANC Attendance",
+      "lastUpdated": "2014-11-11T21:56:05.433",
+      "shortName": "MNCH ANC Attendance",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER",
+      "domainType": "AGGREGATE",
+      "displayName": "MNCH ANC Attendance",
+      "id": "WQSdEl9xUMA",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "MNCH Breech/shoulder delivery",
+      "lastUpdated": "2014-11-11T21:56:05.437",
+      "shortName": "MNCH Breech/shoulder delivery",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER",
+      "domainType": "AGGREGATE",
+      "displayName": "MNCH Breech/shoulder delivery",
+      "id": "ijIsjbvXFJL",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "MNCH Destructive operations delivery",
+      "lastUpdated": "2014-11-11T21:56:05.439",
+      "shortName": "MNCH Destructive operations delivery",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER",
+      "domainType": "AGGREGATE",
+      "displayName": "MNCH Destructive operations delivery",
+      "id": "Q8lOv2CAUjf",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "MNCH vacuum/forceps delivery",
+      "lastUpdated": "2014-11-11T21:56:05.438",
+      "shortName": "MNCH vacuum/forceps delivery",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER",
+      "domainType": "AGGREGATE",
+      "displayName": "MNCH vacuum/forceps delivery",
+      "id": "g9Tso8plX88",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria (Deaths < 5 yrs)",
+      "lastUpdated": "2016-08-01T15:02:57.418",
+      "shortName": "Malaria (Deaths < 5 yrs)",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Malaria (Deaths < 5 yrs)",
+      "id": "r6nrJANOqMw",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria (Deaths < 5 yrs) Narrative",
+      "lastUpdated": "2014-11-19T14:00:45.699",
+      "shortName": "Malaria (Deaths < 5 yrs) Narrative",
+      "aggregationType": "SUM",
+      "valueType": "LONG_TEXT",
+      "domainType": "AGGREGATE",
+      "displayName": "Malaria (Deaths < 5 yrs) Narrative",
+      "id": "a0WhmKHnZ6J",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria Medication",
+      "lastUpdated": "2019-08-21T13:08:02.032",
+      "shortName": "Malaria Medication",
+      "description": "The malaria medication/regimen prescribed to the case",
+      "aggregationType": "NONE",
+      "valueType": "TEXT",
+      "domainType": "TRACKER",
+      "displayName": "Malaria Medication",
+      "id": "nTMP8Aj1rYA",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria Outbreak Threshold",
+      "lastUpdated": "2016-10-11T10:23:34.725",
+      "shortName": "Malaria Outbreak Threshold",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Malaria Outbreak Threshold",
+      "id": "nXJJZNVAy0Y",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria case classification",
+      "lastUpdated": "2019-08-21T13:08:02.032",
+      "shortName": "Malaria case classification",
+      "description": "The classification of the case (local, imported, other)",
+      "aggregationType": "NONE",
+      "valueType": "TEXT",
+      "domainType": "TRACKER",
+      "displayName": "Malaria case classification",
+      "id": "ElxhP9pTTP6",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria confirmed Pf (CI)",
+      "lastUpdated": "2019-08-21T13:08:02.032",
+      "shortName": "Malaria Pf (CI)",
+      "description": "The number of Pf malaria cases identified in the neighbourhood during nearby household investigation",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER_ZERO_OR_POSITIVE",
+      "domainType": "TRACKER",
+      "displayName": "Malaria confirmed Pf (CI)",
+      "id": "jt8mzqlDEjd",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria confirmed Pf (foci)",
+      "lastUpdated": "2019-08-21T13:08:42.349",
+      "shortName": "Malaria confirmed Pf (foci)",
+      "description": "The number of Pf malaria cases identified in the a foci during foci investigation",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER_ZERO_OR_POSITIVE",
+      "domainType": "TRACKER",
+      "displayName": "Malaria confirmed Pf (foci)",
+      "id": "Xh63x0mfF5o",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria confirmed Pk (CI)",
+      "lastUpdated": "2019-08-21T13:08:02.032",
+      "shortName": "Malaria confirmed Pk (CI)",
+      "description": "The number of Pk malaria cases identified in the neighbourhood during nearby household investigation",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER_ZERO_OR_POSITIVE",
+      "domainType": "TRACKER",
+      "displayName": "Malaria confirmed Pk (CI)",
+      "id": "ZB8ZUUsxqsd",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria confirmed Pk (foci)",
+      "lastUpdated": "2019-08-21T13:08:42.349",
+      "shortName": "Malaria confirmed Pk (foci)",
+      "description": "The number of Pk malaria cases identified in the a foci during foci investigation",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER_ZERO_OR_POSITIVE",
+      "domainType": "TRACKER",
+      "displayName": "Malaria confirmed Pk (foci)",
+      "id": "NMtyvCDiGxh",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria confirmed Pm (CI)",
+      "lastUpdated": "2019-08-21T13:08:02.032",
+      "shortName": "Malaria confirmed Pm (CI)",
+      "description": "The number of Pm cases identified in the neighbourhood during nearby household investigation",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER_ZERO_OR_POSITIVE",
+      "domainType": "TRACKER",
+      "displayName": "Malaria confirmed Pm (CI)",
+      "id": "sJ23PICb6Fy",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria confirmed Pm (foci)",
+      "lastUpdated": "2019-08-21T13:08:42.349",
+      "shortName": "Malaria confirmed Pm (foci)",
+      "description": "The number of Pm cases identified in the a foci during foci investigation",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER_ZERO_OR_POSITIVE",
+      "domainType": "TRACKER",
+      "displayName": "Malaria confirmed Pm (foci)",
+      "id": "qYaI3TszPET",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria confirmed Po (CI)",
+      "lastUpdated": "2019-08-21T13:08:02.031",
+      "shortName": "Malaria confirmed Po (CI)",
+      "description": "The number of Po malaria cases identified in the neighbourhood during nearby household investigation",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER_ZERO_OR_POSITIVE",
+      "domainType": "TRACKER",
+      "displayName": "Malaria confirmed Po (CI)",
+      "id": "E2K6KluoF7L",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria confirmed Po (foci)",
+      "lastUpdated": "2019-08-21T13:08:42.350",
+      "shortName": "Malaria confirmed Po (foci)",
+      "description": "The number of Po malaria cases identified in the a foci during foci investigation",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER_ZERO_OR_POSITIVE",
+      "domainType": "TRACKER",
+      "displayName": "Malaria confirmed Po (foci)",
+      "id": "PaliV83bIb9",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria confirmed Pv (CI)",
+      "lastUpdated": "2019-08-21T13:08:02.031",
+      "shortName": "Malaria confirmed Pv (CI)",
+      "description": "The number of Pv malariacases  identified in the neighbourhood during nearby household investigation",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER_ZERO_OR_POSITIVE",
+      "domainType": "TRACKER",
+      "displayName": "Malaria confirmed Pv (CI)",
+      "id": "ImgnHPhcNYE",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria confirmed Pv (foci)",
+      "lastUpdated": "2019-08-21T13:08:42.350",
+      "shortName": "Malaria confirmed Pv (foci)",
+      "description": "The number of Pv malariacases  identified in the a foci during foci investigation",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER_ZERO_OR_POSITIVE",
+      "domainType": "TRACKER",
+      "displayName": "Malaria confirmed Pv (foci)",
+      "id": "XjcDg2kOmqf",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria confirmed mixed (CI)",
+      "lastUpdated": "2019-08-21T13:08:02.032",
+      "shortName": "Malaria confirmed mixed (CI)",
+      "description": "Number of mixed postive cases identified during the case investigation",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER_ZERO_OR_POSITIVE",
+      "domainType": "TRACKER",
+      "displayName": "Malaria confirmed mixed (CI)",
+      "id": "HUPFagklWaN",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria confirmed mixed (foci)",
+      "lastUpdated": "2019-08-21T13:08:42.349",
+      "shortName": "Malaria confirmed mixed (foci)",
+      "description": "Number of mixed postive cases identified during the foci investigation",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER_ZERO_OR_POSITIVE",
+      "domainType": "TRACKER",
+      "displayName": "Malaria confirmed mixed (foci)",
+      "id": "vYH71AeWNQK",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria history",
+      "lastUpdated": "2019-08-21T13:08:02.032",
+      "shortName": "Malaria history",
+      "description": "Determines if the case has had malaria before",
+      "aggregationType": "COUNT",
+      "valueType": "BOOLEAN",
+      "domainType": "TRACKER",
+      "displayName": "Malaria history",
+      "id": "cpXwLgQTLeO",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria inpatient/outpatient",
+      "lastUpdated": "2019-08-21T13:08:02.032",
+      "shortName": "Services",
+      "description": "Identifies if the case is outpatient or inpatient",
+      "aggregationType": "NONE",
+      "valueType": "TEXT",
+      "domainType": "TRACKER",
+      "displayName": "Malaria inpatient/outpatient",
+      "id": "E0W0ZTTosXK",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria medication completed",
+      "lastUpdated": "2019-08-21T13:08:02.031",
+      "shortName": "Malaria medication completed",
+      "description": "Defines if the provided malaria medication has been completed or not",
+      "aggregationType": "COUNT",
+      "valueType": "BOOLEAN",
+      "domainType": "TRACKER",
+      "displayName": "Malaria medication completed",
+      "id": "uYreHlUd6RL",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria positive (people in neighbourhood)",
+      "lastUpdated": "2019-08-21T13:08:02.032",
+      "shortName": "Malaria positive (neighbourhood)",
+      "description": "The number of people in a neighbourhood that are malaria positive as identified during the nearby household investigation",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER_ZERO_OR_POSITIVE",
+      "domainType": "TRACKER",
+      "displayName": "Malaria positive (people in neighbourhood)",
+      "id": "LvJ1d1ytjfb",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria positive species",
+      "lastUpdated": "2019-08-21T13:08:02.032",
+      "shortName": "Malaria +ve species",
+      "description": "Identifies the malaria species as determined by a malaria test",
+      "aggregationType": "NONE",
+      "valueType": "TEXT",
+      "domainType": "TRACKER",
+      "displayName": "Malaria positive species",
+      "id": "vGxpKVMkmaW",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria referrals",
+      "lastUpdated": "2014-11-11T21:56:05.902",
+      "shortName": "Malaria referrals",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Malaria referrals",
+      "id": "hnwWyM4gDSg",
+      "categoryCombo": {
+        "name": "Morbidity Referrals",
+        "id": "ck7mRNwGDjP"
+      }
+    },
+    {
+      "name": "Malaria test",
+      "lastUpdated": "2019-08-21T13:08:02.032",
+      "shortName": "Malaria test",
+      "description": "Identifies the method used to test the malaria case",
+      "aggregationType": "NONE",
+      "valueType": "TEXT",
+      "domainType": "TRACKER",
+      "displayName": "Malaria test",
+      "id": "qdjVZojEK8S",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria test result",
+      "lastUpdated": "2019-08-21T13:08:02.032",
+      "shortName": "Malaria result",
+      "description": "Provides the result of the malaria test",
+      "aggregationType": "NONE",
+      "valueType": "TEXT",
+      "domainType": "TRACKER",
+      "displayName": "Malaria test result",
+      "id": "aY4kB8kS521",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria tested (people in neighbourhood)",
+      "lastUpdated": "2019-08-21T13:08:02.032",
+      "shortName": "Malaria tested (neighbourhood)",
+      "description": "The number of people in the village/neighbourhood tested for malaria",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER_ZERO_OR_POSITIVE",
+      "domainType": "TRACKER",
+      "displayName": "Malaria tested (people in neighbourhood)",
+      "id": "r9O7yJrA41g",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Malaria treated at PHU with ACT < 24 hrs f-up",
+      "lastUpdated": "2014-11-11T21:56:05.873",
+      "shortName": "Malaria PHU wACT<24f",
+      "description": "Follow-up",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Malaria treated at PHU with ACT < 24 hrs f-up",
+      "id": "CecywZWejT3",
+      "categoryCombo": {
+        "name": "Morbidity Cases",
+        "id": "t3aNCvHsoSn"
+      }
+    },
+    {
+      "name": "Malaria treated at PHU with ACT < 24 hrs new",
+      "lastUpdated": "2014-11-11T21:56:05.748",
+      "shortName": "Malaria PHU wACT<24n",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Malaria treated at PHU with ACT < 24 hrs new",
+      "id": "AFM5H0wNq3t",
+      "categoryCombo": {
+        "name": "Morbidity Cases",
+        "id": "t3aNCvHsoSn"
+      }
+    },
+    {
+      "name": "Malaria treated at PHU with ACT > 24 hrs f-up",
+      "lastUpdated": "2014-11-11T21:56:05.702",
+      "shortName": "Malaria PHU wACT>24f",
+      "description": "Follow-up",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Malaria treated at PHU with ACT > 24 hrs f-up",
+      "id": "bVkFujnp3F2",
+      "categoryCombo": {
+        "name": "Morbidity Cases",
+        "id": "t3aNCvHsoSn"
+      }
+    },
+    {
+      "name": "Malaria treated at PHU with ACT > 24 hrs new",
+      "lastUpdated": "2014-11-11T21:56:05.868",
+      "shortName": "Malaria PHU wACT>24n",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Malaria treated at PHU with ACT > 24 hrs new",
+      "id": "d92E7cpMvdl",
+      "categoryCombo": {
+        "name": "Morbidity Cases",
+        "id": "t3aNCvHsoSn"
+      }
+    },
+    {
+      "name": "Malaria treated at PHU without ACT < 24 hrs f-up",
+      "lastUpdated": "2014-11-11T21:56:05.901",
+      "shortName": "MalariaPHU woACT<24f",
+      "description": "Follow-up",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Malaria treated at PHU without ACT < 24 hrs f-up",
+      "id": "iIBbZPAqnMt",
+      "categoryCombo": {
+        "name": "Morbidity Cases",
+        "id": "t3aNCvHsoSn"
+      }
+    },
+    {
+      "name": "Malaria treated at PHU without ACT < 24 hrs new",
+      "lastUpdated": "2014-11-11T21:56:05.642",
+      "shortName": "MalariaPHU woACT<24n",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Malaria treated at PHU without ACT < 24 hrs new",
+      "id": "nmh0BSu3vaV",
+      "categoryCombo": {
+        "name": "Morbidity Cases",
+        "id": "t3aNCvHsoSn"
+      }
+    },
+    {
+      "name": "Malaria treated at PHU without ACT > 24 hrs f-up",
+      "lastUpdated": "2014-11-11T21:56:05.892",
+      "shortName": "MalariaPHU woACT>24f",
+      "description": "Follow-up",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Malaria treated at PHU without ACT > 24 hrs f-up",
+      "id": "pgi981WXhas",
+      "categoryCombo": {
+        "name": "Morbidity Cases",
+        "id": "t3aNCvHsoSn"
+      }
+    },
+    {
+      "name": "Malaria treated at PHU without ACT > 24 hrs new",
+      "lastUpdated": "2014-11-11T21:56:05.684",
+      "shortName": "MalariaPHU woACT>24n",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Malaria treated at PHU without ACT > 24 hrs new",
+      "id": "EGUJY3jQdJ6",
+      "categoryCombo": {
+        "name": "Morbidity Cases",
+        "id": "t3aNCvHsoSn"
+      }
+    },
+    {
+      "name": "Malaria treated in community with ACT <24 hrs f-up",
+      "lastUpdated": "2014-11-11T21:56:05.865",
+      "shortName": "Malaria com wAC<24f",
+      "description": "Follow-up",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Malaria treated in community with ACT <24 hrs f-up",
+      "id": "TQnDEASFsVH",
+      "categoryCombo": {
+        "name": "Morbidity Cases",
+        "id": "t3aNCvHsoSn"
+      }
+    },
+    {
+      "name": "Malaria treated in community with ACT <24 hrs new",
+      "lastUpdated": "2014-11-11T21:56:05.749",
+      "shortName": "Malaria com wAC<24n",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Malaria treated in community with ACT <24 hrs new",
+      "id": "x8gsvCKjGdZ",
+      "categoryCombo": {
+        "name": "Morbidity Cases",
+        "id": "t3aNCvHsoSn"
+      }
+    },
+    {
+      "name": "Malaria treated in community with ACT >24 hrs f-up",
+      "lastUpdated": "2014-11-11T21:56:05.853",
+      "shortName": "Malaria com wACT>24f",
+      "description": "Follow-up",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Malaria treated in community with ACT >24 hrs f-up",
+      "id": "vzcahelbU5s",
+      "categoryCombo": {
+        "name": "Morbidity Cases",
+        "id": "t3aNCvHsoSn"
+      }
+    },
+    {
+      "name": "Malaria treated in community with ACT >24 hrs new",
+      "lastUpdated": "2014-11-11T21:56:05.890",
+      "shortName": "Malaria com wACT>24n",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Malaria treated in community with ACT >24 hrs new",
+      "id": "kcbTUfABUck",
+      "categoryCombo": {
+        "name": "Morbidity Cases",
+        "id": "t3aNCvHsoSn"
+      }
+    },
+    {
+      "name": "Maternal death",
+      "lastUpdated": "2014-11-11T21:56:05.756",
+      "shortName": "Maternal death",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Maternal death",
+      "id": "FUrCpcvMAmC",
+      "categoryCombo": {
+        "name": "Maternal deaths",
+        "id": "sgoeVsAbF4r"
+      }
+    },
+    {
+      "name": "Non-active malaria foci classification",
+      "lastUpdated": "2019-08-21T13:08:42.350",
+      "shortName": "Non-active malaria foci classification",
+      "description": "Non-active malaria foci classification",
+      "aggregationType": "NONE",
+      "valueType": "TEXT",
+      "domainType": "TRACKER",
+      "displayName": "Non-active malaria foci classification",
+      "id": "ai8q3uo44rl",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "PMTCT No HIV women who delivered in the health facility (CS)",
+      "lastUpdated": "2014-11-11T21:56:05.707",
+      "shortName": "PMTCTHIVDeliFac(CS)",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "PMTCT No HIV women who delivered in the health facility (CS)",
+      "id": "RoCtZpDLVS7",
+      "categoryCombo": {
+        "name": "HIV age",
+        "id": "Wfan7UwK8CQ"
+      }
+    },
+    {
+      "name": "PMTCT No HIV women who delivered in the health facility (Normal)",
+      "lastUpdated": "2014-11-11T21:56:05.930",
+      "shortName": "PMTCTHIVDeliFacNorma",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "PMTCT No HIV women who delivered in the health facility (Normal)",
+      "id": "tAQe5dZ6wRv",
+      "categoryCombo": {
+        "name": "HIV age",
+        "id": "Wfan7UwK8CQ"
+      }
+    },
+    {
+      "name": "PMTCT expected delivery among HIV+ women",
+      "lastUpdated": "2014-11-11T21:56:05.823",
+      "shortName": "PMTCTexpectHIVwDeliv",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "PMTCT expected delivery among HIV+ women",
+      "id": "ZFC9MdnFHFJ",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "PMTCT women received ZDV & 3CT after delivery",
+      "lastUpdated": "2014-11-11T21:56:05.631",
+      "shortName": "PMTCTwR.ZDV&3CTDeliv",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "PMTCT women received ZDV & 3CT after delivery",
+      "id": "HPZd1WtTArI",
+      "categoryCombo": {
+        "name": "HIV age",
+        "id": "Wfan7UwK8CQ"
+      }
+    },
+    {
+      "name": "Q_Early breastfeeding (within 1 hr after delivery) at BCG",
+      "lastUpdated": "2014-11-11T21:56:05.842",
+      "shortName": "EarlyBreastfeed.BCG",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Q_Early breastfeeding (within 1 hr after delivery) at BCG",
+      "id": "dU0GquGkGQr",
+      "categoryCombo": {
+        "name": "Location and age group",
+        "id": "dzjKKQq0cSO"
+      }
+    },
+    {
+      "name": "Rapid diagnostic test for Malaria negative",
+      "lastUpdated": "2014-11-11T21:56:05.913",
+      "shortName": "RDT Malaria negative",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Rapid diagnostic test for Malaria negative",
+      "id": "Qk9nnX0i7lZ",
+      "categoryCombo": {
+        "name": "Morbidity Cases",
+        "id": "t3aNCvHsoSn"
+      }
+    },
+    {
+      "name": "Rapid diagnostic test for Malaria positive",
+      "lastUpdated": "2014-11-11T21:56:05.716",
+      "shortName": "RDT Malaria positive",
+      "aggregationType": "SUM",
+      "valueType": "NUMBER",
+      "domainType": "AGGREGATE",
+      "displayName": "Rapid diagnostic test for Malaria positive",
+      "id": "wZwzzRnr9N4",
+      "categoryCombo": {
+        "name": "Morbidity Cases",
+        "id": "t3aNCvHsoSn"
+      }
+    },
+    {
+      "name": "Residence of the malaria case/s  that prompted the current case investigation",
+      "lastUpdated": "2019-08-21T13:08:42.349",
+      "shortName": "Residence of cases prompted current investigation",
+      "description": "Residence of the malaria case/s  that prompted the current case investigation",
+      "aggregationType": "NONE",
+      "valueType": "TEXT",
+      "domainType": "TRACKER",
+      "displayName": "Residence of the malaria case/s  that prompted the current case investigation",
+      "id": "DanTR5x0WDK",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Residents had malaria past month",
+      "lastUpdated": "2019-08-21T13:08:02.032",
+      "shortName": "Residents had malaria past month",
+      "description": "The number of residents in the household who had malaria within the previous month",
+      "aggregationType": "SUM",
+      "valueType": "INTEGER",
+      "domainType": "TRACKER",
+      "displayName": "Residents had malaria past month",
+      "id": "ECjafwJrxL5",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "Treatment Malaria",
+      "lastUpdated": "2017-05-22T16:07:33.029",
+      "shortName": "Treatment Malaria",
+      "aggregationType": "NONE",
+      "valueType": "TEXT",
+      "domainType": "TRACKER",
+      "displayName": "Treatment Malaria",
+      "id": "O7OiONht8T3",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "WHOMCH Delivery method",
+      "lastUpdated": "2025-03-26T15:51:58.882",
+      "shortName": "Delivery method",
+      "aggregationType": "NONE",
+      "valueType": "TEXT",
+      "domainType": "TRACKER",
+      "displayName": "WHOMCH Delivery method",
+      "id": "spkG704sTh6",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "WHOMCH Malaria prophylaxis given in second trimester",
+      "lastUpdated": "2015-10-14T13:36:07.150",
+      "shortName": "Malaria prophylaxis given in second trimester",
+      "description": "DD.MM.YYYY since LMP > 14 weeks, Antimalarial tratment according to national policies. From Essential Interventions: \"Give 3 tablets of sulfadoxine-pyrimethamine (500 mg + 25 mg pyrimethamine sulfadoxine) at the beginning of the second AND the third trimester to all women according to national policy. (Alternatively Chloroquine 150 mg for 3 days: 4+4+2 OR Chloroquin 100 mg for 3 days: 6+6+3).",
+      "aggregationType": "SUM",
+      "valueType": "BOOLEAN",
+      "domainType": "TRACKER",
+      "displayName": "WHOMCH Malaria prophylaxis given in second trimester",
+      "id": "MHW5v2Iljtw",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "WHOMCH Malaria prophylaxis given in third trimester",
+      "lastUpdated": "2015-10-14T13:36:48.716",
+      "shortName": "Malaria prophylaxis given in third trimester",
+      "aggregationType": "SUM",
+      "valueType": "BOOLEAN",
+      "domainType": "TRACKER",
+      "displayName": "WHOMCH Malaria prophylaxis given in third trimester",
+      "id": "zsWyjzmBLGz",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "WHOMCH Maternal near-miss",
+      "lastUpdated": "2015-10-14T13:36:49.578",
+      "shortName": "Maternal near-miss",
+      "aggregationType": "SUM",
+      "valueType": "BOOLEAN",
+      "domainType": "TRACKER",
+      "displayName": "WHOMCH Maternal near-miss",
+      "id": "FIHEeJwfhZH",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "WHOMCH Maternal near-miss by coagulation/haematological dysfunction",
+      "lastUpdated": "2015-10-14T13:36:33.461",
+      "shortName": "MNM by coagulation/haematological dysfunction",
+      "aggregationType": "SUM",
+      "valueType": "BOOLEAN",
+      "domainType": "TRACKER",
+      "displayName": "WHOMCH Maternal near-miss by coagulation/haematological dysfunction",
+      "id": "i9mEM7ZW7yV",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "WHOMCH Maternal near-miss by other reason",
+      "lastUpdated": "2015-10-14T13:36:21.388",
+      "shortName": "Maternal near-miss by other reason",
+      "aggregationType": "SUM",
+      "valueType": "BOOLEAN",
+      "domainType": "TRACKER",
+      "displayName": "WHOMCH Maternal near-miss by other reason",
+      "id": "SojR4V7A8u2",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "WHOMCH Maternal near-miss by uterine dysfunction",
+      "lastUpdated": "2015-10-14T13:36:36.910",
+      "shortName": "MNM by uterine dysfunction",
+      "aggregationType": "SUM",
+      "valueType": "BOOLEAN",
+      "domainType": "TRACKER",
+      "displayName": "WHOMCH Maternal near-miss by uterine dysfunction",
+      "id": "PQlndpI05Bb",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "WHOMCH Previous modes of delivery",
+      "lastUpdated": "2015-10-14T13:36:20.082",
+      "shortName": "Previous modes of delivery",
+      "aggregationType": "SUM",
+      "valueType": "TEXT",
+      "domainType": "TRACKER",
+      "displayName": "WHOMCH Previous modes of delivery",
+      "id": "W4zW3aPyS0G",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "WHOMCH Slept under ITN (insecticide treated bednet)",
+      "lastUpdated": "2015-10-14T13:36:16.193",
+      "shortName": "Slept under ITN (insecticide treated bednet)",
+      "description": "Promote use of bednet dipped in insecticide every 6 months to prevent malaria.",
+      "aggregationType": "SUM",
+      "valueType": "BOOLEAN",
+      "domainType": "TRACKER",
+      "displayName": "WHOMCH Slept under ITN (insecticide treated bednet)",
+      "id": "ytV9rX4ADnn",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "WHOMCH Tetanus vaccination status",
+      "lastUpdated": "2015-10-14T13:36:30.453",
+      "shortName": "Tetanus vaccination status",
+      "aggregationType": "SUM",
+      "valueType": "TEXT",
+      "domainType": "TRACKER",
+      "displayName": "WHOMCH Tetanus vaccination status",
+      "id": "sUX4i7QqbXF",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    },
+    {
+      "name": "WHOMCH Treatment for moderate anemia",
+      "lastUpdated": "2015-10-14T13:36:25.264",
+      "shortName": "Treatment for moderate anemia",
+      "description": "Revise birth plan so as to deliver in a facility with blood transfusion services. Give double dose of iron (1 tablet twice daily=120 mg iron + 400 microg folic acid in total) for 3 months. Counsel on compliance with treatment. Give appropriate oral antimalarial.",
+      "aggregationType": "SUM",
+      "valueType": "BOOLEAN",
+      "domainType": "TRACKER",
+      "displayName": "WHOMCH Treatment for moderate anemia",
+      "id": "RxVNLSeTjto",
+      "categoryCombo": {
+        "name": "default",
+        "id": "bjDvmb4bfuf"
+      }
+    }
+  ]
+}

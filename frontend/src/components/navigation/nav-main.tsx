@@ -42,6 +42,8 @@ export function NavMain({
 											exact: !(
 												item.url.includes("/users") ||
 												item.url.includes("/roles") ||
+												item.url.includes("/acquisitions") ||
+
 												item.url.includes("/products")
 											),
 										}}
