@@ -1,18 +1,16 @@
-#Data probe 3
+# Data probe 3
 
 
 import os
+
 import requests
 
-BASE_URL = os.getenv(
-    "DHIS2_BASE_URL",
-    "https://play.im.dhis2.org/stable-2-43-2",
-).rstrip("/")
+BASE_URL = os.getenv("DHIS2_BASE_URL").rstrip("/")
 
 session = requests.Session()
 session.auth = (
-    os.getenv("DHIS2_USERNAME", "admin"),
-    os.getenv("DHIS2_PASSWORD", "district"),
+    os.getenv("DHIS2_USERNAME"),
+    os.getenv("DHIS2_PASSWORD"),
 )
 session.headers["Accept"] = "application/json"
 
@@ -50,9 +48,7 @@ for label, org_unit, period in tests:
             continue
 
         payload = response.json()
-        print("Headers:", [
-            h.get("name") for h in payload.get("headers", [])
-        ])
+        print("Headers:", [h.get("name") for h in payload.get("headers", [])])
         print("Rows:", len(payload.get("rows", [])))
         print("Sample:", payload.get("rows", [])[:3])
 
@@ -60,9 +56,6 @@ for label, org_unit, period in tests:
         print("Request error:", exc)
     except ValueError as exc:
         print("Invalid JSON:", exc)
-
-
-
 
 
 # Data probe 2

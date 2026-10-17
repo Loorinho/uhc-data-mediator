@@ -59,4 +59,10 @@ class RefreshToken(models.Model):
 
 # Register models that live in feature submodules (e.g. ingestion).
 from .ingestion.models import AcquisitionAttempt  # noqa: E402,F401
+from .governance.models import DataProduct, DataProductRelease  # noqa: E402,F401
+from .interoperability.models import (  # noqa: E402,F401
+    CanonicalMeasure,
+    CanonicalObservation,
+    MeasureSourceMapping,
+)
 
