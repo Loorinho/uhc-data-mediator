@@ -1,4 +1,3 @@
-
 import logging
 import signal
 import time
@@ -15,7 +14,6 @@ from core.ingestion.models import AcquisitionAttempt
 from core.ingestion.services.acquisition_processor import (
     process_acquisition,
 )
-
 
 logger = logging.getLogger(__name__)
 
@@ -41,9 +39,7 @@ class Command(BaseCommand):
         run_once = options["once"]
 
         if poll_seconds < 1:
-            raise ValueError(
-                "--poll-seconds must be >= 1"
-            )
+            raise ValueError("--poll-seconds must be >= 1")
 
         self.running = True
 
@@ -57,11 +53,7 @@ class Command(BaseCommand):
             self.stop,
         )
 
-        self.stdout.write(
-            self.style.SUCCESS(
-                "DHIS2 acquisition worker started."
-            )
-        )
+        self.stdout.write(self.style.SUCCESS("DHIS2 acquisition worker started."))
 
         while self.running:
             close_old_connections()
@@ -70,9 +62,7 @@ class Command(BaseCommand):
                 attempt_id = self.claim_next_attempt()
 
             except Exception:
-                logger.exception(
-                    "Failed to claim acquisition"
-                )
+                logger.exception("Failed to claim acquisition")
 
                 if run_once:
                     break
@@ -87,16 +77,12 @@ class Command(BaseCommand):
                 time.sleep(poll_seconds)
                 continue
 
-            self.stdout.write(
-                f"Processing acquisition: {attempt_id}"
-            )
+            self.stdout.write(f"Processing acquisition: {attempt_id}")
 
             try:
                 result = process_acquisition(attempt_id)
 
-                self.stdout.write(
-                    f"Acquisition {attempt_id}: {result}"
-                )
+                self.stdout.write(f"Acquisition {attempt_id}: {result}")
 
             except Exception:
                 logger.exception(
@@ -110,9 +96,7 @@ class Command(BaseCommand):
             if run_once:
                 break
 
-        self.stdout.write(
-            "DHIS2 acquisition worker stopped."
-        )
+        self.stdout.write("DHIS2 acquisition worker stopped.")
 
     def claim_next_attempt(self):
         """
@@ -124,8 +108,7 @@ class Command(BaseCommand):
 
         with transaction.atomic():
             attempt = (
-                AcquisitionAttempt.objects
-                .select_for_update(skip_locked=True)
+                AcquisitionAttempt.objects.select_for_update(skip_locked=True)
                 .filter(
                     status=AcquisitionAttempt.Status.PENDING,
                     mode=AcquisitionAttempt.Mode.LIVE,
@@ -137,23 +120,23 @@ class Command(BaseCommand):
             if attempt is None:
                 return None
 
-            attempt.status = (
-                AcquisitionAttempt.Status.RUNNING
-            )
+            attempt.status = AcquisitionAttempt.Status.RUNNING
 
             attempt.started_at = timezone.now()
             attempt.finished_at = None
             attempt.error_message = ""
             attempt.outcome = None
 
-            attempt.save(update_fields=[
-                "status",
-                "started_at",
-                "finished_at",
-                "error_message",
-                "outcome",
-                "updated_at",
-            ])
+            attempt.save(
+                update_fields=[
+                    "status",
+                    "started_at",
+                    "finished_at",
+                    "error_message",
+                    "outcome",
+                    "updated_at",
+                ]
+            )
 
             return attempt.pk
 

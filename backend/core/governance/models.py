@@ -1,4 +1,3 @@
-
 import uuid
 
 from django.conf import settings
@@ -112,6 +111,10 @@ class DataProductRelease(models.Model):
         "core.AcquisitionAttempt",
         on_delete=models.PROTECT,
         related_name="data_product_releases",
+        # Added because of population release. Given we already
+        # have a data product for any_first_visits
+        null=True,
+        blank=True,
     )
 
     schema_version = models.CharField(max_length=20)
