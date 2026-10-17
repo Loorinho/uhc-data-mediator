@@ -1,10 +1,13 @@
 import uuid
+
 from django.db import models
 
 from core.ingestion.models import (
     District,
+    DistrictPopulation,
     Observation,
 )
+
 
 # Defines what a canonical model means
 class CanonicalMeasure(models.Model):
@@ -59,9 +62,7 @@ class MeasureSourceMapping(models.Model):
 
     source = models.CharField(max_length=100)
 
-    source_measure_id = models.CharField(
-        max_length=100
-    )
+    source_measure_id = models.CharField(max_length=100)
 
     measure = models.ForeignKey(
         CanonicalMeasure,
@@ -130,6 +131,17 @@ class CanonicalObservation(models.Model):
         Observation,
         on_delete=models.PROTECT,
         related_name="canonical_versions",
+        null=True,
+        blank=True,
+    )
+
+    # Reference to the original acquired population record.
+    source_population = models.ForeignKey(
+        DistrictPopulation,
+        on_delete=models.PROTECT,
+        related_name="canonical_versions",
+        null=True,
+        blank=True,
     )
 
     # Each canonical record belongs to an explicit
@@ -157,5 +169,16 @@ class CanonicalObservation(models.Model):
                     "dimensions_hash",
                 ],
                 name="uq_canonical_release_observation",
+            ),
+            models.CheckConstraint(
+                condition=(
+                    models.Q(
+                        source_observation__isnull=False, source_population__isnull=True
+                    )
+                    | models.Q(
+                        source_observation__isnull=True, source_population__isnull=False
+                    )
+                ),
+                name="canonical_exactly_one_source",
             ),
         ]
