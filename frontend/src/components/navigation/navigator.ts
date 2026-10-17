@@ -37,11 +37,13 @@ function getNavigationKeys(user: NavigationUser): NavigationKey[] {
 
 	if (isDataProvider(user)) {
 		keys.add("acquisitions");
+		keys.add("products");
+
 	}
 
-	if (keys.size === 0) {
-		keys.add("products");
-	}
+	// if (keys.size === 0) {
+	// 	keys.add("products");
+	// }
 
 	return Array.from(keys);
 }

@@ -23,6 +23,8 @@ services:
   uhc-frontend:
     build:
       context: ./frontend
+    env_file:
+      - .env
     restart: unless-stopped
     ports:
       - "127.0.0.1:3000:3000"
@@ -70,6 +72,22 @@ services:
       - ./backend:/app
     depends_on:
       - uhc-api
+
+  uhc-transformation-worker:
+    build:
+      context: ./backend
+    env_file:
+      - .env
+    environment:
+      DB_HOST: uhc-db
+      DB_PORT: 5432
+    command: >
+      sh -c "python manage.py run_transformation_worker --poll-seconds 3"
+    restart: unless-stopped
+
+    depends_on:
+      - uhc-api
+
    
 volumes:
   postgres_data:

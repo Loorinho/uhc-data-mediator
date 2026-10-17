@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useRouter, useRouterState } from "@tanstack/react-router";
+import { createFileRoute, Link, redirect, useRouter, useRouterState } from "@tanstack/react-router";
 import { type ColumnDef, tableFeatures } from "@tanstack/react-table";
 import type { ReactNode } from "react";
 import { DataTable } from "@/components/data-table";
@@ -18,11 +18,22 @@ import {
 import type { AcquisitionObservation } from "@/types/types";
 import { AcquisitionStatusBadge } from "./-columns";
 import { AcquisitionError } from "./-error";
+import { useAppForm } from "@/hooks/form";
+import { canonicalTransformationSchema, triggerCanonicalTransformation } from "@/server-functions/transformation.api";
+import { Spinner } from "@/components/ui/spinner";
+import { toast } from "@/components/ui/toast";
+import { RefreshCcwDot } from "lucide-react";
 
 export const Route = createFileRoute(
 	"/_authed/dashboard/acquisitions/$acquisitionId",
 )({
 	validateSearch: (search) => acquisitionDetailSearchSchema.parse(search),
+	beforeLoad: ({ context }) => {
+		const roles = context.user.user?.roles ?? [];
+		if (!roles.includes("data_provider")) {
+			throw redirect({ to: "/dashboard" });
+		}
+	},
 	loaderDeps: ({ search }) => search,
 	loader: ({ params, deps }) =>
 		getAcquisitionDetailFn({
@@ -36,6 +47,13 @@ export const Route = createFileRoute(
 });
 
 const features = tableFeatures({});
+
+const DATA_PRODUCT_OPTIONS = [
+	{
+		label: "Sierra Leone district ANC activity",
+		value: "sl-district-anc-activity",
+	},
+];
 const observationColumns: ColumnDef<typeof features, AcquisitionObservation>[] =
 	[
 		{
@@ -91,29 +109,107 @@ function AcquisitionDetails() {
 			resetScroll: false,
 		});
 	};
+
+	const canonicalDataTransformationForm = useAppForm({
+		defaultValues: {
+			acquisitionId: attempt.acquisitionId,
+			productCode: "sl-district-anc-activity",
+		},
+		validators: {
+			onSubmit: canonicalTransformationSchema,
+		},
+		onSubmit: async ({value}) => {
+			try {
+				const response = await triggerCanonicalTransformation({
+					data: value
+				});
+				
+				if(response.statusCode !== 200){
+					toast.add({
+						title: "Error",
+						description: response.message,
+						type: "error"
+					})
+					return;
+				}
+
+				toast.add({
+					title: "Transformation triggered",
+					description: response.message ?? "Canonical transformation has been queued successfully.",
+					type: "success"
+				})
+
+				void router.invalidate();
+			} catch (error) {
+				toast.add({
+					title: "Error",
+					description: "Failed to trigger canonical transformation.",
+					type: "error"
+				})
+			}
+		},
+	})
 	return (
 		<div className="flex flex-col gap-6">
 			<div className="flex flex-wrap items-center justify-between gap-3">
 				<div className="space-y-2">
 					<Link
-						className="text-sm text-muted-foreground underline underline-offset-4"
+						className="text-sm text-muted-foreground"
 						to="/dashboard/acquisitions"
 						search={{ page: 1, page_size: 10 }}
 					>
 						← All acquisitions
 					</Link>
-					<h1 className="text-2xl font-semibold">Acquisition details</h1>
-					<p className="break-all font-mono text-xs text-muted-foreground">
-						{attempt.acquisitionId}
-					</p>
+					<h1 className="text-2xl text-primary font-semibold">Acquisition details</h1>
+				
 				</div>
-				<Button
-					variant="outline"
-					disabled={isLoading}
-					onClick={() => void router.invalidate()}
-				>
-					Refresh
-				</Button>
+
+			
+					
+					<div className="flex items-center gap-3">
+						<RefreshCcwDot
+							className="h-4 w-4 cursor-pointer"
+							onClick={() => void router.invalidate()}
+						/>
+						<form
+							onSubmit={async (event) => {
+								event.preventDefault();
+								event.stopPropagation();
+
+								await canonicalDataTransformationForm.handleSubmit();
+							}}
+						>
+							<div className="flex items-end gap-2">
+								<canonicalDataTransformationForm.AppField name="productCode">
+									{(field) => (
+										<field.SelectInput
+											label="Data product"
+											id="productCode"
+											className="w-64"
+											items={DATA_PRODUCT_OPTIONS}
+										/>
+									)}
+								</canonicalDataTransformationForm.AppField>
+								<canonicalDataTransformationForm.Subscribe
+									selector={(state) => ({ isSubmitting: state.isSubmitting })}
+								>
+									{({ isSubmitting }) => (
+										<Button type="submit" disabled={isSubmitting}>
+											{isSubmitting ? (
+												<>
+													<Spinner data-icon="inline-start" />
+													Transforming…
+												</>
+											) : (
+												"Trigger transformation"
+											)}
+										</Button>
+									)}
+								</canonicalDataTransformationForm.Subscribe>
+							</div>
+						</form>
+					</div>
+				
 			</div>
 
 			<section className="space-y-5 rounded-xl border bg-card p-6">

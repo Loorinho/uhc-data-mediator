@@ -20,12 +20,11 @@ import requests
 from requests.auth import HTTPBasicAuth
 
 BASE_URL = os.getenv(
-    "DHIS2_BASE_URL",
-    "https://play.im.dhis2.org/stable-2-43-2",
+    "DHIS2_BASE_URL"
 ).rstrip("/")
 
-USERNAME = os.getenv("DHIS2_USERNAME", "admin")
-PASSWORD = os.getenv("DHIS2_PASSWORD", "district")
+USERNAME = os.getenv("DHIS2_USERNAME")
+PASSWORD = os.getenv("DHIS2_PASSWORD")
 
 OUTPUT_DIR = Path("output")
 PAGE_SIZE = 100
