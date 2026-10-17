@@ -1,5 +1,6 @@
 import uuid
 
+from django.conf import settings
 from django.db import models
 
 from core.ingestion.models import (
@@ -182,3 +183,164 @@ class CanonicalObservation(models.Model):
                 name="canonical_exactly_one_source",
             ),
         ]
+
+
+# GeographicCrosswalk
+
+
+class GeographicCrosswalk(models.Model):
+    class SourceSystem(models.TextChoices):
+        DHIS2 = "DHIS2-SL-DEMO", "DHIS2 Sierra Leone"
+        CENSUS = "STATS-SL-2021-MTPHC", "Statistics Sierra Leone"
+
+    class MappingType(models.TextChoices):
+        EXACT = "EXACT", "Exact geographic match"
+        PARTIAL = "PARTIAL", "Partial overlap"
+        AGGREGATED = "AGGREGATED", "Multiple areas combined"
+        UNKNOWN = "UNKNOWN", "Unknown relationship"
+
+    class VerificationStatus(models.TextChoices):
+        PENDING = "PENDING", "Pending review"
+        VERIFIED = "VERIFIED", "Verified"
+        REJECTED = "REJECTED", "Rejected"
+
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+    )
+
+    source_system = models.CharField(
+        max_length=100,
+        choices=SourceSystem.choices,
+    )
+
+    source_area_id = models.CharField(
+        max_length=100,
+    )
+
+    source_area_name = models.CharField(
+        max_length=150,
+    )
+
+    # Reference year of the source's geographic definition.
+    # Nullable when not yet established.
+    source_geography_year = models.PositiveSmallIntegerField(
+        null=True,
+        blank=True,
+    )
+
+    # Internal district identity used for reconciliation.
+    target_district = models.ForeignKey(
+        District,
+        on_delete=models.PROTECT,
+        related_name="geographic_crosswalks",
+    )
+
+    # Census geography against which compatibility is assessed.
+    target_geography_year = models.PositiveSmallIntegerField(
+        default=2021,
+    )
+
+    mapping_type = models.CharField(
+        max_length=20,
+        choices=MappingType.choices,
+        default=MappingType.UNKNOWN,
+    )
+
+    verification_status = models.CharField(
+        max_length=20,
+        choices=VerificationStatus.choices,
+        default=VerificationStatus.PENDING,
+        db_index=True,
+    )
+
+    evidence_url = models.URLField(
+        max_length=1000,
+        blank=True,
+        default="",
+    )
+
+    mapping_notes = models.TextField(
+        blank=True,
+        default="",
+    )
+
+    reviewed_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        related_name="reviewed_geographic_mappings",
+    )
+
+    reviewed_at = models.DateTimeField(
+        null=True,
+        blank=True,
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+    )
+
+    updated_at = models.DateTimeField(
+        auto_now=True,
+    )
+
+    class Meta:
+        db_table = "geographic_crosswalks"
+
+        constraints = [
+            models.UniqueConstraint(
+                fields=[
+                    "source_system",
+                    "source_area_id",
+                    "source_geography_year",
+                    "target_district",
+                    "target_geography_year",
+                ],
+                name="uq_geo_crosswalk_mapping",
+                nulls_distinct=False,
+            ),
+            models.CheckConstraint(
+                condition=(
+                    models.Q(verification_status="PENDING")
+                    | models.Q(verification_status="REJECTED")
+                    | (
+                        models.Q(
+                            verification_status="VERIFIED",
+                            mapping_type="EXACT",
+                            reviewed_by__isnull=False,
+                            reviewed_at__isnull=False,
+                        )
+                        & ~models.Q(evidence_url="")
+                    )
+                ),
+                name="geo_verified_requires_evidence",
+            ),
+        ]
+
+        indexes = [
+            models.Index(
+                fields=[
+                    "source_system",
+                    "source_area_id",
+                ],
+                name="geo_source_lookup_idx",
+            ),
+            models.Index(
+                fields=[
+                    "verification_status",
+                    "mapping_type",
+                ],
+                name="geo_mapping_status_idx",
+            ),
+        ]
+
+    def __str__(self):
+        return (
+            f"{self.source_system}: "
+            f"{self.source_area_name} -> "
+            f"{self.target_district.name} "
+            f"({self.verification_status})"
+        )
