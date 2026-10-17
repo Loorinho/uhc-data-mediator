@@ -56,3 +56,7 @@ class RefreshToken(models.Model):
     def __str__(self) -> str:
         return f"RefreshToken(user={self.user.username}, valid={self.is_valid})"
 
+
+# Register models that live in feature submodules (e.g. ingestion).
+from .ingestion.models import AcquisitionAttempt  # noqa: E402,F401
+

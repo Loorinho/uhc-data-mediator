@@ -1,0 +1,269 @@
+{
+  "possible_country_units": [
+    {
+      "code": "OU_525",
+      "name": "Sierra Leone",
+      "shortName": "Sierra Leone",
+      "path": "/ImspTQPwCqd",
+      "openingDate": "1994-01-01T00:00:00.000",
+      "displayName": "Sierra Leone",
+      "id": "ImspTQPwCqd",
+      "level": 1,
+      "ancestors": []
+    }
+  ],
+  "district_name_matches": [
+    {
+      "code": "OU_264",
+      "name": "Bo",
+      "shortName": "Bo",
+      "parent": {
+        "name": "Sierra Leone",
+        "id": "ImspTQPwCqd"
+      },
+      "path": "/ImspTQPwCqd/O6uvpzGd5pu",
+      "openingDate": "1990-02-01T00:00:00.000",
+      "displayName": "Bo",
+      "id": "O6uvpzGd5pu",
+      "level": 2,
+      "ancestors": [
+        {
+          "name": "Sierra Leone",
+          "id": "ImspTQPwCqd",
+          "level": 1
+        }
+      ]
+    },
+    {
+      "code": "OU_193190",
+      "name": "Bombali",
+      "shortName": "Bombali",
+      "parent": {
+        "name": "Sierra Leone",
+        "id": "ImspTQPwCqd"
+      },
+      "path": "/ImspTQPwCqd/fdc6uOvgoji",
+      "openingDate": "1970-01-01T00:00:00.000",
+      "displayName": "Bombali",
+      "id": "fdc6uOvgoji",
+      "level": 2,
+      "ancestors": [
+        {
+          "name": "Sierra Leone",
+          "id": "ImspTQPwCqd",
+          "level": 1
+        }
+      ]
+    },
+    {
+      "code": "OU_197385",
+      "name": "Bonthe",
+      "shortName": "Bonthe",
+      "parent": {
+        "name": "Sierra Leone",
+        "id": "ImspTQPwCqd"
+      },
+      "path": "/ImspTQPwCqd/lc3eMKXaEfw",
+      "openingDate": "1970-01-01T00:00:00.000",
+      "displayName": "Bonthe",
+      "id": "lc3eMKXaEfw",
+      "level": 2,
+      "ancestors": [
+        {
+          "name": "Sierra Leone",
+          "id": "ImspTQPwCqd",
+          "level": 1
+        }
+      ]
+    },
+    {
+      "code": "OU_204856",
+      "name": "Kailahun",
+      "shortName": "Kailahun",
+      "parent": {
+        "name": "Sierra Leone",
+        "id": "ImspTQPwCqd"
+      },
+      "path": "/ImspTQPwCqd/jUb8gELQApl",
+      "openingDate": "1970-01-01T00:00:00.000",
+      "displayName": "Kailahun",
+      "id": "jUb8gELQApl",
+      "level": 2,
+      "ancestors": [
+        {
+          "name": "Sierra Leone",
+          "id": "ImspTQPwCqd",
+          "level": 1
+        }
+      ]
+    },
+    {
+      "code": "OU_211212",
+      "name": "Kambia",
+      "shortName": "Kambia",
+      "parent": {
+        "name": "Sierra Leone",
+        "id": "ImspTQPwCqd"
+      },
+      "path": "/ImspTQPwCqd/PMa2VCrupOd",
+      "openingDate": "1970-01-01T00:00:00.000",
+      "displayName": "Kambia",
+      "id": "PMa2VCrupOd",
+      "level": 2,
+      "ancestors": [
+        {
+          "name": "Sierra Leone",
+          "id": "ImspTQPwCqd",
+          "level": 1
+        }
+      ]
+    },
+    {
+      "code": "OU_222616",
+      "name": "Kenema",
+      "shortName": "Kenema",
+      "parent": {
+        "name": "Sierra Leone",
+        "id": "ImspTQPwCqd"
+      },
+      "path": "/ImspTQPwCqd/kJq2mPyFEHo",
+      "openingDate": "1970-01-01T00:00:00.000",
+      "displayName": "Kenema",
+      "id": "kJq2mPyFEHo",
+      "level": 2,
+      "ancestors": [
+        {
+          "name": "Sierra Leone",
+          "id": "ImspTQPwCqd",
+          "level": 1
+        }
+      ]
+    },
+    {
+      "code": "OU_226213",
+      "name": "Koinadugu",
+      "shortName": "Koinadugu",
+      "parent": {
+        "name": "Sierra Leone",
+        "id": "ImspTQPwCqd"
+      },
+      "path": "/ImspTQPwCqd/qhqAxPSTUXp",
+      "openingDate": "1970-01-01T00:00:00.000",
+      "displayName": "Koinadugu",
+      "id": "qhqAxPSTUXp",
+      "level": 2,
+      "ancestors": [
+        {
+          "name": "Sierra Leone",
+          "id": "ImspTQPwCqd",
+          "level": 1
+        }
+      ]
+    },
+    {
+      "code": "OU_233310",
+      "name": "Kono",
+      "shortName": "Kono",
+      "parent": {
+        "name": "Sierra Leone",
+        "id": "ImspTQPwCqd"
+      },
+      "path": "/ImspTQPwCqd/Vth0fbpFcsO",
+      "openingDate": "1970-01-01T00:00:00.000",
+      "displayName": "Kono",
+      "id": "Vth0fbpFcsO",
+      "level": 2,
+      "ancestors": [
+        {
+          "name": "Sierra Leone",
+          "id": "ImspTQPwCqd",
+          "level": 1
+        }
+      ]
+    },
+    {
+      "code": "OU_246990",
+      "name": "Moyamba",
+      "shortName": "Moyamba",
+      "parent": {
+        "name": "Sierra Leone",
+        "id": "ImspTQPwCqd"
+      },
+      "path": "/ImspTQPwCqd/jmIPBj66vD6",
+      "openingDate": "1970-01-01T00:00:00.000",
+      "displayName": "Moyamba",
+      "id": "jmIPBj66vD6",
+      "level": 2,
+      "ancestors": [
+        {
+          "name": "Sierra Leone",
+          "id": "ImspTQPwCqd",
+          "level": 1
+        }
+      ]
+    },
+    {
+      "code": "OU_254945",
+      "name": "Port Loko",
+      "shortName": "Port Loko",
+      "parent": {
+        "name": "Sierra Leone",
+        "id": "ImspTQPwCqd"
+      },
+      "path": "/ImspTQPwCqd/TEQlaapDQoK",
+      "openingDate": "1970-01-01T00:00:00.000",
+      "displayName": "Port Loko",
+      "id": "TEQlaapDQoK",
+      "level": 2,
+      "ancestors": [
+        {
+          "name": "Sierra Leone",
+          "id": "ImspTQPwCqd",
+          "level": 1
+        }
+      ]
+    },
+    {
+      "code": "OU_260377",
+      "name": "Pujehun",
+      "shortName": "Pujehun",
+      "parent": {
+        "name": "Sierra Leone",
+        "id": "ImspTQPwCqd"
+      },
+      "path": "/ImspTQPwCqd/bL4ooGhyHRQ",
+      "openingDate": "1970-01-01T00:00:00.000",
+      "displayName": "Pujehun",
+      "id": "bL4ooGhyHRQ",
+      "level": 2,
+      "ancestors": [
+        {
+          "name": "Sierra Leone",
+          "id": "ImspTQPwCqd",
+          "level": 1
+        }
+      ]
+    },
+    {
+      "code": "OU_268149",
+      "name": "Tonkolili",
+      "shortName": "Tonkolili",
+      "parent": {
+        "name": "Sierra Leone",
+        "id": "ImspTQPwCqd"
+      },
+      "path": "/ImspTQPwCqd/eIQbndfxQMb",
+      "openingDate": "1970-01-01T00:00:00.000",
+      "displayName": "Tonkolili",
+      "id": "eIQbndfxQMb",
+      "level": 2,
+      "ancestors": [
+        {
+          "name": "Sierra Leone",
+          "id": "ImspTQPwCqd",
+          "level": 1
+        }
+      ]
+    }
+  ]
+}

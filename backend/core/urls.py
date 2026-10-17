@@ -13,4 +13,8 @@ urlpatterns = [
     # Users & roles
     path("users/", UserListView.as_view(), name="user-list"),
     path("roles/", RoleListCreateView.as_view(), name="role-list-create"),
+
+    # Data Acquisiton
+    path("acquisition/", include("core.ingestion.urls")),
+
 ]

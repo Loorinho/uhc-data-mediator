@@ -4,8 +4,9 @@ import {  FieldGroup } from '@/components/ui/field'
 import { Spinner } from '@/components/ui/spinner'
 import { toast } from '@/components/ui/toast'
 import { useAppForm } from '@/hooks/form'
+import { useAuth } from '@/lib/auth'
 import { getCurrentUser, loginFn } from '@/server-functions/auth.api'
-import { createFileRoute, redirect, useNavigate } from '@tanstack/react-router'
+import { createFileRoute, redirect, useNavigate, useRouter } from '@tanstack/react-router'
 import {z} from "zod"
 
 export const Route = createFileRoute('/')({
@@ -36,7 +37,10 @@ export const loginSchema = z.object({
 
 function Home() {
 
+	const auth = useAuth(); 
+
   const navigate = useNavigate();
+  const router = useRouter()
   const form = useAppForm({
     defaultValues: {
       username: "",
@@ -54,7 +58,7 @@ function Home() {
         })
 
         if(response?.statusCode !== 200){
-          toast.add({
+        toast.add({
             title: "Login Failed",
             description: response?.message ?? "An error occurred while logging in.",
           })
@@ -62,10 +66,11 @@ function Home() {
           return
         }
 
-
+		await auth.refresh();
+		await router.invalidate();
 
         // Redirect to authenticated route
-        navigate({ to: '/dashboard' });
+        await navigate({ to: '/dashboard' });
 
       }catch(error){
         toast.add({

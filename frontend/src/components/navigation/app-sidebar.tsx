@@ -25,15 +25,19 @@ import {
 } from "@/components/ui/sidebar";
 
 import { useAuth } from "@/lib/auth";
-import { getDefaultRoute, getNavigationItems, type NavigationKey } from "./navigator";
 import { NavMain } from "./nav-main";
+import {
+	getDefaultRoute,
+	getNavigationItems,
+	type NavigationKey,
+} from "./navigator";
 
 const navigationIcons: Record<NavigationKey, React.ReactNode> = {
 	users: <Users2 />,
 	roles: <ShieldCogCorner />,
 	dashboard: <HomeIcon />,
 	products: <Podium />,
-
+	acquisitions: <RefreshCcwDot />,
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -64,7 +68,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 										className="size-10 md:w-full group-data-[state=collapsed]:hidden"
 									/>
 									<img
-                                    src="/images/speedykom-short.jpeg"
+										src="/images/speedykom-short.jpeg"
 										alt="SpeedyKom logo"
 										className="hidden size-full group-data-[state=collapsed]:block"
 									/>

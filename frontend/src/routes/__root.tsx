@@ -26,6 +26,10 @@ export const Route = createRootRoute({
         rel: 'stylesheet',
         href: appCss,
       },
+      {
+				rel: "icon",
+				href: "./images/speedykom-short.jpeg",
+			},
     ],
   }),
   shellComponent: RootDocument,

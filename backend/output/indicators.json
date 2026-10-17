@@ -1,0 +1,1175 @@
+[
+  {
+    "name": "ANC 1 Coverage",
+    "lastUpdated": "2016-10-10T20:45:57.873",
+    "shortName": "ANC 1 Coverage",
+    "description": "Total 1st ANC visits (Fixed and outreach) by expected number of pregnant women.",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{fbfJHSPpUQD}",
+    "numeratorDescription": "Total ANC 1 visits",
+    "denominator": "#{h0xKKjijTdI}",
+    "denominatorDescription": "Estimated number of pregnant women",
+    "displayName": "ANC 1 Coverage",
+    "id": "Uvn6LCg7dVU"
+  },
+  {
+    "name": "ANC 1-3 Dropout Rate",
+    "lastUpdated": "2013-03-21T11:17:44.926",
+    "shortName": "ANC 1-3 Dropout Rate",
+    "description": "Indicates the percentage of clients dropping out between the 1st and the 3rd ANC visit. Calculated as the difference between ANC1 and ANC3 by the ANC 1 visits.",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{fbfJHSPpUQD.pq2XI5kz2BY}+#{fbfJHSPpUQD.PT59n8BQbqM}-#{Jtf34kNZhzP.pq2XI5kz2BY}-#{Jtf34kNZhzP.PT59n8BQbqM}",
+    "numeratorDescription": "ANC1-ANC3",
+    "denominator": "#{fbfJHSPpUQD.pq2XI5kz2BY}+#{fbfJHSPpUQD.PT59n8BQbqM}",
+    "denominatorDescription": "Total 1st ANC visits",
+    "displayName": "ANC 1-3 Dropout Rate",
+    "id": "ReUHfIn0pTQ"
+  },
+  {
+    "name": "ANC 2 Coverage",
+    "lastUpdated": "2015-04-10T14:02:17.622",
+    "shortName": "ANC 2 Coverage",
+    "description": "Total 2nd ANC visits (Fixed and outreach) by expected number of pregnant women.",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{cYeuwXTCPkU}",
+    "numeratorDescription": "Total ANC 2nd visits",
+    "denominator": "#{h0xKKjijTdI}",
+    "denominatorDescription": "Estimated number of pregnant women",
+    "displayName": "ANC 2 Coverage",
+    "id": "OdiHJayrsKo"
+  },
+  {
+    "name": "ANC 3 Coverage",
+    "lastUpdated": "2015-04-10T14:32:25.625",
+    "shortName": "ANC 3 Coverage",
+    "description": "Total 3rd ANC visits (Fixed and outreach) by expected number of pregnant women.",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{Jtf34kNZhzP}",
+    "numeratorDescription": "Total 3rd ANC visits",
+    "denominator": "#{h0xKKjijTdI}",
+    "denominatorDescription": "Estimated number of pregnant women",
+    "displayName": "ANC 3 Coverage",
+    "id": "sB79w2hiLp8"
+  },
+  {
+    "name": "ANC => 4 Coverage",
+    "lastUpdated": "2018-09-05T22:05:06.862",
+    "shortName": "ANC => 4 Coverage",
+    "description": "Total ANC 4th or more visits (fixed+outreach) by expected pregnancies.",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{hfdmMSPBgLG}",
+    "numeratorDescription": "ANC 4th or more visit",
+    "denominator": "#{h0xKKjijTdI}",
+    "denominatorDescription": "Expected pregnancies",
+    "displayName": "ANC => 4 Coverage",
+    "id": "AUqdhY4mpvp"
+  },
+  {
+    "name": "ANC IPT 1 Coverage",
+    "lastUpdated": "2015-03-11T11:57:39.518",
+    "shortName": "ANC IPT 1 Coverage",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{bqK6eSIwo3h.pq2XI5kz2BY}+#{bqK6eSIwo3h.PT59n8BQbqM}+#{yTHydhurQQU.pq2XI5kz2BY}+#{yTHydhurQQU.PT59n8BQbqM}",
+    "numeratorDescription": "IPT 1st dose total given",
+    "denominator": "#{fbfJHSPpUQD.pq2XI5kz2BY}+#{fbfJHSPpUQD.PT59n8BQbqM}",
+    "denominatorDescription": "ANC 1st visit total",
+    "displayName": "ANC IPT 1 Coverage",
+    "id": "dwEq7wi6nXV"
+  },
+  {
+    "name": "ANC IPT 2 Coverage",
+    "lastUpdated": "2013-03-15T16:08:57.741",
+    "shortName": "ANC IPT 2 Coverage",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{V37YqbqpEhV.pq2XI5kz2BY}+#{V37YqbqpEhV.PT59n8BQbqM}+#{SA7WeFZnUci.pq2XI5kz2BY}+#{SA7WeFZnUci.PT59n8BQbqM}",
+    "numeratorDescription": "IPT 2 doses given total",
+    "denominator": "#{cYeuwXTCPkU.pq2XI5kz2BY}+#{cYeuwXTCPkU.PT59n8BQbqM}",
+    "denominatorDescription": "ANC 1st visit total",
+    "displayName": "ANC IPT 2 Coverage",
+    "id": "c8fABiNpT0B"
+  },
+  {
+    "name": "ANC LLITN coverage",
+    "lastUpdated": "2014-03-31T13:45:57.749",
+    "shortName": "ANC LLITN coverage",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{ybzlGLjWwnK.pq2XI5kz2BY}+#{ybzlGLjWwnK.PT59n8BQbqM}",
+    "numeratorDescription": "LLITN given at ANC",
+    "denominator": "#{fbfJHSPpUQD.pq2XI5kz2BY}+#{fbfJHSPpUQD.PT59n8BQbqM}",
+    "denominatorDescription": "ANC firs visit",
+    "displayName": "ANC LLITN coverage",
+    "id": "Tt5TAvdfdVK"
+  },
+  {
+    "name": "ANC TT2 coverage",
+    "lastUpdated": "2016-01-15T17:56:17.821",
+    "shortName": "ANC TT2 coverage",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{DUTSJE8MGCw}",
+    "numeratorDescription": "TT2 among pregnant women",
+    "denominator": "#{fbfJHSPpUQD.pq2XI5kz2BY}+#{fbfJHSPpUQD.PT59n8BQbqM}",
+    "denominatorDescription": "ANC first visit",
+    "displayName": "ANC TT2 coverage",
+    "id": "puykO1tbcdi"
+  },
+  {
+    "name": "ANC visits per clinical professional",
+    "lastUpdated": "2013-03-15T16:08:57.738",
+    "shortName": "ANC visit clinical prof",
+    "indicatorType": {
+      "name": "Number (Factor 1)",
+      "id": "JkWynlWMjJR"
+    },
+    "numerator": "#{fbfJHSPpUQD.pq2XI5kz2BY}+#{fbfJHSPpUQD.PT59n8BQbqM}+#{cYeuwXTCPkU.pq2XI5kz2BY}+#{cYeuwXTCPkU.PT59n8BQbqM}+#{Jtf34kNZhzP.pq2XI5kz2BY}+#{Jtf34kNZhzP.PT59n8BQbqM}+#{hfdmMSPBgLG.pq2XI5kz2BY}+#{hfdmMSPBgLG.PT59n8BQbqM}",
+    "numeratorDescription": "Total number of ANC visits",
+    "denominator": "#{LSJ5mKpyEv1.DOC7emLzyRi}+#{LSJ5mKpyEv1.R23h9QZRbRt}+#{nlQztbooKAj.DOC7emLzyRi}+#{nlQztbooKAj.R23h9QZRbRt}+#{q7QXzNnSstn.DOC7emLzyRi}+#{q7QXzNnSstn.DOC7emLzyRi}+#{OKj6vV8hmTP.R23h9QZRbRt}+#{OKj6vV8hmTP.DOC7emLzyRi}",
+    "denominatorDescription": "Nurses Aides and Doctors",
+    "displayName": "ANC visits per clinical professional",
+    "id": "Lzg9LtG1xg3"
+  },
+  {
+    "name": "ANC visits total",
+    "lastUpdated": "2014-10-10T17:28:15.619",
+    "shortName": "ANC visits total",
+    "indicatorType": {
+      "name": "Number (Factor 1)",
+      "id": "JkWynlWMjJR"
+    },
+    "numerator": "#{fbfJHSPpUQD}+#{cYeuwXTCPkU}+#{Jtf34kNZhzP}",
+    "numeratorDescription": "ANC visits total",
+    "denominator": "1",
+    "denominatorDescription": "",
+    "displayName": "ANC visits total",
+    "id": "dy1a1mseGR7"
+  },
+  {
+    "name": "BCG Coverage - Adjusted for reporting",
+    "lastUpdated": "2017-05-22T11:00:43.686",
+    "shortName": "BCG Coverage - Adjusted for reporting",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "(#{s46m5MS0hxu.V6L425pT3A0}+#{s46m5MS0hxu.Prlt0C1RF0s})*(R{BfMAe6Itzgt.REPORTING_RATE}/100)",
+    "numeratorDescription": "Total BCG doses given <1 y",
+    "denominator": "#{DTVRnCGamkV}",
+    "denominatorDescription": "Total population under 1 year",
+    "displayName": "BCG Coverage - Adjusted for reporting",
+    "id": "iCBpPh3ehjg"
+  },
+  {
+    "name": "BCG Coverage <1y",
+    "lastUpdated": "2014-04-06T10:58:30.516",
+    "shortName": "BCG Coverage <1y",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{s46m5MS0hxu.V6L425pT3A0}+#{s46m5MS0hxu.Prlt0C1RF0s}",
+    "numeratorDescription": "Total BCG doses given <1 y",
+    "denominator": "#{DTVRnCGamkV}",
+    "denominatorDescription": "Total population under 1 year",
+    "displayName": "BCG Coverage <1y",
+    "id": "FnYCr2EAzWS"
+  },
+  {
+    "name": "BCG Stock PHU",
+    "lastUpdated": "2013-03-15T16:08:57.723",
+    "shortName": "BCG Stock PHU",
+    "indicatorType": {
+      "name": "Number (Factor 1)",
+      "id": "JkWynlWMjJR"
+    },
+    "numerator": "#{t99PL3gUxIl}+#{axVhq1itoQD}-#{p1MDHOT6ENy}-#{cZnQDuF3IDz}",
+    "numeratorDescription": "BCG Stock PHU",
+    "denominator": "1",
+    "denominatorDescription": "",
+    "displayName": "BCG Stock PHU",
+    "id": "OEWO2PpiUKx"
+  },
+  {
+    "name": "BCG doses coverage at facility",
+    "lastUpdated": "2016-01-15T17:54:12.711",
+    "shortName": "BCG doses coverage at facility",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "D{IpHINAT79UW.bx6fsa0t90x}",
+    "numeratorDescription": "BCG doses coverage at facility",
+    "denominator": "#{DTVRnCGamkV}",
+    "denominatorDescription": "Population under 1y",
+    "displayName": "BCG doses coverage at facility",
+    "id": "Z33QjkcycFQ"
+  },
+  {
+    "name": "Births attended by skilled health personnel (estimated pregancies)",
+    "lastUpdated": "2013-03-15T16:08:57.731",
+    "shortName": "Births by skilled (pop.)",
+    "description": "Live births attended by skilled health personnel by estimated pregnancies (4.5%).",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{gQNFkFkObU8.AKQ15Z2uqit}+#{gQNFkFkObU8.YEmiuCcgNQI}+#{gQNFkFkObU8.w3BcsdjOcfk}+#{gQNFkFkObU8.L4P9VSgHkF6}+#{gQNFkFkObU8.b19Ye0TWs1D}+#{gQNFkFkObU8.Tzg8I9KyEwd}+#{gQNFkFkObU8.PvFFIeF2J9x}+#{gQNFkFkObU8.MaXD86iob3M}",
+    "numeratorDescription": "Live births attended by skilled health personnel",
+    "denominator": "#{h0xKKjijTdI}",
+    "denominatorDescription": "Esimated number of pregnancies as 20 percent of total",
+    "displayName": "Births attended by skilled health personnel (estimated pregancies)",
+    "id": "elTqMUTRgdk"
+  },
+  {
+    "name": "Births attended by skilled health personnel (registered live births)",
+    "lastUpdated": "2013-03-15T16:08:57.733",
+    "shortName": "Births by skilled (birth)",
+    "description": "Proportion of the registered live births that are attended by skilled health personnel. This includes MCH Aides, SECHN, Midwives, and CHOs and does not include trained or untrained TBAs.",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{gQNFkFkObU8.AKQ15Z2uqit}+#{gQNFkFkObU8.YEmiuCcgNQI}+#{gQNFkFkObU8.w3BcsdjOcfk}+#{gQNFkFkObU8.L4P9VSgHkF6}+#{gQNFkFkObU8.b19Ye0TWs1D}+#{gQNFkFkObU8.Tzg8I9KyEwd}+#{gQNFkFkObU8.PvFFIeF2J9x}+#{gQNFkFkObU8.MaXD86iob3M}",
+    "numeratorDescription": "Live births attended by skilled health personnel",
+    "denominator": "#{gQNFkFkObU8.AKQ15Z2uqit}+#{gQNFkFkObU8.YEmiuCcgNQI}+#{gQNFkFkObU8.HVFCn1yjoGx}+#{gQNFkFkObU8.CYHGl18lR0W}+#{gQNFkFkObU8.w3BcsdjOcfk}+#{gQNFkFkObU8.L4P9VSgHkF6}+#{gQNFkFkObU8.b19Ye0TWs1D}+#{gQNFkFkObU8.Gmbgme7z9BF}+#{gQNFkFkObU8.Tzg8I9KyEwd}+#{gQNFkFkObU8.s3jlIgFCbUb}+#{gQNFkFkObU8.PvFFIeF2J9x}+#{gQNFkFkObU8.MaXD86iob3M}",
+    "denominatorDescription": "Total live births",
+    "displayName": "Births attended by skilled health personnel (registered live births)",
+    "id": "ulgL07PF8rq"
+  },
+  {
+    "name": "Births total",
+    "lastUpdated": "2014-10-10T17:32:47.821",
+    "shortName": "Births total",
+    "indicatorType": {
+      "name": "Number (Factor 1)",
+      "id": "JkWynlWMjJR"
+    },
+    "numerator": "#{gQNFkFkObU8}+#{HZSdnO5fCUc}",
+    "numeratorDescription": "Total births",
+    "denominator": "1",
+    "denominatorDescription": "",
+    "displayName": "Births total",
+    "id": "gNAXtpqAqW2"
+  },
+  {
+    "name": "Complicated deliveries total",
+    "lastUpdated": "2014-10-10T17:29:27.264",
+    "shortName": "Complicated deliveries total",
+    "indicatorType": {
+      "name": "Number (Factor 1)",
+      "id": "JkWynlWMjJR"
+    },
+    "numerator": "#{tn3p7vIxoKY}+#{FE82N2sA0YI}+#{R1WAv9bVXff}+#{ncEnqRPHFvk}",
+    "numeratorDescription": "Complicated deliveries total",
+    "denominator": "1",
+    "denominatorDescription": "",
+    "displayName": "Complicated deliveries total",
+    "id": "po1QxztD1K1"
+  },
+  {
+    "name": "Consumption vs population",
+    "lastUpdated": "2014-03-03T17:57:20.006",
+    "shortName": "Consumption vs population",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{Boy3QwztgeZ.J2Qf1jtZuj8}",
+    "numeratorDescription": "Amoxicillin",
+    "denominator": "#{DTVRnCGamkV}",
+    "denominatorDescription": "Pop under 1",
+    "displayName": "Consumption vs population",
+    "id": "aRabHjSGuGK"
+  },
+  {
+    "name": "Diarrhoea <5 y incidence rate (%)",
+    "lastUpdated": "2014-04-06T12:13:56.075",
+    "shortName": "Diarrhoea <5 incidence (%)",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{nymNRxmnj4z}+#{ndb4fIRrQbM}",
+    "numeratorDescription": "Diarrhoea including Dysentry",
+    "denominator": "#{DTtCy7Nx5jH}",
+    "denominatorDescription": "Total population",
+    "displayName": "Diarrhoea <5 y incidence rate (%)",
+    "id": "JIVMtpjVZqJ"
+  },
+  {
+    "name": "Dropout rate Penta 1 - 3",
+    "lastUpdated": "2013-03-15T16:08:57.724",
+    "shortName": "Dropout Rate Penta 1-3",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "((#{fClA2Erf6IO.Prlt0C1RF0s}+#{fClA2Erf6IO.V6L425pT3A0})-(#{n6aMJNLdvep.Prlt0C1RF0s}+#{n6aMJNLdvep.V6L425pT3A0}))",
+    "numeratorDescription": "(Penta1 under 1 year)-( Penta 3 under 1year)",
+    "denominator": "(#{fClA2Erf6IO.Prlt0C1RF0s}+#{fClA2Erf6IO.V6L425pT3A0})",
+    "denominatorDescription": "(Penta1 among children 0 to 11 months)",
+    "displayName": "Dropout rate Penta 1 - 3",
+    "id": "EdN7qlmI5FS"
+  },
+  {
+    "name": "Dropout rate Penta 1 - Measles",
+    "lastUpdated": "2013-03-15T16:08:57.701",
+    "shortName": "Dropout Penta 1 - Measles",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "(#{fClA2Erf6IO.Prlt0C1RF0s}+#{fClA2Erf6IO.V6L425pT3A0})-(#{YtbsuPPo010.Prlt0C1RF0s}+#{YtbsuPPo010.V6L425pT3A0})",
+    "numeratorDescription": "SUM (Penta1 fixed and outreach) - SUM ( Measles vaccinations among children 0 to 11 months)",
+    "denominator": "(#{fClA2Erf6IO.Prlt0C1RF0s}+#{fClA2Erf6IO.V6L425pT3A0})",
+    "denominatorDescription": "SUM (Penta1 0 to 11 months fixed and outreach)",
+    "displayName": "Dropout rate Penta 1 - Measles",
+    "id": "d9thHOJMROr"
+  },
+  {
+    "name": "ER Census reports produced Result vs Target",
+    "lastUpdated": "2017-05-19T15:33:49.043",
+    "shortName": "Census reports produced Result vs Target",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{w1G4l0cSxOi.*.gQhAMdimKO4}",
+    "numeratorDescription": "Census reports produced Result",
+    "denominator": "#{w1G4l0cSxOi.*.lTHuSO6awqE}",
+    "denominatorDescription": "Census reports produced Target",
+    "displayName": "ER Census reports produced Result vs Target",
+    "id": "ryFBhJdetdM"
+  },
+  {
+    "name": "ER Children trained on key survival skills Result vs Target",
+    "lastUpdated": "2017-05-19T16:02:41.825",
+    "shortName": "Children trained survival skills Result vs Target",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{KFnFpbqDqji.*.gQhAMdimKO4}",
+    "numeratorDescription": "Children trained on key survival skills Result",
+    "denominator": "#{KFnFpbqDqji.*.lTHuSO6awqE}",
+    "denominatorDescription": "Children trained on key survival skills Target",
+    "displayName": "ER Children trained on key survival skills Result vs Target",
+    "id": "MkXHDfrFRKV"
+  },
+  {
+    "name": "ER Teacher accommodation constructed Urban Result vs Target",
+    "lastUpdated": "2017-05-19T15:58:36.335",
+    "shortName": "Teacher accom constr Urban Result vs Target",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{AcXiLSABIOe.IGhnY0XeHXe.gQhAMdimKO4}",
+    "numeratorDescription": "Teacher accommodation constructed Urban Result",
+    "denominator": "#{AcXiLSABIOe.IGhnY0XeHXe.lTHuSO6awqE}",
+    "denominatorDescription": "Teacher accommodation constructed Urban Target",
+    "displayName": "ER Teacher accommodation constructed Urban Result vs Target",
+    "id": "qmCKRmVj4WX"
+  },
+  {
+    "name": "ER Teacher training programs designed Result vs Target",
+    "lastUpdated": "2017-05-19T16:00:32.367",
+    "shortName": "Teacher training prog designed Result vs Target",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{zFFb3bar4Ct.*.gQhAMdimKO4}",
+    "numeratorDescription": "Teacher training programs designed Result",
+    "denominator": "#{zFFb3bar4Ct.*.lTHuSO6awqE}",
+    "denominatorDescription": "Teacher training programs designed Target",
+    "displayName": "ER Teacher training programs designed Result vs Target",
+    "id": "ULW9dQOiiTS"
+  },
+  {
+    "name": "ER Teachers trained Result vs Target",
+    "lastUpdated": "2017-05-19T16:00:56.616",
+    "shortName": "Teachers trained Result vs Target",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{EX2jDbKe4Yq.*.gQhAMdimKO4}",
+    "numeratorDescription": "Teachers trained Result",
+    "denominator": "#{EX2jDbKe4Yq.*.lTHuSO6awqE}",
+    "denominatorDescription": "Teachers trained Target",
+    "displayName": "ER Teachers trained Result vs Target",
+    "id": "oTOpKabJA1v"
+  },
+  {
+    "name": "ER Technical support visits Result vs Target",
+    "lastUpdated": "2017-05-19T15:47:28.441",
+    "shortName": "Technical support visits Result vs Target",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{DCSDJH4IFUG.*.gQhAMdimKO4}",
+    "numeratorDescription": "Technical support visits Result",
+    "denominator": "#{DCSDJH4IFUG.*.lTHuSO6awqE}",
+    "denominatorDescription": "Technical support visits Target",
+    "displayName": "ER Technical support visits Result vs Target",
+    "id": "iug406zdfTE"
+  },
+  {
+    "name": "ER Technical support visits Rural Result vs Target",
+    "lastUpdated": "2017-05-19T15:55:49.918",
+    "shortName": "Technical support visits Rural Result vs Target",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{DCSDJH4IFUG.mPBwiaWc2sk.gQhAMdimKO4}",
+    "numeratorDescription": "Technical support visits Rural Result",
+    "denominator": "#{DCSDJH4IFUG.mPBwiaWc2sk.lTHuSO6awqE}",
+    "denominatorDescription": "Technical support visits Rural Target",
+    "displayName": "ER Technical support visits Rural Result vs Target",
+    "id": "EY8gsfEomc0"
+  },
+  {
+    "name": "ER Visits in schools Rural Result vs Target",
+    "lastUpdated": "2017-05-19T15:56:51.463",
+    "shortName": "Visits in schools Rural Result vs Target",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{oI6YtDaVFcw.mPBwiaWc2sk.gQhAMdimKO4}",
+    "numeratorDescription": "Visits in schools Rural Result",
+    "denominator": "#{oI6YtDaVFcw.mPBwiaWc2sk.lTHuSO6awqE}",
+    "denominatorDescription": "Visits in schools Rural Target",
+    "displayName": "ER Visits in schools Rural Result vs Target",
+    "id": "X2XfzgH4NOR"
+  },
+  {
+    "name": "Exclusive breast feeding at Penta 3",
+    "lastUpdated": "2013-03-15T16:08:57.702",
+    "shortName": "Excl breast feed penta 3",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "(#{pEOVd4Z3TAS.V6L425pT3A0}+#{pEOVd4Z3TAS.Prlt0C1RF0s})",
+    "numeratorDescription": "Exclusive breastfeeding at penta3  < 1y",
+    "denominator": "(#{n6aMJNLdvep.V6L425pT3A0}+#{n6aMJNLdvep.Prlt0C1RF0s})",
+    "denominatorDescription": "Penta 3  <1y",
+    "displayName": "Exclusive breast feeding at Penta 3",
+    "id": "X3taFC1HtE5"
+  },
+  {
+    "name": "FIC <1y",
+    "lastUpdated": "2018-09-05T21:57:43.448",
+    "shortName": "FIC <1y",
+    "description": "Children under 1 year fully immunized (all vaccines given).",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{UOlfIjgN8X6.Prlt0C1RF0s}+#{UOlfIjgN8X6.V6L425pT3A0}",
+    "numeratorDescription": "SUM ( Fully Immunized among children 0 to 11 months)",
+    "denominator": "#{DTVRnCGamkV}",
+    "denominatorDescription": "Population <1 year",
+    "displayName": "FIC <1y",
+    "id": "eTDtyyaSA7f"
+  },
+  {
+    "name": "FIC <1y - Adjusted for reporting",
+    "lastUpdated": "2017-05-22T11:03:50.138",
+    "shortName": "FIC <1y - Adjusted for reporting",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "(#{UOlfIjgN8X6.Prlt0C1RF0s}+#{UOlfIjgN8X6.V6L425pT3A0})*(#{BfMAe6Itzgt.REPORTING_RATE}/100)",
+    "numeratorDescription": "SUM ( Fully Immunized among children 0 to 11 months)",
+    "denominator": "#{DTVRnCGamkV}",
+    "denominatorDescription": "Population <1 year",
+    "displayName": "FIC <1y - Adjusted for reporting",
+    "id": "IT8EAeFRAat"
+  },
+  {
+    "name": "HIV: testing and counseling 15-24y",
+    "lastUpdated": "2017-03-13T19:44:08.197",
+    "shortName": "HIV testing and counseling 15-24y",
+    "indicatorType": {
+      "name": "Number (Factor 1)",
+      "id": "JkWynlWMjJR"
+    },
+    "numerator": "#{R4KStuS8qt7.u5fU9rr67xo} + #{o0fOD1HLuv8.u5fU9rr67xo}",
+    "numeratorDescription": "HIV: testing and counseling 15-24y",
+    "denominator": "1",
+    "denominatorDescription": "1",
+    "displayName": "HIV: testing and counseling 15-24y",
+    "id": "sMTMkudvLCD"
+  },
+  {
+    "name": "HIV: testing and counseling 25-49y",
+    "lastUpdated": "2017-03-13T19:44:27.764",
+    "shortName": "HIV testing and counseling 25-49y",
+    "indicatorType": {
+      "name": "Number (Factor 1)",
+      "id": "JkWynlWMjJR"
+    },
+    "numerator": "#{R4KStuS8qt7.LbkJRbDblhe} + #{o0fOD1HLuv8.LbkJRbDblhe}",
+    "numeratorDescription": "HIV testing and counseling 25-49y",
+    "denominator": "1",
+    "denominatorDescription": "1",
+    "displayName": "HIV: testing and counseling 25-49y",
+    "id": "lOiynlltFdy"
+  },
+  {
+    "name": "HIV: testing and counseling <15y",
+    "lastUpdated": "2017-03-13T19:44:19.030",
+    "shortName": "HIV testing and counseling <15y",
+    "indicatorType": {
+      "name": "Number (Factor 1)",
+      "id": "JkWynlWMjJR"
+    },
+    "numerator": "#{R4KStuS8qt7.YBhrfw1dP2J} + #{o0fOD1HLuv8.YBhrfw1dP2J}",
+    "numeratorDescription": "HIV testing and counseling",
+    "denominator": "1",
+    "denominatorDescription": "1",
+    "displayName": "HIV: testing and counseling <15y",
+    "id": "lI5Q5vkydYu"
+  },
+  {
+    "name": "HIV: testing and counseling >49y",
+    "lastUpdated": "2017-03-13T19:44:37.532",
+    "shortName": "HIV testing and counseling >49y",
+    "indicatorType": {
+      "name": "Number (Factor 1)",
+      "id": "JkWynlWMjJR"
+    },
+    "numerator": "#{R4KStuS8qt7.z858fbdqWwF} + #{o0fOD1HLuv8.z858fbdqWwF}",
+    "numeratorDescription": "HIV: testing and counseling >49y",
+    "denominator": "1",
+    "denominatorDescription": "1",
+    "displayName": "HIV: testing and counseling >49y",
+    "id": "btgZ1oeF9pJ"
+  },
+  {
+    "name": "IPT doses total",
+    "lastUpdated": "2014-10-10T17:28:56.358",
+    "shortName": "IPT doses total",
+    "indicatorType": {
+      "name": "Number (Factor 1)",
+      "id": "JkWynlWMjJR"
+    },
+    "numerator": "#{bqK6eSIwo3h}+#{yTHydhurQQU}+#{V37YqbqpEhV}+#{SA7WeFZnUci}",
+    "numeratorDescription": "IPT doses total",
+    "denominator": "1",
+    "denominatorDescription": "",
+    "displayName": "IPT doses total",
+    "id": "W7MxOZjZ1VC"
+  },
+  {
+    "name": "Inpatient cases per 10 000 population",
+    "lastUpdated": "2015-12-13T12:44:29.960",
+    "shortName": "Inpatient cases per 10 000 population",
+    "indicatorType": {
+      "name": "Per ten thousand",
+      "id": "wB7vTGTafMI"
+    },
+    "numerator": "I{luLGbE2WKGP}",
+    "numeratorDescription": "Inpatient cases",
+    "denominator": "#{WUg3MYWQ7pt}",
+    "denominatorDescription": "Total population",
+    "displayName": "Inpatient cases per 10 000 population",
+    "id": "gKv1pdjF3wM"
+  },
+  {
+    "name": "Inpatient cases under 5 y per 100 00 population",
+    "lastUpdated": "2015-12-13T12:48:09.228",
+    "shortName": "Inpatient cases under 5 y per 100 00 population",
+    "indicatorType": {
+      "name": "Per ten thousand",
+      "id": "wB7vTGTafMI"
+    },
+    "numerator": "I{vDdRoZYybP2}",
+    "numeratorDescription": "Inpatient cases <5y",
+    "denominator": "#{DTtCy7Nx5jH}",
+    "denominatorDescription": "Population <5y",
+    "displayName": "Inpatient cases under 5 y per 100 00 population",
+    "id": "TwdhB9Db4Po"
+  },
+  {
+    "name": "Inpatient visits per 10 000 people",
+    "lastUpdated": "2016-01-15T18:08:56.776",
+    "shortName": "Inpatient visits per 10 000 people",
+    "indicatorType": {
+      "name": "Per ten thousand",
+      "id": "wB7vTGTafMI"
+    },
+    "numerator": "I{luLGbE2WKGP}",
+    "numeratorDescription": "Inpatient cases",
+    "denominator": "#{WUg3MYWQ7pt}",
+    "denominatorDescription": "Total population",
+    "displayName": "Inpatient visits per 10 000 people",
+    "id": "zkukIvlFlhy"
+  },
+  {
+    "name": "Live births in the PHU",
+    "lastUpdated": "2013-03-15T16:08:57.746",
+    "shortName": "Live births in the PHU",
+    "description": "Total number of live births in the PHU (health facility).",
+    "indicatorType": {
+      "name": "Number (Factor 1)",
+      "id": "JkWynlWMjJR"
+    },
+    "numerator": "#{gQNFkFkObU8.L4P9VSgHkF6}+#{gQNFkFkObU8.YEmiuCcgNQI}+#{gQNFkFkObU8.Tzg8I9KyEwd}+#{gQNFkFkObU8.PvFFIeF2J9x}+#{gQNFkFkObU8.Gmbgme7z9BF}+#{gQNFkFkObU8.s3jlIgFCbUb}",
+    "numeratorDescription": "Total live births in the PHU",
+    "denominator": "1",
+    "denominatorDescription": "",
+    "displayName": "Live births in the PHU",
+    "id": "Rigf2d2Zbjp"
+  },
+  {
+    "name": "Live births in the community",
+    "lastUpdated": "2013-03-15T16:08:57.745",
+    "shortName": "Live births community",
+    "description": "Total number of reported live births in the community.",
+    "indicatorType": {
+      "name": "Number (Factor 1)",
+      "id": "JkWynlWMjJR"
+    },
+    "numerator": "#{gQNFkFkObU8.b19Ye0TWs1D}+#{gQNFkFkObU8.MaXD86iob3M}+#{gQNFkFkObU8.AKQ15Z2uqit}+#{gQNFkFkObU8.w3BcsdjOcfk}+#{gQNFkFkObU8.CYHGl18lR0W}+#{gQNFkFkObU8.HVFCn1yjoGx}",
+    "numeratorDescription": "Total live births in the community",
+    "denominator": "1",
+    "denominatorDescription": "",
+    "displayName": "Live births in the community",
+    "id": "RdkKj1rVp8R"
+  },
+  {
+    "name": "Maternal death rate by registered live births",
+    "lastUpdated": "2013-11-06T17:05:34.484",
+    "shortName": "Mat death rate reg birth",
+    "description": "Ratio of maternal deaths by 100 000 registered live births.",
+    "indicatorType": {
+      "name": "Per hundred thousand",
+      "id": "vQ0dGV9EDrw"
+    },
+    "numerator": "#{FUrCpcvMAmC}",
+    "numeratorDescription": "Maternal deaths",
+    "denominator": "#{gQNFkFkObU8.AKQ15Z2uqit}+#{gQNFkFkObU8.YEmiuCcgNQI}+#{gQNFkFkObU8.HVFCn1yjoGx}+#{gQNFkFkObU8.CYHGl18lR0W}+#{gQNFkFkObU8.w3BcsdjOcfk}+#{gQNFkFkObU8.L4P9VSgHkF6}+#{gQNFkFkObU8.b19Ye0TWs1D}+#{gQNFkFkObU8.Gmbgme7z9BF}+#{gQNFkFkObU8.Tzg8I9KyEwd}+#{gQNFkFkObU8.s3jlIgFCbUb}+#{gQNFkFkObU8.PvFFIeF2J9x}+#{gQNFkFkObU8.MaXD86iob3M}",
+    "denominatorDescription": "Registered live births",
+    "displayName": "Maternal death rate by registered live births",
+    "id": "tcs5YGnjiKo"
+  },
+  {
+    "name": "Measles Coverage <1y",
+    "lastUpdated": "2014-04-06T10:57:26.223",
+    "shortName": "Measles Coverage <1y",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{YtbsuPPo010.Prlt0C1RF0s}+#{YtbsuPPo010.V6L425pT3A0}",
+    "numeratorDescription": "SUM (Measles vaccinations among children 0 to 11 months)",
+    "denominator": "#{DTVRnCGamkV}",
+    "denominatorDescription": "Estimated number of infants <1y",
+    "displayName": "Measles Coverage <1y",
+    "id": "FbKK4ofIv5R"
+  },
+  {
+    "name": "Measles Stock End Balance",
+    "lastUpdated": "2013-03-15T16:08:57.736",
+    "shortName": "Measles Stock End Balance",
+    "indicatorType": {
+      "name": "Number (Factor 1)",
+      "id": "JkWynlWMjJR"
+    },
+    "numerator": "#{vEAo4KwsAzl}+#{XNrjXqZrHD8}-#{lVknokmR4Ip}-#{FvKdfA2SuWI}",
+    "numeratorDescription": "Measles Stock End Balance",
+    "denominator": "1",
+    "denominatorDescription": "",
+    "displayName": "Measles Stock End Balance",
+    "id": "loEBZlcsTlx"
+  },
+  {
+    "name": "Moderate malnutrition rate",
+    "lastUpdated": "2013-03-15T16:08:57.740",
+    "shortName": "Moderate malnutrition rt",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{pnL2VG8Bn7N.V6L425pT3A0}+#{pnL2VG8Bn7N.psbwp3CQEhs}+#{pnL2VG8Bn7N.Prlt0C1RF0s}+#{pnL2VG8Bn7N.hEFKSsPV5et}",
+    "numeratorDescription": "Weight for height between 70% and 79%",
+    "denominator": "(#{lVsbKXoF0zX.hEFKSsPV5et} * 1.0) + (#{lVsbKXoF0zX.Prlt0C1RF0s} * 1.0) + (#{lVsbKXoF0zX.psbwp3CQEhs} * 1.0) + (#{lVsbKXoF0zX.V6L425pT3A0} * 1.0) + (#{qPVDd87kS9Z.hEFKSsPV5et} * 1.0) + (#{qPVDd87kS9Z.Prlt0C1RF0s} * 1.0) + (#{qPVDd87kS9Z.psbwp3CQEhs} * 1.0) + (#{qPVDd87kS9Z.V6L425pT3A0} * 1.0) + (#{pnL2VG8Bn7N.hEFKSsPV5et} * 1.0) + (#{pnL2VG8Bn7N.Prlt0C1RF0s} * 1.0) + (#{pnL2VG8Bn7N.psbwp3CQEhs} * 1.0) + (#{pnL2VG8Bn7N.V6L425pT3A0} * 1.0)",
+    "denominatorDescription": "Total No children screened for weight for height",
+    "displayName": "Moderate malnutrition rate",
+    "id": "joIQbN4L1Ok"
+  },
+  {
+    "name": "NVP during labour rate",
+    "lastUpdated": "2013-03-15T16:08:57.726",
+    "shortName": "NVP during labour rate",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{e87Gl0315MV.YBhrfw1dP2J}+#{e87Gl0315MV.u5fU9rr67xo}+#{e87Gl0315MV.LbkJRbDblhe}+#{e87Gl0315MV.z858fbdqWwF}",
+    "numeratorDescription": "Women receiving NVP during labour",
+    "denominator": "#{TvQ1myd6oTE.YBhrfw1dP2J}+#{TvQ1myd6oTE.u5fU9rr67xo}+#{TvQ1myd6oTE.LbkJRbDblhe}+#{TvQ1myd6oTE.z858fbdqWwF}",
+    "denominatorDescription": "Positive tests PMTCT",
+    "displayName": "NVP during labour rate",
+    "id": "GfYjGL16D0W"
+  },
+  {
+    "name": "OPV 0 Coverage <1y",
+    "lastUpdated": "2014-04-06T10:52:54.162",
+    "shortName": "OPV 0 Coverage <1y",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{x3Do5e7g4Qo.Prlt0C1RF0s}+#{x3Do5e7g4Qo.V6L425pT3A0}",
+    "numeratorDescription": "OPV 0 dose",
+    "denominator": "#{DTVRnCGamkV}",
+    "denominatorDescription": "Population < 1",
+    "displayName": "OPV 0 Coverage <1y",
+    "id": "n5nS0SmkUpq"
+  },
+  {
+    "name": "OPV 1 Coverage <1y",
+    "lastUpdated": "2014-04-06T10:53:22.117",
+    "shortName": "OPV 1 Coverage <1y",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{pikOziyCXbM.V6L425pT3A0}+#{pikOziyCXbM.Prlt0C1RF0s}",
+    "numeratorDescription": "OPV 1 dose",
+    "denominator": "#{DTVRnCGamkV}",
+    "denominatorDescription": "Population < 1",
+    "displayName": "OPV 1 Coverage <1y",
+    "id": "YlTWksXEhEO"
+  },
+  {
+    "name": "OPV 2 Coverage <1y",
+    "lastUpdated": "2014-04-06T10:54:36.089",
+    "shortName": "OPV 2 Coverage <1y",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{O05mAByOgAv.Prlt0C1RF0s}+#{O05mAByOgAv.V6L425pT3A0}",
+    "numeratorDescription": "OPV 2 doses given <1y",
+    "denominator": "#{DTVRnCGamkV}",
+    "denominatorDescription": "Population <1y",
+    "displayName": "OPV 2 Coverage <1y",
+    "id": "QsuBK2pMfkk"
+  },
+  {
+    "name": "OPV 3 Coverage <1y",
+    "lastUpdated": "2014-04-06T10:55:06.109",
+    "shortName": "OPV 3 Coverage <1y",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{vI2csg55S9C.Prlt0C1RF0s}+#{vI2csg55S9C.V6L425pT3A0}",
+    "numeratorDescription": "OPV 3 dose",
+    "denominator": "#{DTVRnCGamkV}",
+    "denominatorDescription": "Population < 1",
+    "displayName": "OPV 3 Coverage <1y",
+    "id": "JoEzWYGdX7s"
+  },
+  {
+    "name": "OPV Stock PHU",
+    "lastUpdated": "2013-03-15T16:08:57.737",
+    "shortName": "OPV Stock PHU",
+    "description": "OPV Stock PHU",
+    "indicatorType": {
+      "name": "Number (Factor 1)",
+      "id": "JkWynlWMjJR"
+    },
+    "numerator": "#{iuSIObmKutb}+#{nGCLjZDn0Q4}-#{FTINmL2lehN}-#{WVrH6j3Wfye}",
+    "numeratorDescription": "OPV Stock End Balance",
+    "denominator": "1",
+    "denominatorDescription": "",
+    "displayName": "OPV Stock PHU",
+    "id": "bASXd9ukRGD"
+  },
+  {
+    "name": "PHU delivery rate (by ANC1)",
+    "lastUpdated": "2013-03-15T16:08:57.729",
+    "shortName": "PHU del. rate (by ANC 1)",
+    "description": "Registered deliveries in the PHU by ANC 1st visits.",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{gQNFkFkObU8.YEmiuCcgNQI}+#{gQNFkFkObU8.L4P9VSgHkF6}+#{gQNFkFkObU8.Gmbgme7z9BF}+#{gQNFkFkObU8.Tzg8I9KyEwd}+#{gQNFkFkObU8.s3jlIgFCbUb}+#{gQNFkFkObU8.PvFFIeF2J9x}",
+    "numeratorDescription": "Total live births in the PHU",
+    "denominator": "#{fbfJHSPpUQD.pq2XI5kz2BY}+#{fbfJHSPpUQD.PT59n8BQbqM}",
+    "denominatorDescription": "ANC 1st visits",
+    "displayName": "PHU delivery rate (by ANC1)",
+    "id": "n0GE1ISYrdM"
+  },
+  {
+    "name": "PHU delivery rate (by expected pregnancies)",
+    "lastUpdated": "2013-03-15T16:08:57.731",
+    "shortName": "PHU del. rate (by pop)",
+    "description": "All registered deliveries in the PHU by the number of expected pregnanicies estimated as 4.5% of the total population.\r\n\r\nAnnulalised indcator.",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{gQNFkFkObU8.YEmiuCcgNQI}+#{gQNFkFkObU8.L4P9VSgHkF6}+#{gQNFkFkObU8.Gmbgme7z9BF}+#{gQNFkFkObU8.Tzg8I9KyEwd}+#{gQNFkFkObU8.s3jlIgFCbUb}+#{gQNFkFkObU8.PvFFIeF2J9x}",
+    "numeratorDescription": "Total live births in the PHU",
+    "denominator": "#{h0xKKjijTdI}",
+    "denominatorDescription": "Estimated number of pregnancies as 20 percent of total",
+    "displayName": "PHU delivery rate (by expected pregnancies)",
+    "id": "Q3M7Htpzg1Y"
+  },
+  {
+    "name": "PHU delivery rate (by registered live births)",
+    "lastUpdated": "2013-03-15T16:08:57.744",
+    "shortName": "PHU del. rate (by births)",
+    "description": "All registered live births at the PHU divided by all registered live births in PHU and in the community.",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{gQNFkFkObU8.YEmiuCcgNQI}+#{gQNFkFkObU8.L4P9VSgHkF6}+#{gQNFkFkObU8.Gmbgme7z9BF}+#{gQNFkFkObU8.Tzg8I9KyEwd}+#{gQNFkFkObU8.s3jlIgFCbUb}+#{gQNFkFkObU8.PvFFIeF2J9x}",
+    "numeratorDescription": "Live births in the PHU",
+    "denominator": "#{gQNFkFkObU8.AKQ15Z2uqit}+#{gQNFkFkObU8.YEmiuCcgNQI}+#{gQNFkFkObU8.HVFCn1yjoGx}+#{gQNFkFkObU8.CYHGl18lR0W}+#{gQNFkFkObU8.w3BcsdjOcfk}+#{gQNFkFkObU8.L4P9VSgHkF6}+#{gQNFkFkObU8.b19Ye0TWs1D}+#{gQNFkFkObU8.Gmbgme7z9BF}+#{gQNFkFkObU8.Tzg8I9KyEwd}+#{gQNFkFkObU8.s3jlIgFCbUb}+#{gQNFkFkObU8.PvFFIeF2J9x}+#{gQNFkFkObU8.MaXD86iob3M}",
+    "denominatorDescription": "Total live births",
+    "displayName": "PHU delivery rate (by registered live births)",
+    "id": "EoYar8UxddG"
+  },
+  {
+    "name": "PMTCT positive test rate",
+    "lastUpdated": "2013-03-15T16:08:57.725",
+    "shortName": "PMTCT positive test rate",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{TvQ1myd6oTE.YBhrfw1dP2J}+#{TvQ1myd6oTE.u5fU9rr67xo}+#{TvQ1myd6oTE.LbkJRbDblhe}+#{TvQ1myd6oTE.z858fbdqWwF}",
+    "numeratorDescription": "Total positive tests PMTCT",
+    "denominator": "#{fxOM6VBQhBy.YBhrfw1dP2J}+#{fxOM6VBQhBy.u5fU9rr67xo}+#{fxOM6VBQhBy.LbkJRbDblhe}+#{fxOM6VBQhBy.z858fbdqWwF}",
+    "denominatorDescription": "Total tested PMTCT",
+    "displayName": "PMTCT positive test rate",
+    "id": "vihpFUg2WTy"
+  },
+  {
+    "name": "Penta 1 Coverage <1y",
+    "lastUpdated": "2014-04-06T10:56:04.648",
+    "shortName": "Penta 1 Coverage <1y",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{fClA2Erf6IO.Prlt0C1RF0s}+#{fClA2Erf6IO.V6L425pT3A0}",
+    "numeratorDescription": "Penta 1 doses given <1 year",
+    "denominator": "#{DTVRnCGamkV}",
+    "denominatorDescription": "Population < 1 year",
+    "displayName": "Penta 1 Coverage <1y",
+    "id": "i7WSgSJpnfu"
+  },
+  {
+    "name": "Penta 2 Coverage <1y",
+    "lastUpdated": "2014-04-06T10:56:52.768",
+    "shortName": "Penta 2 Coverage <1y",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{I78gJm4KBo7.Prlt0C1RF0s}+#{I78gJm4KBo7.V6L425pT3A0}",
+    "numeratorDescription": "Penta 2 doses given <1 y",
+    "denominator": "#{DTVRnCGamkV}",
+    "denominatorDescription": "Population <1y",
+    "displayName": "Penta 2 Coverage <1y",
+    "id": "Om2QoRtsncL"
+  },
+  {
+    "name": "Penta 3 Coverage <1y",
+    "lastUpdated": "2014-04-06T11:00:26.682",
+    "shortName": "Penta 3 Coverage <1y",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{n6aMJNLdvep.Prlt0C1RF0s}+#{n6aMJNLdvep.V6L425pT3A0}",
+    "numeratorDescription": "Penta 3 doses given < 1 year",
+    "denominator": "#{DTVRnCGamkV}",
+    "denominatorDescription": "Population < 1 year ",
+    "displayName": "Penta 3 Coverage <1y",
+    "id": "tUIlpyeeX9N"
+  },
+  {
+    "name": "Population per medical doctor",
+    "lastUpdated": "2013-03-15T16:08:57.709",
+    "shortName": "Population per med doctor",
+    "indicatorType": {
+      "name": "Number (Factor 1)",
+      "id": "JkWynlWMjJR"
+    },
+    "numerator": "#{WUg3MYWQ7pt}",
+    "numeratorDescription": "Total population",
+    "denominator": "#{nlQztbooKAj.DOC7emLzyRi}+#{nlQztbooKAj.R23h9QZRbRt}",
+    "denominatorDescription": "No of doctors",
+    "displayName": "Population per medical doctor",
+    "id": "akiT5Ds3gf7"
+  },
+  {
+    "name": "Postnatal contact total ",
+    "lastUpdated": "2014-10-10T17:33:20.077",
+    "shortName": "Postnatal contact total ",
+    "indicatorType": {
+      "name": "Number (Factor 1)",
+      "id": "JkWynlWMjJR"
+    },
+    "numerator": "#{LhoRsqtRn4r}+#{k1vnEuKnRYE}",
+    "numeratorDescription": "Postnatal contact total",
+    "denominator": "1",
+    "denominatorDescription": "",
+    "displayName": "Postnatal contact total ",
+    "id": "n3fzCxYk3k3"
+  },
+  {
+    "name": "Public facilities with access to Internet connectivity",
+    "lastUpdated": "2014-04-22T18:43:27.183",
+    "shortName": "Public facilities with access to Internet connecti",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{MJYalhqFsHK}",
+    "numeratorDescription": "Facilities with Internet",
+    "denominator": "OUG{oRVt7g429ZO}",
+    "denominatorDescription": "Public facilities",
+    "displayName": "Public facilities with access to Internet connectivity",
+    "id": "v27b2y9kKh7"
+  },
+  {
+    "name": "Public facilities with access to running water",
+    "lastUpdated": "2014-04-22T18:44:05.568",
+    "shortName": "Public facilities with access to running water",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{TLSChlBcw7L}",
+    "numeratorDescription": "Facilities with running water",
+    "denominator": "OUG{oRVt7g429ZO}",
+    "denominatorDescription": "Public facilities",
+    "displayName": "Public facilities with access to running water",
+    "id": "vEBapQFZ1AA"
+  },
+  {
+    "name": "Public facilities with access to stable electrical power",
+    "lastUpdated": "2014-04-22T18:40:47.474",
+    "shortName": "Public facilities with access to power",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{UMJym1vYPSu}",
+    "numeratorDescription": "Facilities with power",
+    "denominator": "OUG{oRVt7g429ZO}",
+    "denominatorDescription": "Public facilities",
+    "displayName": "Public facilities with access to stable electrical power",
+    "id": "DwEVHQvMnDZ"
+  },
+  {
+    "name": "Severe malnutrition rate",
+    "lastUpdated": "2013-03-15T16:08:57.704",
+    "shortName": "Severe malnutrition rate",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{lVsbKXoF0zX.V6L425pT3A0}+#{lVsbKXoF0zX.psbwp3CQEhs}+#{lVsbKXoF0zX.Prlt0C1RF0s}+#{lVsbKXoF0zX.hEFKSsPV5et}",
+    "numeratorDescription": "Weight for height less than 70 %",
+    "denominator": "(#{lVsbKXoF0zX.hEFKSsPV5et} * 1.0) + (#{lVsbKXoF0zX.Prlt0C1RF0s} * 1.0) + (#{lVsbKXoF0zX.psbwp3CQEhs} * 1.0) + (#{lVsbKXoF0zX.V6L425pT3A0} * 1.0) + (#{qPVDd87kS9Z.hEFKSsPV5et} * 1.0) + (#{qPVDd87kS9Z.Prlt0C1RF0s} * 1.0) + (#{qPVDd87kS9Z.psbwp3CQEhs} * 1.0) + (#{qPVDd87kS9Z.V6L425pT3A0} * 1.0) + (#{pnL2VG8Bn7N.hEFKSsPV5et} * 1.0) + (#{pnL2VG8Bn7N.Prlt0C1RF0s} * 1.0) + (#{pnL2VG8Bn7N.psbwp3CQEhs} * 1.0) + (#{pnL2VG8Bn7N.V6L425pT3A0} * 1.0)",
+    "denominatorDescription": "Total children screened weight for height",
+    "displayName": "Severe malnutrition rate",
+    "id": "vhzPbO1eEyr"
+  },
+  {
+    "name": "Slept under LLITN last night",
+    "lastUpdated": "2013-03-15T16:08:57.737",
+    "shortName": "Slept under LLITN",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "(#{GCGfEY82Wz6.V6L425pT3A0}+#{GCGfEY82Wz6.Prlt0C1RF0s}+#{GCGfEY82Wz6.psbwp3CQEhs}+#{GCGfEY82Wz6.hEFKSsPV5et})",
+    "numeratorDescription": "Slept under LLITN at Measles",
+    "denominator": "(#{YtbsuPPo010.V6L425pT3A0}+#{YtbsuPPo010.Prlt0C1RF0s}+#{YtbsuPPo010.psbwp3CQEhs}+#{YtbsuPPo010.hEFKSsPV5et})",
+    "denominatorDescription": "Measles",
+    "displayName": "Slept under LLITN last night",
+    "id": "nkjlWUMIdHh"
+  },
+  {
+    "name": "TT doses given total",
+    "lastUpdated": "2014-10-10T17:34:43.527",
+    "shortName": "TT doses given total",
+    "indicatorType": {
+      "name": "Number (Factor 1)",
+      "id": "JkWynlWMjJR"
+    },
+    "numerator": "#{zzHwXqxKYy1}+#{DUTSJE8MGCw}+#{jWaNoH0X0Am}+#{tbudfYMNFS5}+#{B2ocYtYkPBD}",
+    "numeratorDescription": "TT doses given total",
+    "denominator": "1",
+    "denominatorDescription": "",
+    "displayName": "TT doses given total",
+    "id": "aEtcFtcJjtZ"
+  },
+  {
+    "name": "TrueOnly",
+    "lastUpdated": "2013-10-01T10:40:48.831",
+    "shortName": "TrueOnly",
+    "indicatorType": {
+      "name": "Number (Factor 1)",
+      "id": "JkWynlWMjJR"
+    },
+    "numerator": "#{ROz7HjmtxIg}",
+    "numeratorDescription": "T",
+    "denominator": "1",
+    "denominatorDescription": "",
+    "displayName": "TrueOnly",
+    "id": "fLUT71TBTBj"
+  },
+  {
+    "name": "VCCT post-test counselling rate",
+    "lastUpdated": "2013-03-15T16:08:57.739",
+    "shortName": "VCCT post-test couns rate",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{CjLP7zAhlP4.zPpvbvpmkxN}+#{CjLP7zAhlP4.rCMUTmcreqP}+#{CjLP7zAhlP4.TkDhg29x18A}+#{CjLP7zAhlP4.uX9yDetTdOp}+#{CjLP7zAhlP4.LbeIlyHEhKr}+#{CjLP7zAhlP4.qa0VqgYlgtN}+#{CjLP7zAhlP4.GuJESuyOCMW}+#{CjLP7zAhlP4.qNCMOhkoQju}",
+    "numeratorDescription": "Total post-tested",
+    "denominator": "#{IpwsH1GUjCs.zPpvbvpmkxN}+#{IpwsH1GUjCs.rCMUTmcreqP}+#{IpwsH1GUjCs.TkDhg29x18A}+#{IpwsH1GUjCs.uX9yDetTdOp}+#{IpwsH1GUjCs.LbeIlyHEhKr}+#{IpwsH1GUjCs.qa0VqgYlgtN}+#{IpwsH1GUjCs.GuJESuyOCMW}+#{IpwsH1GUjCs.qNCMOhkoQju}",
+    "denominatorDescription": "Total pre test counselling",
+    "displayName": "VCCT post-test counselling rate",
+    "id": "lZZxDlIsvTc"
+  },
+  {
+    "name": "Weight for height 70-79% rate",
+    "lastUpdated": "2014-04-06T11:27:57.007",
+    "shortName": "Weight for height 70-79% rate",
+    "description": "Percentage of children with weight for height ration between 70 and 79 % by all children screened.",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{pnL2VG8Bn7N.V6L425pT3A0}+#{pnL2VG8Bn7N.psbwp3CQEhs}+#{pnL2VG8Bn7N.Prlt0C1RF0s}+#{pnL2VG8Bn7N.hEFKSsPV5et}",
+    "numeratorDescription": "Weight for height between 70% and 79%",
+    "denominator": "#{lVsbKXoF0zX}+#{pnL2VG8Bn7N}+#{qPVDd87kS9Z}",
+    "denominatorDescription": "Total children screened weight for height",
+    "displayName": "Weight for height 70-79% rate",
+    "id": "nfG18MJZX5o"
+  },
+  {
+    "name": "Weight for height <70% rate",
+    "lastUpdated": "2014-04-06T11:30:38.315",
+    "shortName": "Weight for height <70% rate",
+    "description": "Percentage of children with weight for height ratio less than 70% by all children screened.",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{lVsbKXoF0zX}",
+    "numeratorDescription": "Weight for height less than 70 %",
+    "denominator": "#{lVsbKXoF0zX}+#{pnL2VG8Bn7N}+#{qPVDd87kS9Z}",
+    "denominatorDescription": "Total children screened weight for height",
+    "displayName": "Weight for height <70% rate",
+    "id": "vKWOc4itBo2"
+  },
+  {
+    "name": "Weight for height >80% rate",
+    "lastUpdated": "2014-04-06T11:33:59.084",
+    "shortName": "Weight for height >80% rate",
+    "description": "Percentage of children with weight for height ration of 80 % or higher, by all children screened.",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{qPVDd87kS9Z}",
+    "numeratorDescription": "Weight for height > 80%",
+    "denominator": "#{lVsbKXoF0zX}+#{pnL2VG8Bn7N}+#{qPVDd87kS9Z}",
+    "denominatorDescription": "All children screened for weight for height",
+    "displayName": "Weight for height >80% rate",
+    "id": "GQHKiAe3DHR"
+  },
+  {
+    "name": "Well nourished rate",
+    "lastUpdated": "2013-03-15T16:08:57.707",
+    "shortName": "Well nourished rate",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{qPVDd87kS9Z.V6L425pT3A0}+#{qPVDd87kS9Z.psbwp3CQEhs}+#{qPVDd87kS9Z.Prlt0C1RF0s}+#{qPVDd87kS9Z.hEFKSsPV5et}",
+    "numeratorDescription": "Weight for height above 80%",
+    "denominator": "(#{lVsbKXoF0zX.hEFKSsPV5et} * 1.0) + (#{lVsbKXoF0zX.Prlt0C1RF0s} * 1.0) + (#{lVsbKXoF0zX.psbwp3CQEhs} * 1.0) + (#{lVsbKXoF0zX.V6L425pT3A0} * 1.0) + (#{qPVDd87kS9Z.hEFKSsPV5et} * 1.0) + (#{qPVDd87kS9Z.Prlt0C1RF0s} * 1.0) + (#{qPVDd87kS9Z.psbwp3CQEhs} * 1.0) + (#{qPVDd87kS9Z.V6L425pT3A0} * 1.0) + (#{pnL2VG8Bn7N.hEFKSsPV5et} * 1.0) + (#{pnL2VG8Bn7N.Prlt0C1RF0s} * 1.0) + (#{pnL2VG8Bn7N.psbwp3CQEhs} * 1.0) + (#{pnL2VG8Bn7N.V6L425pT3A0} * 1.0)",
+    "denominatorDescription": "Total No children screened for weight for height",
+    "displayName": "Well nourished rate",
+    "id": "aGByu8NFs9m"
+  },
+  {
+    "name": "ZDV and 3TC after delivery rate",
+    "lastUpdated": "2013-03-15T16:08:57.703",
+    "shortName": "ZDV 3TC delivery rate",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{HPZd1WtTArI.YBhrfw1dP2J}+#{HPZd1WtTArI.u5fU9rr67xo}+#{HPZd1WtTArI.LbkJRbDblhe}+#{HPZd1WtTArI.z858fbdqWwF}",
+    "numeratorDescription": "Women received ZDV and 3TC after delivery",
+    "denominator": "#{TvQ1myd6oTE.YBhrfw1dP2J}+#{TvQ1myd6oTE.u5fU9rr67xo}+#{TvQ1myd6oTE.LbkJRbDblhe}+#{TvQ1myd6oTE.z858fbdqWwF}",
+    "denominatorDescription": "Women HIV positive PMTCT",
+    "displayName": "ZDV and 3TC after delivery rate",
+    "id": "cTB6uRdmxUB"
+  },
+  {
+    "name": "ZDV at ANC rate",
+    "lastUpdated": "2013-03-15T16:08:57.706",
+    "shortName": "ZDV at ANC rate",
+    "indicatorType": {
+      "name": "Per cent",
+      "id": "bWuNrMHEoZ0"
+    },
+    "numerator": "#{dWqQVwKJTSu.YBhrfw1dP2J}+#{dWqQVwKJTSu.u5fU9rr67xo}+#{dWqQVwKJTSu.LbkJRbDblhe}+#{dWqQVwKJTSu.z858fbdqWwF}",
+    "numeratorDescription": "ZDV at ANC",
+    "denominator": "#{TvQ1myd6oTE.YBhrfw1dP2J}+#{TvQ1myd6oTE.u5fU9rr67xo}+#{TvQ1myd6oTE.LbkJRbDblhe}+#{TvQ1myd6oTE.z858fbdqWwF}",
+    "denominatorDescription": "Women  HIV  positive PMTCT",
+    "displayName": "ZDV at ANC rate",
+    "id": "fLbrQ4jEtn6"
+  }
+]

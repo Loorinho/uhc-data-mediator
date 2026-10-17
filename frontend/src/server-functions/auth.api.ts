@@ -31,8 +31,6 @@ export const loginFn = createServerFn({ method: "POST" })
 				validateStatus: () => true,
 			});
 
-            console.log(response.data);
-
 			if (
 				response.data.statusCode === 200 &&
 				response.data.data

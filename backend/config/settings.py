@@ -35,6 +35,64 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 
+# DHIS2 configuration settings
+
+def env_list(name, default=""):
+    """
+    Read semicolon-separated environment variables.
+    """
+    raw = os.getenv(name, default)
+    return [
+        item.strip()
+        for item in raw.split(";")
+        if item.strip()
+    ]
+
+
+DHIS2_BASE_URL = os.getenv(
+    "DHIS2_BASE_URL",
+    "https://play.im.dhis2.org/stable-2-43-2",
+).rstrip("/")
+
+DHIS2_USERNAME = os.getenv("DHIS2_USERNAME", "")
+DHIS2_PASSWORD = os.getenv("DHIS2_PASSWORD", "")
+
+DHIS2_CONNECT_TIMEOUT = int(
+    os.getenv("DHIS2_CONNECT_TIMEOUT", "5")
+)
+
+DHIS2_READ_TIMEOUT = int(
+    os.getenv("DHIS2_READ_TIMEOUT", "60")
+)
+
+DHIS2_DX_IDS = env_list("DHIS2_DX_IDS")
+DHIS2_PERIODS = env_list("DHIS2_PERIODS")
+DHIS2_ORG_UNIT_IDS = env_list("DHIS2_ORG_UNIT_IDS")
+
+
+ACQUISITION_POLL_SECONDS = int(
+    os.getenv("ACQUISITION_POLL_SECONDS", "3")
+)
+
+DHIS2_MAX_ATTEMPTS = int(
+    os.getenv("DHIS2_MAX_ATTEMPTS", "3")
+)
+
+DHIS2_RETRY_BACKOFF_SECONDS = int(
+    os.getenv("DHIS2_RETRY_BACKOFF_SECONDS", "2")
+)
+
+if not DHIS2_DX_IDS:
+    raise ValueError("DHIS2_DX_IDS cannot be empty")
+
+if not DHIS2_PERIODS:
+    raise ValueError("DHIS2_PERIODS cannot be empty")
+
+if not DHIS2_ORG_UNIT_IDS:
+    raise ValueError("DHIS2_ORG_UNIT_IDS cannot be empty")
+
+
+
 # Application definition
 
 INSTALLED_APPS = [
