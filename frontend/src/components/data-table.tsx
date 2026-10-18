@@ -30,6 +30,7 @@ interface DataTableProps<TData extends RowData> {
 	pagination?: Pagination;
 	onPageChange?: (page: number) => void;
 	onPageSizeChange?: (pageSize: number) => void;
+	/** Only provide when a backend detail endpoint and a detail page exist. */
 	onRowClick?: (record: TData) => void;
 	getRowId?: (record: TData) => string;
 	isLoading?: boolean;
@@ -77,7 +78,7 @@ export function DataTable<TData extends RowData>({
 									className={
 										onRowClick
 											? "cursor-pointer focus-visible:outline-2 focus-visible:outline-ring"
-											: undefined
+											: "cursor-default hover:bg-transparent"
 									}
 									tabIndex={onRowClick ? 0 : undefined}
 									onClick={

@@ -40,6 +40,13 @@ class AuthenticatedPaginationViewMixin:
     permission_classes = [IsAuthenticated]
     pagination_class = StandardPagination
 
+    def retrieve(self, request, *args, **kwargs):
+        # DRF's default retrieve returns a bare serializer object, unlike our
+        # paginated lists. Keep all exploration details in the same envelope.
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return respond("Record retrieved successfully.", serializer.data)
+
 
 def visible_products(user):
     """MVP: only a product's owner or staff can view governed data."""

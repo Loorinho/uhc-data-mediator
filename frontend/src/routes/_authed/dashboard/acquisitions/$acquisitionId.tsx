@@ -1,4 +1,4 @@
-import { createFileRoute, Link, redirect, useRouter, useRouterState } from "@tanstack/react-router";
+import { createFileRoute, Link, useRouter, useRouterState } from "@tanstack/react-router";
 import { type ColumnDef, tableFeatures } from "@tanstack/react-table";
 import type { ReactNode } from "react";
 import { DataTable } from "@/components/data-table";
@@ -23,17 +23,13 @@ import { canonicalTransformationSchema, triggerCanonicalTransformation } from "@
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "@/components/ui/toast";
 import { RefreshCcwDot } from "lucide-react";
+import { useAuth } from "@/lib/auth";
+import { canTriggerTransformation } from "@/lib/permissions";
 
 export const Route = createFileRoute(
 	"/_authed/dashboard/acquisitions/$acquisitionId",
 )({
 	validateSearch: (search) => acquisitionDetailSearchSchema.parse(search),
-	beforeLoad: ({ context }) => {
-		const roles = context.user.user?.roles ?? [];
-		if (!roles.includes("data_provider")) {
-			throw redirect({ to: "/dashboard" });
-		}
-	},
 	loaderDeps: ({ search }) => search,
 	loader: ({ params, deps }) =>
 		getAcquisitionDetailFn({
@@ -102,6 +98,8 @@ function AcquisitionDetails() {
 	const search = Route.useSearch();
 	const navigate = Route.useNavigate();
 	const router = useRouter();
+	const { user } = useAuth();
+	const mayTransform = canTriggerTransformation(user);
 	const isLoading = useRouterState({ select: (state) => state.status === "pending" });
 	const updateSearch = (changes: Partial<typeof search>) => {
 		void navigate({
@@ -171,45 +169,55 @@ function AcquisitionDetails() {
 							className="h-4 w-4 cursor-pointer"
 							onClick={() => void router.invalidate()}
 						/>
-						<form
-							onSubmit={async (event) => {
-								event.preventDefault();
-								event.stopPropagation();
-
-								await canonicalDataTransformationForm.handleSubmit();
-							}}
+						<Link
+							to="/dashboard/acquisitions/$acquisitionId/observations"
+							params={{ acquisitionId: attempt.acquisitionId }}
+							search={{ page: 1, page_size: 20, include_raw: false }}
+							className="text-sm underline underline-offset-4"
 						>
-							<div className="flex items-end gap-2">
-								<canonicalDataTransformationForm.AppField name="productCode">
-									{(field) => (
-										<field.SelectInput
-											label="Data product"
-											id="productCode"
-											className="w-64"
-											items={DATA_PRODUCT_OPTIONS}
-										/>
-									)}
-								</canonicalDataTransformationForm.AppField>
-								<canonicalDataTransformationForm.Subscribe
-									selector={(state) => ({ isSubmitting: state.isSubmitting })}
-								>
-									{({ isSubmitting }) => (
-										<Button type="submit" disabled={isSubmitting}>
-											{isSubmitting ? (
-												<>
-													<Spinner data-icon="inline-start" />
-													Transforming…
-												</>
-											) : (
-												"Trigger transformation"
-											)}
-										</Button>
-									)}
-								</canonicalDataTransformationForm.Subscribe>
-							</div>
-						</form>
+							Source observations
+						</Link>
+						{mayTransform && (
+							<form
+								onSubmit={async (event) => {
+									event.preventDefault();
+									event.stopPropagation();
+
+									await canonicalDataTransformationForm.handleSubmit();
+								}}
+							>
+								<div className="flex items-end gap-2">
+									<canonicalDataTransformationForm.AppField name="productCode">
+										{(field) => (
+											<field.SelectInput
+												label="Data product"
+												id="productCode"
+												className="w-64"
+												items={DATA_PRODUCT_OPTIONS}
+											/>
+										)}
+									</canonicalDataTransformationForm.AppField>
+									<canonicalDataTransformationForm.Subscribe
+										selector={(state) => ({ isSubmitting: state.isSubmitting })}
+									>
+										{({ isSubmitting }) => (
+											<Button type="submit" disabled={isSubmitting}>
+												{isSubmitting ? (
+													<>
+														<Spinner data-icon="inline-start" />
+														Transforming…
+													</>
+												) : (
+													"Trigger transformation"
+												)}
+											</Button>
+										)}
+									</canonicalDataTransformationForm.Subscribe>
+								</div>
+							</form>
+						)}
 					</div>
-				
+
 			</div>
 
 			<section className="space-y-5 rounded-xl border bg-card p-6">

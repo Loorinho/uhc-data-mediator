@@ -1,6 +1,6 @@
 from django.urls import include, path
 
-from backend.core.ingestion.views.exploration import (
+from core.ingestion.views.exploration import (
     DistrictDetailView,
     DistrictListView,
     PopulationDetailView,

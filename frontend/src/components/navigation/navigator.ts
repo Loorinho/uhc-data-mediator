@@ -20,6 +20,21 @@ const navigationItems = {
 	roles: { title: "Roles", url: "/dashboard/roles" },
 	products: { title: "Products", url: "/dashboard/products" },
 	acquisitions: { title: "Acquisitions", url: "/dashboard/acquisitions" },
+	districts: { title: "Districts", url: "/dashboard/explorer/districts" },
+	population: { title: "Population", url: "/dashboard/explorer/population" },
+	canonicalMeasures: {
+		title: "Canonical measures",
+		url: "/dashboard/explorer/canonical/measures",
+	},
+	measureMappings: {
+		title: "Measure mappings",
+		url: "/dashboard/explorer/canonical/measure-mappings",
+	},
+	canonicalObservations: {
+		title: "Canonical observations",
+		url: "/dashboard/explorer/canonical/observations",
+	},
+	releases: { title: "Releases", url: "/dashboard/products/releases" },
 } as const;
 
 export type NavigationKey = keyof typeof navigationItems;
@@ -37,13 +52,17 @@ function getNavigationKeys(user: NavigationUser): NavigationKey[] {
 
 	if (isDataProvider(user)) {
 		keys.add("acquisitions");
-		keys.add("products");
-
 	}
 
-	// if (keys.size === 0) {
-	// 	keys.add("products");
-	// }
+	// Data exploration & products are visible to all authenticated roles;
+	// the backend enforces the actual authorization scope.
+	keys.add("districts");
+	keys.add("population");
+	keys.add("canonicalMeasures");
+	keys.add("measureMappings");
+	keys.add("canonicalObservations");
+	keys.add("products");
+	keys.add("releases");
 
 	return Array.from(keys);
 }
@@ -59,6 +78,13 @@ export function getDefaultRoute(user: NavigationUser) {
 	return navigationItems[getNavigationKeys(user)[0]].url;
 }
 
-function isWithinRoute(pathname: string, route: string) {
-	return pathname === route || pathname.startsWith(`${route}/`);
+/** Prefer the deepest section, ignoring query parameters and trailing slashes. */
+export function getActiveNavigationUrl(
+	pathname: string,
+	items: readonly { url: string }[],
+) {
+	const path = pathname.replace(/\/+$/, "") || "/";
+	return items
+		.filter(({ url }) => path === url || path.startsWith(`${url}/`))
+		.sort((a, b) => b.url.length - a.url.length)[0]?.url;
 }

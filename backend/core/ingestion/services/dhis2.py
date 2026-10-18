@@ -1,4 +1,3 @@
-
 import time
 
 import requests
@@ -6,8 +5,9 @@ from django.conf import settings
 
 
 class DHIS2RequestError(Exception):
-    def __init__(self, message, request_info=None,
-                 response_body=None, status_code=None):
+    def __init__(
+        self, message, request_info=None, response_body=None, status_code=None
+    ):
         super().__init__(message)
         self.request_info = request_info or {}
         self.response_body = response_body
@@ -23,9 +23,24 @@ class DHIS2Service:
             settings.DHIS2_USERNAME,
             settings.DHIS2_PASSWORD,
         )
-        self.session.headers.update({
-            "Accept": "application/json",
-        })
+        self.session.headers.update(
+            {
+                "Accept": "application/json",
+            }
+        )
+
+    def test_connection(self):
+        response = self.session.get(
+            f"{self.base_url}/api/me",
+            timeout=20,
+            allow_redirects=False,
+        )
+
+        return {
+            "status_code": response.status_code,
+            "authenticated": response.status_code == 200,
+            "redirect_location": response.headers.get("Location"),
+        }
 
     def fetch_analytics(self, dx_ids, periods, org_unit_ids):
         """
@@ -39,8 +54,7 @@ class DHIS2Service:
 
         if not dx_ids or not periods or not org_unit_ids:
             raise ValueError(
-                "At least one dx ID, period and organisation "
-                "unit must be provided."
+                "At least one dx ID, period and organisation unit must be provided."
             )
 
         url = f"{self.base_url}/api/analytics.json"
@@ -81,9 +95,7 @@ class DHIS2Service:
                     ),
                 )
 
-                duration_ms = int(
-                    (time.monotonic() - started) * 1000
-                )
+                duration_ms = int((time.monotonic() - started) * 1000)
 
                 try:
                     payload = response.json()
@@ -92,25 +104,21 @@ class DHIS2Service:
 
                 if response.status_code in (429, 500, 502, 503, 504):
                     last_error = DHIS2RequestError(
-                        f"DHIS2 temporary HTTP error: "
-                        f"{response.status_code}",
+                        f"DHIS2 temporary HTTP error: {response.status_code}",
                         request_info=request_info,
                         response_body=payload,
                         status_code=response.status_code,
                     )
 
                     if attempt < settings.DHIS2_MAX_ATTEMPTS:
-                        time.sleep(
-                            settings.DHIS2_RETRY_BACKOFF_SECONDS * attempt
-                        )
+                        time.sleep(settings.DHIS2_RETRY_BACKOFF_SECONDS * attempt)
                         continue
 
                     raise last_error
 
                 if not response.ok:
                     raise DHIS2RequestError(
-                        f"DHIS2 rejected request: "
-                        f"HTTP {response.status_code}",
+                        f"DHIS2 rejected request: HTTP {response.status_code}",
                         request_info=request_info,
                         response_body=payload,
                         status_code=response.status_code,
@@ -138,9 +146,7 @@ class DHIS2Service:
                 )
 
                 if attempt < settings.DHIS2_MAX_ATTEMPTS:
-                    time.sleep(
-                        settings.DHIS2_RETRY_BACKOFF_SECONDS * attempt
-                    )
+                    time.sleep(settings.DHIS2_RETRY_BACKOFF_SECONDS * attempt)
                     continue
 
                 raise last_error

@@ -1,4 +1,5 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
+import { getActiveNavigationUrl } from "./navigator";
 import {
 	SidebarGroup,
 	SidebarGroupContent,
@@ -18,6 +19,8 @@ export function NavMain({
 	}[];
 }) {
 	const { isMobile, setOpenMobile } = useSidebar();
+	const pathname = useRouterState({ select: (state) => state.location.pathname });
+	const activeUrl = getActiveNavigationUrl(pathname, items);
 
 	return (
 		<SidebarGroup>
@@ -27,27 +30,18 @@ export function NavMain({
 						<SidebarMenuItem key={item.title}>
 							<SidebarMenuButton
 								tooltip={item.title}
-								className="h-10 transition-colors data-[active=true]:bg-primary data-[active=true]:font-semibold data-[active=true]:text-primary-foreground data-[active=true]:shadow-sm data-[active=true]:hover:bg-primary/90 data-[active=true]:hover:text-primary-foreground"
+								isActive={item.url === activeUrl}
+								className="h-10 transition-colors data-active:bg-primary data-active:font-semibold data-active:text-primary-foreground data-active:shadow-sm data-active:hover:bg-primary/90 data-active:hover:text-primary-foreground"
 								render={
 									<Link
 										to={item.url}
-										activeProps={{ "data-active": true }}
+										aria-current={item.url === activeUrl ? "page" : undefined}
 										onClick={() => {
 											if (isMobile) {
 												setOpenMobile(false);
 											}
 										}}
-
-                                        activeOptions={{
-											exact: !(
-												item.url.includes("/users") ||
-												item.url.includes("/roles") ||
-												item.url.includes("/acquisitions") ||
-
-												item.url.includes("/products")
-											),
-										}}
-										
+										activeOptions={{ exact: true, includeSearch: false }}
 									/>
 								}
 							>

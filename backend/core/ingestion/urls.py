@@ -1,8 +1,8 @@
 from django.urls import path
 
-from backend.core.ingestion.views.exploration import AcquisitionObservationsView
 from core.ingestion.views.acquisition import AcquisitionView
 from core.ingestion.views.acquisition_detail import AcquisitionDetailAPIView
+from core.ingestion.views.exploration import AcquisitionObservationsView
 
 urlpatterns = [
     path("", AcquisitionView.as_view(), name="acquisition-list-create"),

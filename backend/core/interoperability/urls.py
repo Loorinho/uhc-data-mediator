@@ -1,6 +1,6 @@
 from django.urls import path
 
-from backend.core.interoperability.api_exploration import (
+from core.interoperability.api_exploration import (
     CanonicalObservationDetailView,
     CanonicalObservationListView,
     MeasureDetailView,

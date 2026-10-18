@@ -15,8 +15,20 @@ import { Route as AuthedDashboardIndexRouteImport } from './routes/_authed/dashb
 import { Route as AuthedDashboardAcquisitionsIndexRouteImport } from './routes/_authed/dashboard/acquisitions/index'
 import { Route as AuthedDashboardAcquisitionsAcquisitionIdRouteImport } from './routes/_authed/dashboard/acquisitions/$acquisitionId'
 import { Route as AuthedDashboardProductsIndexRouteImport } from './routes/_authed/dashboard/products/index'
+import { Route as AuthedDashboardProductsCodeRouteImport } from './routes/_authed/dashboard/products/$code'
 import { Route as AuthedDashboardRolesIndexRouteImport } from './routes/_authed/dashboard/roles/index'
 import { Route as AuthedDashboardUsersIndexRouteImport } from './routes/_authed/dashboard/users/index'
+import { Route as AuthedDashboardAcquisitionsAcquisitionIdObservationsRouteImport } from './routes/_authed/dashboard/acquisitions/$acquisitionId.observations'
+import { Route as AuthedDashboardExplorerCanonicalMeasureMappingsRouteImport } from './routes/_authed/dashboard/explorer/canonical/measure-mappings'
+import { Route as AuthedDashboardExplorerCanonicalMeasuresRouteImport } from './routes/_authed/dashboard/explorer/canonical/measures'
+import { Route as AuthedDashboardExplorerDistrictsIndexRouteImport } from './routes/_authed/dashboard/explorer/districts/index'
+import { Route as AuthedDashboardExplorerDistrictsDistrictIdRouteImport } from './routes/_authed/dashboard/explorer/districts/$districtId'
+import { Route as AuthedDashboardExplorerPopulationIndexRouteImport } from './routes/_authed/dashboard/explorer/population/index'
+import { Route as AuthedDashboardExplorerPopulationPopulationIdRouteImport } from './routes/_authed/dashboard/explorer/population/$populationId'
+import { Route as AuthedDashboardProductsReleasesIndexRouteImport } from './routes/_authed/dashboard/products/releases/index'
+import { Route as AuthedDashboardProductsReleasesReleaseIdRouteImport } from './routes/_authed/dashboard/products/releases/$releaseId'
+import { Route as AuthedDashboardExplorerCanonicalObservationsIndexRouteImport } from './routes/_authed/dashboard/explorer/canonical/observations/index'
+import { Route as AuthedDashboardExplorerCanonicalObservationsObservationIdRouteImport } from './routes/_authed/dashboard/explorer/canonical/observations/$observationId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -50,6 +62,12 @@ const AuthedDashboardProductsIndexRoute =
     path: '/dashboard/products/',
     getParentRoute: () => AuthedRoute,
   } as any)
+const AuthedDashboardProductsCodeRoute =
+  AuthedDashboardProductsCodeRouteImport.update({
+    id: '/dashboard/products/$code',
+    path: '/dashboard/products/$code',
+    getParentRoute: () => AuthedRoute,
+  } as any)
 const AuthedDashboardRolesIndexRoute =
   AuthedDashboardRolesIndexRouteImport.update({
     id: '/dashboard/roles/',
@@ -62,35 +80,137 @@ const AuthedDashboardUsersIndexRoute =
     path: '/dashboard/users/',
     getParentRoute: () => AuthedRoute,
   } as any)
+const AuthedDashboardAcquisitionsAcquisitionIdObservationsRoute =
+  AuthedDashboardAcquisitionsAcquisitionIdObservationsRouteImport.update({
+    id: '/observations',
+    path: '/observations',
+    getParentRoute: () => AuthedDashboardAcquisitionsAcquisitionIdRoute,
+  } as any)
+const AuthedDashboardExplorerCanonicalMeasureMappingsRoute =
+  AuthedDashboardExplorerCanonicalMeasureMappingsRouteImport.update({
+    id: '/dashboard/explorer/canonical/measure-mappings',
+    path: '/dashboard/explorer/canonical/measure-mappings',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedDashboardExplorerCanonicalMeasuresRoute =
+  AuthedDashboardExplorerCanonicalMeasuresRouteImport.update({
+    id: '/dashboard/explorer/canonical/measures',
+    path: '/dashboard/explorer/canonical/measures',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedDashboardExplorerDistrictsIndexRoute =
+  AuthedDashboardExplorerDistrictsIndexRouteImport.update({
+    id: '/dashboard/explorer/districts/',
+    path: '/dashboard/explorer/districts/',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedDashboardExplorerDistrictsDistrictIdRoute =
+  AuthedDashboardExplorerDistrictsDistrictIdRouteImport.update({
+    id: '/dashboard/explorer/districts/$districtId',
+    path: '/dashboard/explorer/districts/$districtId',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedDashboardExplorerPopulationIndexRoute =
+  AuthedDashboardExplorerPopulationIndexRouteImport.update({
+    id: '/dashboard/explorer/population/',
+    path: '/dashboard/explorer/population/',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedDashboardExplorerPopulationPopulationIdRoute =
+  AuthedDashboardExplorerPopulationPopulationIdRouteImport.update({
+    id: '/dashboard/explorer/population/$populationId',
+    path: '/dashboard/explorer/population/$populationId',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedDashboardProductsReleasesIndexRoute =
+  AuthedDashboardProductsReleasesIndexRouteImport.update({
+    id: '/dashboard/products/releases/',
+    path: '/dashboard/products/releases/',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedDashboardProductsReleasesReleaseIdRoute =
+  AuthedDashboardProductsReleasesReleaseIdRouteImport.update({
+    id: '/dashboard/products/releases/$releaseId',
+    path: '/dashboard/products/releases/$releaseId',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedDashboardExplorerCanonicalObservationsIndexRoute =
+  AuthedDashboardExplorerCanonicalObservationsIndexRouteImport.update({
+    id: '/dashboard/explorer/canonical/observations/',
+    path: '/dashboard/explorer/canonical/observations/',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedDashboardExplorerCanonicalObservationsObservationIdRoute =
+  AuthedDashboardExplorerCanonicalObservationsObservationIdRouteImport.update({
+    id: '/dashboard/explorer/canonical/observations/$observationId',
+    path: '/dashboard/explorer/canonical/observations/$observationId',
+    getParentRoute: () => AuthedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard/': typeof AuthedDashboardIndexRoute
-  '/dashboard/acquisitions/$acquisitionId': typeof AuthedDashboardAcquisitionsAcquisitionIdRoute
+  '/dashboard/acquisitions/$acquisitionId': typeof AuthedDashboardAcquisitionsAcquisitionIdRouteWithChildren
+  '/dashboard/products/$code': typeof AuthedDashboardProductsCodeRoute
   '/dashboard/acquisitions/': typeof AuthedDashboardAcquisitionsIndexRoute
   '/dashboard/products/': typeof AuthedDashboardProductsIndexRoute
   '/dashboard/roles/': typeof AuthedDashboardRolesIndexRoute
   '/dashboard/users/': typeof AuthedDashboardUsersIndexRoute
+  '/dashboard/acquisitions/$acquisitionId/observations': typeof AuthedDashboardAcquisitionsAcquisitionIdObservationsRoute
+  '/dashboard/explorer/canonical/measure-mappings': typeof AuthedDashboardExplorerCanonicalMeasureMappingsRoute
+  '/dashboard/explorer/canonical/measures': typeof AuthedDashboardExplorerCanonicalMeasuresRoute
+  '/dashboard/explorer/districts/$districtId': typeof AuthedDashboardExplorerDistrictsDistrictIdRoute
+  '/dashboard/explorer/population/$populationId': typeof AuthedDashboardExplorerPopulationPopulationIdRoute
+  '/dashboard/products/releases/$releaseId': typeof AuthedDashboardProductsReleasesReleaseIdRoute
+  '/dashboard/explorer/districts/': typeof AuthedDashboardExplorerDistrictsIndexRoute
+  '/dashboard/explorer/population/': typeof AuthedDashboardExplorerPopulationIndexRoute
+  '/dashboard/products/releases/': typeof AuthedDashboardProductsReleasesIndexRoute
+  '/dashboard/explorer/canonical/observations/$observationId': typeof AuthedDashboardExplorerCanonicalObservationsObservationIdRoute
+  '/dashboard/explorer/canonical/observations/': typeof AuthedDashboardExplorerCanonicalObservationsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof AuthedDashboardIndexRoute
-  '/dashboard/acquisitions/$acquisitionId': typeof AuthedDashboardAcquisitionsAcquisitionIdRoute
+  '/dashboard/acquisitions/$acquisitionId': typeof AuthedDashboardAcquisitionsAcquisitionIdRouteWithChildren
+  '/dashboard/products/$code': typeof AuthedDashboardProductsCodeRoute
   '/dashboard/acquisitions': typeof AuthedDashboardAcquisitionsIndexRoute
   '/dashboard/products': typeof AuthedDashboardProductsIndexRoute
   '/dashboard/roles': typeof AuthedDashboardRolesIndexRoute
   '/dashboard/users': typeof AuthedDashboardUsersIndexRoute
+  '/dashboard/acquisitions/$acquisitionId/observations': typeof AuthedDashboardAcquisitionsAcquisitionIdObservationsRoute
+  '/dashboard/explorer/canonical/measure-mappings': typeof AuthedDashboardExplorerCanonicalMeasureMappingsRoute
+  '/dashboard/explorer/canonical/measures': typeof AuthedDashboardExplorerCanonicalMeasuresRoute
+  '/dashboard/explorer/districts/$districtId': typeof AuthedDashboardExplorerDistrictsDistrictIdRoute
+  '/dashboard/explorer/population/$populationId': typeof AuthedDashboardExplorerPopulationPopulationIdRoute
+  '/dashboard/products/releases/$releaseId': typeof AuthedDashboardProductsReleasesReleaseIdRoute
+  '/dashboard/explorer/districts': typeof AuthedDashboardExplorerDistrictsIndexRoute
+  '/dashboard/explorer/population': typeof AuthedDashboardExplorerPopulationIndexRoute
+  '/dashboard/products/releases': typeof AuthedDashboardProductsReleasesIndexRoute
+  '/dashboard/explorer/canonical/observations/$observationId': typeof AuthedDashboardExplorerCanonicalObservationsObservationIdRoute
+  '/dashboard/explorer/canonical/observations': typeof AuthedDashboardExplorerCanonicalObservationsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authed': typeof AuthedRouteWithChildren
   '/_authed/dashboard/': typeof AuthedDashboardIndexRoute
-  '/_authed/dashboard/acquisitions/$acquisitionId': typeof AuthedDashboardAcquisitionsAcquisitionIdRoute
+  '/_authed/dashboard/acquisitions/$acquisitionId': typeof AuthedDashboardAcquisitionsAcquisitionIdRouteWithChildren
+  '/_authed/dashboard/products/$code': typeof AuthedDashboardProductsCodeRoute
   '/_authed/dashboard/acquisitions/': typeof AuthedDashboardAcquisitionsIndexRoute
   '/_authed/dashboard/products/': typeof AuthedDashboardProductsIndexRoute
   '/_authed/dashboard/roles/': typeof AuthedDashboardRolesIndexRoute
   '/_authed/dashboard/users/': typeof AuthedDashboardUsersIndexRoute
+  '/_authed/dashboard/acquisitions/$acquisitionId/observations': typeof AuthedDashboardAcquisitionsAcquisitionIdObservationsRoute
+  '/_authed/dashboard/explorer/canonical/measure-mappings': typeof AuthedDashboardExplorerCanonicalMeasureMappingsRoute
+  '/_authed/dashboard/explorer/canonical/measures': typeof AuthedDashboardExplorerCanonicalMeasuresRoute
+  '/_authed/dashboard/explorer/districts/$districtId': typeof AuthedDashboardExplorerDistrictsDistrictIdRoute
+  '/_authed/dashboard/explorer/population/$populationId': typeof AuthedDashboardExplorerPopulationPopulationIdRoute
+  '/_authed/dashboard/products/releases/$releaseId': typeof AuthedDashboardProductsReleasesReleaseIdRoute
+  '/_authed/dashboard/explorer/districts/': typeof AuthedDashboardExplorerDistrictsIndexRoute
+  '/_authed/dashboard/explorer/population/': typeof AuthedDashboardExplorerPopulationIndexRoute
+  '/_authed/dashboard/products/releases/': typeof AuthedDashboardProductsReleasesIndexRoute
+  '/_authed/dashboard/explorer/canonical/observations/$observationId': typeof AuthedDashboardExplorerCanonicalObservationsObservationIdRoute
+  '/_authed/dashboard/explorer/canonical/observations/': typeof AuthedDashboardExplorerCanonicalObservationsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -98,29 +218,65 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard/'
     | '/dashboard/acquisitions/$acquisitionId'
+    | '/dashboard/products/$code'
     | '/dashboard/acquisitions/'
     | '/dashboard/products/'
     | '/dashboard/roles/'
     | '/dashboard/users/'
+    | '/dashboard/acquisitions/$acquisitionId/observations'
+    | '/dashboard/explorer/canonical/measure-mappings'
+    | '/dashboard/explorer/canonical/measures'
+    | '/dashboard/explorer/districts/$districtId'
+    | '/dashboard/explorer/population/$populationId'
+    | '/dashboard/products/releases/$releaseId'
+    | '/dashboard/explorer/districts/'
+    | '/dashboard/explorer/population/'
+    | '/dashboard/products/releases/'
+    | '/dashboard/explorer/canonical/observations/$observationId'
+    | '/dashboard/explorer/canonical/observations/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/dashboard'
     | '/dashboard/acquisitions/$acquisitionId'
+    | '/dashboard/products/$code'
     | '/dashboard/acquisitions'
     | '/dashboard/products'
     | '/dashboard/roles'
     | '/dashboard/users'
+    | '/dashboard/acquisitions/$acquisitionId/observations'
+    | '/dashboard/explorer/canonical/measure-mappings'
+    | '/dashboard/explorer/canonical/measures'
+    | '/dashboard/explorer/districts/$districtId'
+    | '/dashboard/explorer/population/$populationId'
+    | '/dashboard/products/releases/$releaseId'
+    | '/dashboard/explorer/districts'
+    | '/dashboard/explorer/population'
+    | '/dashboard/products/releases'
+    | '/dashboard/explorer/canonical/observations/$observationId'
+    | '/dashboard/explorer/canonical/observations'
   id:
     | '__root__'
     | '/'
     | '/_authed'
     | '/_authed/dashboard/'
     | '/_authed/dashboard/acquisitions/$acquisitionId'
+    | '/_authed/dashboard/products/$code'
     | '/_authed/dashboard/acquisitions/'
     | '/_authed/dashboard/products/'
     | '/_authed/dashboard/roles/'
     | '/_authed/dashboard/users/'
+    | '/_authed/dashboard/acquisitions/$acquisitionId/observations'
+    | '/_authed/dashboard/explorer/canonical/measure-mappings'
+    | '/_authed/dashboard/explorer/canonical/measures'
+    | '/_authed/dashboard/explorer/districts/$districtId'
+    | '/_authed/dashboard/explorer/population/$populationId'
+    | '/_authed/dashboard/products/releases/$releaseId'
+    | '/_authed/dashboard/explorer/districts/'
+    | '/_authed/dashboard/explorer/population/'
+    | '/_authed/dashboard/products/releases/'
+    | '/_authed/dashboard/explorer/canonical/observations/$observationId'
+    | '/_authed/dashboard/explorer/canonical/observations/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -172,6 +328,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedDashboardProductsIndexRouteImport
       parentRoute: typeof AuthedRoute
     }
+    '/_authed/dashboard/products/$code': {
+      id: '/_authed/dashboard/products/$code'
+      path: '/dashboard/products/$code'
+      fullPath: '/dashboard/products/$code'
+      preLoaderRoute: typeof AuthedDashboardProductsCodeRouteImport
+      parentRoute: typeof AuthedRoute
+    }
     '/_authed/dashboard/roles/': {
       id: '/_authed/dashboard/roles/'
       path: '/dashboard/roles'
@@ -186,26 +349,150 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedDashboardUsersIndexRouteImport
       parentRoute: typeof AuthedRoute
     }
+    '/_authed/dashboard/acquisitions/$acquisitionId/observations': {
+      id: '/_authed/dashboard/acquisitions/$acquisitionId/observations'
+      path: '/observations'
+      fullPath: '/dashboard/acquisitions/$acquisitionId/observations'
+      preLoaderRoute: typeof AuthedDashboardAcquisitionsAcquisitionIdObservationsRouteImport
+      parentRoute: typeof AuthedDashboardAcquisitionsAcquisitionIdRoute
+    }
+    '/_authed/dashboard/explorer/canonical/measure-mappings': {
+      id: '/_authed/dashboard/explorer/canonical/measure-mappings'
+      path: '/dashboard/explorer/canonical/measure-mappings'
+      fullPath: '/dashboard/explorer/canonical/measure-mappings'
+      preLoaderRoute: typeof AuthedDashboardExplorerCanonicalMeasureMappingsRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/dashboard/explorer/canonical/measures': {
+      id: '/_authed/dashboard/explorer/canonical/measures'
+      path: '/dashboard/explorer/canonical/measures'
+      fullPath: '/dashboard/explorer/canonical/measures'
+      preLoaderRoute: typeof AuthedDashboardExplorerCanonicalMeasuresRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/dashboard/explorer/districts/': {
+      id: '/_authed/dashboard/explorer/districts/'
+      path: '/dashboard/explorer/districts'
+      fullPath: '/dashboard/explorer/districts/'
+      preLoaderRoute: typeof AuthedDashboardExplorerDistrictsIndexRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/dashboard/explorer/districts/$districtId': {
+      id: '/_authed/dashboard/explorer/districts/$districtId'
+      path: '/dashboard/explorer/districts/$districtId'
+      fullPath: '/dashboard/explorer/districts/$districtId'
+      preLoaderRoute: typeof AuthedDashboardExplorerDistrictsDistrictIdRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/dashboard/explorer/population/': {
+      id: '/_authed/dashboard/explorer/population/'
+      path: '/dashboard/explorer/population'
+      fullPath: '/dashboard/explorer/population/'
+      preLoaderRoute: typeof AuthedDashboardExplorerPopulationIndexRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/dashboard/explorer/population/$populationId': {
+      id: '/_authed/dashboard/explorer/population/$populationId'
+      path: '/dashboard/explorer/population/$populationId'
+      fullPath: '/dashboard/explorer/population/$populationId'
+      preLoaderRoute: typeof AuthedDashboardExplorerPopulationPopulationIdRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/dashboard/products/releases/': {
+      id: '/_authed/dashboard/products/releases/'
+      path: '/dashboard/products/releases'
+      fullPath: '/dashboard/products/releases/'
+      preLoaderRoute: typeof AuthedDashboardProductsReleasesIndexRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/dashboard/products/releases/$releaseId': {
+      id: '/_authed/dashboard/products/releases/$releaseId'
+      path: '/dashboard/products/releases/$releaseId'
+      fullPath: '/dashboard/products/releases/$releaseId'
+      preLoaderRoute: typeof AuthedDashboardProductsReleasesReleaseIdRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/dashboard/explorer/canonical/observations/': {
+      id: '/_authed/dashboard/explorer/canonical/observations/'
+      path: '/dashboard/explorer/canonical/observations'
+      fullPath: '/dashboard/explorer/canonical/observations/'
+      preLoaderRoute: typeof AuthedDashboardExplorerCanonicalObservationsIndexRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/dashboard/explorer/canonical/observations/$observationId': {
+      id: '/_authed/dashboard/explorer/canonical/observations/$observationId'
+      path: '/dashboard/explorer/canonical/observations/$observationId'
+      fullPath: '/dashboard/explorer/canonical/observations/$observationId'
+      preLoaderRoute: typeof AuthedDashboardExplorerCanonicalObservationsObservationIdRouteImport
+      parentRoute: typeof AuthedRoute
+    }
   }
 }
 
+interface AuthedDashboardAcquisitionsAcquisitionIdRouteChildren {
+  AuthedDashboardAcquisitionsAcquisitionIdObservationsRoute: typeof AuthedDashboardAcquisitionsAcquisitionIdObservationsRoute
+}
+
+const AuthedDashboardAcquisitionsAcquisitionIdRouteChildren: AuthedDashboardAcquisitionsAcquisitionIdRouteChildren =
+  {
+    AuthedDashboardAcquisitionsAcquisitionIdObservationsRoute:
+      AuthedDashboardAcquisitionsAcquisitionIdObservationsRoute,
+  }
+
+const AuthedDashboardAcquisitionsAcquisitionIdRouteWithChildren =
+  AuthedDashboardAcquisitionsAcquisitionIdRoute._addFileChildren(
+    AuthedDashboardAcquisitionsAcquisitionIdRouteChildren,
+  )
+
 interface AuthedRouteChildren {
   AuthedDashboardIndexRoute: typeof AuthedDashboardIndexRoute
-  AuthedDashboardAcquisitionsAcquisitionIdRoute: typeof AuthedDashboardAcquisitionsAcquisitionIdRoute
+  AuthedDashboardAcquisitionsAcquisitionIdRoute: typeof AuthedDashboardAcquisitionsAcquisitionIdRouteWithChildren
+  AuthedDashboardProductsCodeRoute: typeof AuthedDashboardProductsCodeRoute
   AuthedDashboardAcquisitionsIndexRoute: typeof AuthedDashboardAcquisitionsIndexRoute
   AuthedDashboardProductsIndexRoute: typeof AuthedDashboardProductsIndexRoute
   AuthedDashboardRolesIndexRoute: typeof AuthedDashboardRolesIndexRoute
   AuthedDashboardUsersIndexRoute: typeof AuthedDashboardUsersIndexRoute
+  AuthedDashboardExplorerCanonicalMeasureMappingsRoute: typeof AuthedDashboardExplorerCanonicalMeasureMappingsRoute
+  AuthedDashboardExplorerCanonicalMeasuresRoute: typeof AuthedDashboardExplorerCanonicalMeasuresRoute
+  AuthedDashboardExplorerDistrictsDistrictIdRoute: typeof AuthedDashboardExplorerDistrictsDistrictIdRoute
+  AuthedDashboardExplorerPopulationPopulationIdRoute: typeof AuthedDashboardExplorerPopulationPopulationIdRoute
+  AuthedDashboardProductsReleasesReleaseIdRoute: typeof AuthedDashboardProductsReleasesReleaseIdRoute
+  AuthedDashboardExplorerDistrictsIndexRoute: typeof AuthedDashboardExplorerDistrictsIndexRoute
+  AuthedDashboardExplorerPopulationIndexRoute: typeof AuthedDashboardExplorerPopulationIndexRoute
+  AuthedDashboardProductsReleasesIndexRoute: typeof AuthedDashboardProductsReleasesIndexRoute
+  AuthedDashboardExplorerCanonicalObservationsObservationIdRoute: typeof AuthedDashboardExplorerCanonicalObservationsObservationIdRoute
+  AuthedDashboardExplorerCanonicalObservationsIndexRoute: typeof AuthedDashboardExplorerCanonicalObservationsIndexRoute
 }
 
 const AuthedRouteChildren: AuthedRouteChildren = {
   AuthedDashboardIndexRoute: AuthedDashboardIndexRoute,
   AuthedDashboardAcquisitionsAcquisitionIdRoute:
-    AuthedDashboardAcquisitionsAcquisitionIdRoute,
+    AuthedDashboardAcquisitionsAcquisitionIdRouteWithChildren,
+  AuthedDashboardProductsCodeRoute: AuthedDashboardProductsCodeRoute,
   AuthedDashboardAcquisitionsIndexRoute: AuthedDashboardAcquisitionsIndexRoute,
   AuthedDashboardProductsIndexRoute: AuthedDashboardProductsIndexRoute,
   AuthedDashboardRolesIndexRoute: AuthedDashboardRolesIndexRoute,
   AuthedDashboardUsersIndexRoute: AuthedDashboardUsersIndexRoute,
+  AuthedDashboardExplorerCanonicalMeasureMappingsRoute:
+    AuthedDashboardExplorerCanonicalMeasureMappingsRoute,
+  AuthedDashboardExplorerCanonicalMeasuresRoute:
+    AuthedDashboardExplorerCanonicalMeasuresRoute,
+  AuthedDashboardExplorerDistrictsDistrictIdRoute:
+    AuthedDashboardExplorerDistrictsDistrictIdRoute,
+  AuthedDashboardExplorerPopulationPopulationIdRoute:
+    AuthedDashboardExplorerPopulationPopulationIdRoute,
+  AuthedDashboardProductsReleasesReleaseIdRoute:
+    AuthedDashboardProductsReleasesReleaseIdRoute,
+  AuthedDashboardExplorerDistrictsIndexRoute:
+    AuthedDashboardExplorerDistrictsIndexRoute,
+  AuthedDashboardExplorerPopulationIndexRoute:
+    AuthedDashboardExplorerPopulationIndexRoute,
+  AuthedDashboardProductsReleasesIndexRoute:
+    AuthedDashboardProductsReleasesIndexRoute,
+  AuthedDashboardExplorerCanonicalObservationsObservationIdRoute:
+    AuthedDashboardExplorerCanonicalObservationsObservationIdRoute,
+  AuthedDashboardExplorerCanonicalObservationsIndexRoute:
+    AuthedDashboardExplorerCanonicalObservationsIndexRoute,
 }
 
 const AuthedRouteWithChildren =

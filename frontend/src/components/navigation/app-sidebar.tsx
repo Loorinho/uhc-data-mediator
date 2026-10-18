@@ -38,6 +38,12 @@ const navigationIcons: Record<NavigationKey, React.ReactNode> = {
 	dashboard: <HomeIcon />,
 	products: <Podium />,
 	acquisitions: <RefreshCcwDot />,
+	districts: <Building2 />,
+	population: <UserGroupIcon />,
+	canonicalMeasures: <Trophy />,
+	measureMappings: <SunSnow />,
+	canonicalObservations: <BellIcon />,
+	releases: <Badge />,
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
