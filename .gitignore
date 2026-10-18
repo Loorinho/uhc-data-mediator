@@ -86,3 +86,6 @@ instructions.md
 !.vscode/settings.json
 .DS_Store
 Thumbs.db
+
+# FHIR exports
+backend/output/fhir_exports/
