@@ -19,7 +19,6 @@ services:
       timeout: 5s
       retries: 10
 
-  
   uhc-frontend:
     build:
       context: ./frontend
@@ -51,6 +50,7 @@ services:
     volumes:
       - ./backend:/app
       - ./backend/output/fhir_exports:/app/output/fhir_exports
+      - ./fhir_validator:/app/fhir_validator
     depends_on:
       uhc-db:
         condition: service_healthy

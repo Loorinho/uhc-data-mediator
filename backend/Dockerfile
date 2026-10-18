@@ -9,7 +9,13 @@ WORKDIR /app
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-       libpq-dev gcc \
+    libpq-dev gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install java in the image
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+    default-jre-headless \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .

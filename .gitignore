@@ -89,3 +89,8 @@ Thumbs.db
 
 # FHIR exports
 backend/output/fhir_exports/
+
+
+# FHIR Validator -> Not pushing it because it is big
+# Source: https://github.com/hapifhir/org.hl7.fhir.core/releases
+fhir_validator/
