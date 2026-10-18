@@ -126,6 +126,16 @@ function RouteComponent() {
 								{pendingMode === "LIVE" ? <Spinner /> : null}
 								LIVE acquisition
 							</DropdownMenuItem>
+							<DropdownMenuItem
+								disabled={pendingMode !== null}
+								closeOnClick={false}
+								onClick={() => {
+									void triggerAcquisition("FIXTURE");
+								}}
+							>
+								{pendingMode === "FIXTURE" ? <Spinner /> : null}
+								FIXTURE acquisition
+							</DropdownMenuItem>
 						</DropdownMenuContent>
 					</DropdownMenu>
 				)}

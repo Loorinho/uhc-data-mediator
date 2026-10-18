@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
-    help = "Process queued LIVE DHIS2 acquisitions"
+    help = "Process queued LIVE and FIXTURE acquisitions"
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -53,7 +53,9 @@ class Command(BaseCommand):
             self.stop,
         )
 
-        self.stdout.write(self.style.SUCCESS("DHIS2 acquisition worker started."))
+        self.stdout.write(
+            self.style.SUCCESS("DHIS2 acquisition worker started (LIVE + FIXTURE).")
+        )
 
         while self.running:
             close_old_connections()
@@ -100,7 +102,7 @@ class Command(BaseCommand):
 
     def claim_next_attempt(self):
         """
-        Claim one pending LIVE attempt.
+        Claim one pending LIVE or FIXTURE attempt.
 
         The transaction ensures another worker
         cannot claim the same row concurrently.
@@ -111,7 +113,10 @@ class Command(BaseCommand):
                 AcquisitionAttempt.objects.select_for_update(skip_locked=True)
                 .filter(
                     status=AcquisitionAttempt.Status.PENDING,
-                    mode=AcquisitionAttempt.Mode.LIVE,
+                    mode__in=[
+                        AcquisitionAttempt.Mode.LIVE,
+                        AcquisitionAttempt.Mode.FIXTURE,
+                    ],
                 )
                 .order_by("requested_at")
                 .first()

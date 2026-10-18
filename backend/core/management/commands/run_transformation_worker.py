@@ -1,4 +1,3 @@
-
 import logging
 import signal
 import time
@@ -10,7 +9,6 @@ from core.governance.models import DataProductRelease
 from core.interoperability.services.canonical_transformer import (
     transform_release,
 )
-
 
 logger = logging.getLogger(__name__)
 
@@ -36,9 +34,7 @@ class Command(BaseCommand):
         run_once = options["once"]
 
         if poll_seconds < 1:
-            raise ValueError(
-                "poll-seconds must be at least 1"
-            )
+            raise ValueError("poll-seconds must be at least 1")
 
         self.running = True
 
@@ -46,9 +42,7 @@ class Command(BaseCommand):
         signal.signal(signal.SIGINT, self.stop)
 
         self.stdout.write(
-            self.style.SUCCESS(
-                "Canonical transformation worker started."
-            )
+            self.style.SUCCESS("Canonical transformation worker started.")
         )
 
         while self.running:
@@ -64,17 +58,14 @@ class Command(BaseCommand):
                     time.sleep(poll_seconds)
                     continue
 
-                self.stdout.write(
-                    f"Transforming release: {release_id}"
-                )
+                self.stdout.write(f"Transforming release: {release_id}")
 
                 try:
                     count = transform_release(release_id)
 
                     self.stdout.write(
                         self.style.SUCCESS(
-                            f"Release {release_id}: "
-                            f"{count} canonical observations"
+                            f"Release {release_id}: {count} canonical observations"
                         )
                     )
 
@@ -89,9 +80,7 @@ class Command(BaseCommand):
                     break
 
             except Exception:
-                logger.exception(
-                    "Transformation worker encountered an error"
-                )
+                logger.exception("Transformation worker encountered an error")
 
                 if run_once:
                     break
@@ -101,20 +90,16 @@ class Command(BaseCommand):
             finally:
                 close_old_connections()
 
-        self.stdout.write(
-            "Canonical transformation worker stopped."
-        )
+        self.stdout.write("Canonical transformation worker stopped.")
 
     def claim_next_release(self):
         with transaction.atomic():
             release = (
-                DataProductRelease.objects
-                .select_for_update(skip_locked=True)
+                DataProductRelease.objects.select_for_update(skip_locked=True)
                 .filter(
                     status=DataProductRelease.Status.DRAFT,
                     transformation_status=(
-                        DataProductRelease
-                        .TransformationStatus.PENDING
+                        DataProductRelease.TransformationStatus.PENDING
                     ),
                 )
                 .order_by("created_at")
@@ -125,27 +110,19 @@ class Command(BaseCommand):
                 return None
 
             release.transformation_status = (
-                DataProductRelease
-                .TransformationStatus.RUNNING
+                DataProductRelease.TransformationStatus.RUNNING
             )
 
-            release.save(
-                update_fields=["transformation_status"]
-            )
+            release.save(update_fields=["transformation_status"])
 
             return release.pk
 
     def mark_failed(self, release_id, error):
         with transaction.atomic():
-            release = (
-                DataProductRelease.objects
-                .select_for_update()
-                .get(pk=release_id)
-            )
+            release = DataProductRelease.objects.select_for_update().get(pk=release_id)
 
             release.transformation_status = (
-                DataProductRelease
-                .TransformationStatus.FAILED
+                DataProductRelease.TransformationStatus.FAILED
             )
 
             # No separate error_message field exists
