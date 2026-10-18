@@ -19,7 +19,6 @@ services:
       timeout: 5s
       retries: 10
 
-  
   uhc-frontend:
     build:
       context: ./frontend
@@ -50,12 +49,14 @@ services:
       - "127.0.0.1:8000:8000"
     volumes:
       - ./backend:/app
+      - ./backend/output/fhir_exports:/app/output/fhir_exports
+      - ./fhir_validator:/app/fhir_validator
     depends_on:
       uhc-db:
         condition: service_healthy
     command: >
       sh -c "python manage.py migrate &&
-             python manage.py runserver 0.0.0.0:8000"
+            python manage.py runserver 0.0.0.0:8000"
 
   uhc-worker:
     build:
