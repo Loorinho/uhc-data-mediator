@@ -1,5 +1,12 @@
 from django.urls import include, path
 
+from backend.core.ingestion.views.exploration import (
+    DistrictDetailView,
+    DistrictListView,
+    PopulationDetailView,
+    PopulationListView,
+)
+
 from .authentication.views import RoleListCreateView, UserListView
 from .views import health_check
 
@@ -14,4 +21,13 @@ urlpatterns = [
     path("acquisition/", include("core.ingestion.urls")),
     # Interoperability
     path("interoperability/", include("core.interoperability.urls")),
+    path("districts/", DistrictListView.as_view(), name="district-list"),
+    path("districts/<uuid:id>/", DistrictDetailView.as_view(), name="district-detail"),
+    path("population/", PopulationListView.as_view(), name="population-list"),
+    path(
+        "population/<uuid:id>/",
+        PopulationDetailView.as_view(),
+        name="population-detail",
+    ),
+    path("", include("core.governance.urls")),
 ]
