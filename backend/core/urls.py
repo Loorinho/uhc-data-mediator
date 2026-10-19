@@ -34,4 +34,9 @@ urlpatterns = [
         "",
         include("core.interoperability.fhir_urls"),
     ),
+    # Audit
+    path(
+        "audit-events/",
+        include("core.auditing.urls"),
+    ),
 ]

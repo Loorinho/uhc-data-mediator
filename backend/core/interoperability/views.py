@@ -1,10 +1,11 @@
 from django.db import transaction
 from django.db.models import Max
-from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 
+from core.auditing.models import AuditEvent
+from core.auditing.services import record_after_commit
 from core.governance.models import (
     DataProduct,
     DataProductRelease,
@@ -21,7 +22,6 @@ class TriggerTransformationAPIView(APIView):
     permission_classes = [IsAuthenticated, IsDataProvider]
 
     def post(self, request, acquisition_id):
-
         serializer = TransformationRequestSerializer(data=request.data)
 
         if not serializer.is_valid():
@@ -32,7 +32,7 @@ class TriggerTransformationAPIView(APIView):
 
         product_code = serializer.validated_data["productCode"]
 
-        # Check acquisition
+        # 1. Verify the source acquisition exists.
         acquisition = AcquisitionAttempt.objects.filter(pk=acquisition_id).first()
 
         if acquisition is None:
@@ -41,7 +41,7 @@ class TriggerTransformationAPIView(APIView):
                 status_code=status.HTTP_404_NOT_FOUND,
             )
 
-        # Check data product
+        # 2. Verify the data product exists.
         product = DataProduct.objects.filter(code=product_code).first()
 
         if product is None:
@@ -50,8 +50,7 @@ class TriggerTransformationAPIView(APIView):
                 status_code=status.HTTP_404_NOT_FOUND,
             )
 
-        # Only the owner or authorized staff
-        # can create releases for this product.
+        # 3. Enforce ownership.
         if product.data_owner_id != request.user.pk:
             return api_response(
                 message=(
@@ -60,9 +59,13 @@ class TriggerTransformationAPIView(APIView):
                 status_code=status.HTTP_403_FORBIDDEN,
             )
 
-        if acquisition.mode != AcquisitionAttempt.Mode.LIVE:
+        # 4. Accept completed LIVE and FIXTURE acquisitions.
+        if acquisition.mode not in (
+            AcquisitionAttempt.Mode.LIVE,
+            AcquisitionAttempt.Mode.FIXTURE,
+        ):
             return api_response(
-                message="Only LIVE acquisitions are supported.",
+                message="Unsupported acquisition mode.",
                 status_code=status.HTTP_400_BAD_REQUEST,
             )
 
@@ -87,13 +90,10 @@ class TriggerTransformationAPIView(APIView):
                 status_code=status.HTTP_400_BAD_REQUEST,
             )
 
+        # 5. Create a pending, versioned release.
         with transaction.atomic():
-            # Lock the product row to allocate
-            # release versions safely.
             product = DataProduct.objects.select_for_update().get(pk=product.pk)
 
-            # Prevent repeatedly queuing the same
-            # acquisition for the same product.
             existing = (
                 DataProductRelease.objects.filter(
                     product=product,
@@ -103,6 +103,8 @@ class TriggerTransformationAPIView(APIView):
                 .first()
             )
 
+            # Idempotency: do not duplicate releases or
+            # TRANSFORMATION_REQUESTED events on retries.
             if existing:
                 return api_response(
                     message=(
@@ -135,6 +137,27 @@ class TriggerTransformationAPIView(APIView):
                 quality_status=(DataProductRelease.QualityStatus.NOT_CHECKED),
             )
 
+            # 6. Record who requested the transformation.
+            # The event runs after the transaction commits.
+            record_after_commit(
+                action="TRANSFORMATION_REQUESTED",
+                outcome=AuditEvent.Outcome.SUCCESS,
+                actor=request.user,
+                resource_type="DataProductRelease",
+                resource_id=release.id,
+                correlation_id=release.id,
+                details={
+                    "dataProductId": str(release.product_id),
+                    "productCode": product.code,
+                    "releaseVersion": release.version,
+                    "acquisitionId": str(acquisition.id),
+                    "acquisitionCorrelationId": str(acquisition.correlation_id),
+                    "acquisitionMode": acquisition.mode,
+                    "source": acquisition.source,
+                    "transformationStatus": "PENDING",
+                },
+            )
+
         return api_response(
             message="Canonical transformation has been queued.",
             data={
@@ -146,5 +169,5 @@ class TriggerTransformationAPIView(APIView):
                 "transformationStatus": (release.transformation_status),
                 "qualityStatus": release.quality_status,
             },
-            status_code=200,
+            status_code=status.HTTP_200_OK,
         )

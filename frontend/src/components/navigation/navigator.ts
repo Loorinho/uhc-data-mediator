@@ -1,5 +1,5 @@
 import type { AuthUser } from "@/server-functions/session.server";
-import { isAdmin, isDataProvider } from "@/lib/permissions";
+import { isAdmin, isAnalyst, isDataProvider } from "@/lib/permissions";
 
 export { isAdmin, isDataProvider };
 
@@ -9,8 +9,8 @@ const navigationItems = {
 	dashboard: { title: "Dashboard", url: "/dashboard" },
 	users: { title: "Users", url: "/dashboard/users" },
 	roles: { title: "Roles", url: "/dashboard/roles" },
-	products: { title: "Products", url: "/dashboard/products" },
-	acquisitions: { title: "Acquisitions", url: "/dashboard/acquisitions" },
+	products: { title: "Data Products", url: "/dashboard/products" },
+	acquisitions: { title: "DHIS2 Acquisitions", url: "/dashboard/acquisitions" },
 	districts: { title: "Districts", url: "/dashboard/explorer/districts" },
 	population: { title: "Population", url: "/dashboard/explorer/population" },
 	canonicalMeasures: {
@@ -18,7 +18,7 @@ const navigationItems = {
 		url: "/dashboard/explorer/canonical/measures",
 	},
 	measureMappings: {
-		title: "Measure mappings",
+		title: "Measure Mappings",
 		url: "/dashboard/explorer/canonical/measure-mappings",
 	},
 	canonicalObservations: {
@@ -26,7 +26,7 @@ const navigationItems = {
 		url: "/dashboard/explorer/canonical/observations",
 	},
 	releases: { title: "Releases", url: "/dashboard/products/releases" },
-	fhir: { title: "FHIR bundles", url: "/dashboard/fhir" },
+	fhir: { title: "FHIR Exports", url: "/dashboard/fhir" },
 } as const;
 
 export type NavigationKey = keyof typeof navigationItems;
@@ -42,8 +42,8 @@ function getNavigationKeys(user: NavigationUser): NavigationKey[] {
 	}
 
 	if (isDataProvider(user)) {
+		keys.add("dashboard");
 		keys.add("acquisitions");
-	keys.add("dashboard");
 
 
 	keys.add("districts");
@@ -56,6 +56,18 @@ function getNavigationKeys(user: NavigationUser): NavigationKey[] {
 	keys.add("releases");
 	keys.add("fhir");
 	}
+
+	if (isAnalyst(user)) {
+		keys.add("dashboard");
+
+	keys.add("districts");
+	keys.add("population");
+	keys.add("products");
+	keys.add("canonicalObservations");
+	keys.add("canonicalMeasures");
+	keys.add("measureMappings");
+	}
+
 
 
 	return Array.from(keys);

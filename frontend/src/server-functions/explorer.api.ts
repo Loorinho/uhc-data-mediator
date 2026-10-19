@@ -20,7 +20,7 @@ export const districtSearchSchema = z.object({
 	...paginationSchema,
 	search: z.string().optional().catch(undefined),
 	mapping_status: z
-		.enum(["MAPPED", "UNMAPPED", "AMBIGUOUS", "IGNORED"])
+		.enum(["MAPPED", "VERIFIED", "UNMAPPED", "AMBIGUOUS", "IGNORED"])
 		.optional()
 		.catch(undefined),
 });

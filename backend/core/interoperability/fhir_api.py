@@ -13,6 +13,8 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 
+from core.auditing.models import AuditEvent
+from core.auditing.services import record_after_commit
 from core.governance.models import DataProductRelease
 from core.interoperability.fhir_permissions import (
     can_view_release,
@@ -249,6 +251,18 @@ class ReleaseFHIRExportAPIView(APIView):
                 mapping_version="mapping-v2",
             )
 
+            record_after_commit(
+                action="FHIR_EXPORT_REQUESTED",
+                outcome=AuditEvent.Outcome.SUCCESS,
+                actor=request.user,
+                resource_type="FHIRExport",
+                resource_id=export.id,
+                correlation_id=export.id,
+                details={
+                    "releaseId": str(export.release_id),
+                },
+            )
+
         return api_response(
             message="FHIR generation has been queued.",
             data=export_data(export),
@@ -386,6 +400,18 @@ class FHIRExportValidationsAPIView(APIView):
                 status=FHIRValidationResult.Status.PENDING,
                 fhir_version=export.fhir_version,
                 bundle_sha256=export.bundle_sha256,
+            )
+
+            record_after_commit(
+                action="FHIR_VALIDATION_REQUESTED",
+                outcome=AuditEvent.Outcome.SUCCESS,
+                actor=request.user,
+                resource_type="FHIRValidationResult",
+                resource_id=validation.id,
+                correlation_id=validation.id,
+                details={
+                    "fhirExportId": str(validation.fhir_export_id),
+                },
             )
 
         return api_response(

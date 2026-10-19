@@ -3,6 +3,8 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 
+from core.auditing.models import AuditEvent
+from core.auditing.services import record_after_commit
 from core.ingestion.models import AcquisitionAttempt
 from core.ingestion.pagination import AcquisitionPagination
 from core.ingestion.permissions import IsDataProvider
@@ -62,6 +64,20 @@ class AcquisitionView(APIView):
             status=AcquisitionAttempt.Status.PENDING,
             source="DHIS2-SL-DEMO",
             request_config=request_config,
+        )
+
+        record_after_commit(
+            action="ACQUISITION_REQUESTED",
+            outcome=AuditEvent.Outcome.SUCCESS,
+            actor=request.user,
+            resource_type="AcquisitionAttempt",
+            resource_id=attempt.id,
+            correlation_id=attempt.correlation_id,
+            details={
+                "mode": attempt.mode,
+                "source": attempt.source,
+            },
+            http_status=200,
         )
         return api_response(
             message=(

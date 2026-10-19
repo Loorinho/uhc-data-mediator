@@ -10,6 +10,8 @@ from django.conf import settings
 from django.db import transaction
 from django.utils import timezone
 
+from core.auditing.models import AuditEvent
+from core.auditing.services import record_audit_event
 from core.interoperability.models import (
     FHIRExport,
     FHIRValidationIssue,
@@ -127,6 +129,30 @@ def process_fhir_export(export_id):
             export.error_message = ""
 
             export.save()
+
+            export = FHIRExport.objects.get(pk=export_id)
+
+            record_audit_event(
+                action=(
+                    "FHIR_EXPORT_SUCCEEDED"
+                    if export.status == FHIRExport.Status.SUCCEEDED
+                    else "FHIR_EXPORT_FAILED"
+                ),
+                outcome=(
+                    AuditEvent.Outcome.SUCCESS
+                    if export.status == FHIRExport.Status.SUCCEEDED
+                    else AuditEvent.Outcome.FAILURE
+                ),
+                actor=export.requested_by,
+                resource_type="FHIRExport",
+                resource_id=export.id,
+                correlation_id=export.id,
+                details={
+                    "releaseId": str(export.release_id),
+                    "resourceCount": export.resource_count,
+                    "finalStatus": export.status,
+                },
+            )
 
         logger.info(
             "FHIR export %s succeeded: %s resources",
@@ -291,6 +317,31 @@ def process_fhir_validation(validation_id):
             validation.error_message = report.get("validator_failure") or ""
 
             validation.save()
+
+            validation = FHIRValidationResult.objects.get(pk=validation_id)
+
+            record_audit_event(
+                action=(
+                    "FHIR_VALIDATION_COMPLETED"
+                    if validation.status == FHIRValidationResult.Status.COMPLETED
+                    else "FHIR_VALIDATION_FAILED"
+                ),
+                outcome=(
+                    AuditEvent.Outcome.SUCCESS
+                    if validation.status == FHIRValidationResult.Status.COMPLETED
+                    else AuditEvent.Outcome.FAILURE
+                ),
+                actor=validation.requested_by,
+                resource_type="FHIRValidationResult",
+                resource_id=validation.id,
+                correlation_id=validation.id,
+                details={
+                    "fhirExportId": str(validation.fhir_export_id),
+                    "classification": validation.classification,
+                    "errorCount": validation.error_count,
+                    "warningCount": validation.warning_count,
+                },
+            )
 
         logger.info(
             "FHIR validation %s: %s",

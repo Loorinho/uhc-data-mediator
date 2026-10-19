@@ -35,7 +35,7 @@ function FHIRExportsPage() {
 	const isLoading = useRouterState({ select: (state) => state.status === "pending" });
 	const update = (changes: Partial<typeof search>) => { void navigate({ search: (previous) => ({ ...previous, ...changes }), resetScroll: false }); };
 	return <div className="flex flex-col gap-6">
-		<FHIRHeading title="FHIR bundles" description="Explore generated bundles, validation history and conformity evidence. Only releases you are authorized to read are shown."><FHIRRefresh active={items.some((item) => ["PENDING", "RUNNING"].includes(item.status))} /></FHIRHeading>
+		<FHIRHeading title="FHIR bundles" description="Explore generated bundles, validation history and conformity evidence."><FHIRRefresh active={items.some((item) => ["PENDING", "RUNNING"].includes(item.status))} /></FHIRHeading>
 		<div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-card p-4">
 			<p className="text-sm text-muted-foreground">Analysts can read bundles for published, public releases. Administrators and owning providers can generate exports from release details.</p>
 			<Link className="text-sm font-medium text-primary underline" to="/dashboard/products/releases" search={{ page: 1, page_size: 20 }}>Browse releases</Link>
