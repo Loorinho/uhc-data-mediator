@@ -30,4 +30,8 @@ urlpatterns = [
         name="population-detail",
     ),
     path("", include("core.governance.urls")),
+    path(
+        "",
+        include("core.interoperability.fhir_urls"),
+    ),
 ]

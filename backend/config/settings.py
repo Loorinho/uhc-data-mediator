@@ -81,6 +81,26 @@ FHIR_CANONICAL_BASE_URL = os.getenv("FHIR_CANONICAL_BASE_URL")
 if not FHIR_CANONICAL_BASE_URL:
     raise ValueError("FHIR_CANONICAL_BASE_URL cannot be empty")
 
+FHIR_VALIDATOR_VERSION = os.getenv("FHIR_VALIDATOR_VERSION")
+FHIR_VALIDATOR_JAR = os.getenv("FHIR_VALIDATOR_JAR")
+FHIR_JAVA_COMMAND = os.getenv("FHIR_JAVA_COMMAND", "java")
+FHIR_VALIDATOR_TIMEOUT = int(os.getenv("FHIR_VALIDATOR_TIMEOUT", "300"))
+FHIR_WORKER_POLL_SECONDS = int(os.getenv("FHIR_WORKER_POLL_SECONDS", "3"))
+
+if not FHIR_VALIDATOR_VERSION:
+    raise ValueError("FHIR_VALIDATOR_VERSION cannot be empty")
+
+if not FHIR_VALIDATOR_JAR:
+    raise ValueError("FHIR_VALIDATOR_JAR cannot be empty")
+
+if not FHIR_JAVA_COMMAND:
+    raise ValueError("FHIR_JAVA_COMMAND cannot be empty")
+
+if not FHIR_VALIDATOR_TIMEOUT:
+    raise ValueError("FHIR_VALIDATOR_TIMEOUT cannot be empty")
+
+if not FHIR_WORKER_POLL_SECONDS:
+    raise ValueError("FHIR_WORKER_POLL_SECONDS cannot be empty")
 
 # Application definition
 
