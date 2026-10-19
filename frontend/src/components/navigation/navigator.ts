@@ -26,6 +26,7 @@ const navigationItems = {
 		url: "/dashboard/explorer/canonical/observations",
 	},
 	releases: { title: "Releases", url: "/dashboard/products/releases" },
+	fhir: { title: "FHIR bundles", url: "/dashboard/fhir" },
 } as const;
 
 export type NavigationKey = keyof typeof navigationItems;
@@ -54,6 +55,7 @@ function getNavigationKeys(user: NavigationUser): NavigationKey[] {
 	keys.add("canonicalObservations");
 	keys.add("products");
 	keys.add("releases");
+	keys.add("fhir");
 
 	return Array.from(keys);
 }

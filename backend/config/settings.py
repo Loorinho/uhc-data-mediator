@@ -86,6 +86,7 @@ FHIR_VALIDATOR_JAR = os.getenv("FHIR_VALIDATOR_JAR")
 FHIR_JAVA_COMMAND = os.getenv("FHIR_JAVA_COMMAND", "java")
 FHIR_VALIDATOR_TIMEOUT = int(os.getenv("FHIR_VALIDATOR_TIMEOUT", "300"))
 FHIR_WORKER_POLL_SECONDS = int(os.getenv("FHIR_WORKER_POLL_SECONDS", "3"))
+FHIR_EXPORT_ROOT = os.getenv("FHIR_EXPORT_ROOT")
 
 if not FHIR_VALIDATOR_VERSION:
     raise ValueError("FHIR_VALIDATOR_VERSION cannot be empty")
@@ -101,6 +102,9 @@ if not FHIR_VALIDATOR_TIMEOUT:
 
 if not FHIR_WORKER_POLL_SECONDS:
     raise ValueError("FHIR_WORKER_POLL_SECONDS cannot be empty")
+
+if not FHIR_EXPORT_ROOT:
+    raise ValueError("FHIR_EXPORT_ROOT cannot be empty")
 
 # Application definition
 

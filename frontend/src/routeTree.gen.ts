@@ -14,6 +14,7 @@ import { Route as AuthedRouteImport } from './routes/_authed'
 import { Route as AuthedDashboardIndexRouteImport } from './routes/_authed/dashboard/index'
 import { Route as AuthedDashboardAcquisitionsIndexRouteImport } from './routes/_authed/dashboard/acquisitions/index'
 import { Route as AuthedDashboardAcquisitionsAcquisitionIdRouteImport } from './routes/_authed/dashboard/acquisitions/$acquisitionId'
+import { Route as AuthedDashboardFhirIndexRouteImport } from './routes/_authed/dashboard/fhir/index'
 import { Route as AuthedDashboardProductsIndexRouteImport } from './routes/_authed/dashboard/products/index'
 import { Route as AuthedDashboardProductsCodeRouteImport } from './routes/_authed/dashboard/products/$code'
 import { Route as AuthedDashboardRolesIndexRouteImport } from './routes/_authed/dashboard/roles/index'
@@ -25,6 +26,10 @@ import { Route as AuthedDashboardExplorerDistrictsIndexRouteImport } from './rou
 import { Route as AuthedDashboardExplorerDistrictsDistrictIdRouteImport } from './routes/_authed/dashboard/explorer/districts/$districtId'
 import { Route as AuthedDashboardExplorerPopulationIndexRouteImport } from './routes/_authed/dashboard/explorer/population/index'
 import { Route as AuthedDashboardExplorerPopulationPopulationIdRouteImport } from './routes/_authed/dashboard/explorer/population/$populationId'
+import { Route as AuthedDashboardFhirBundlesExportIdRouteImport } from './routes/_authed/dashboard/fhir/bundles/$exportId'
+import { Route as AuthedDashboardFhirExportsExportIdRouteImport } from './routes/_authed/dashboard/fhir/exports/$exportId'
+import { Route as AuthedDashboardFhirReportsValidationIdRouteImport } from './routes/_authed/dashboard/fhir/reports/$validationId'
+import { Route as AuthedDashboardFhirValidationsValidationIdRouteImport } from './routes/_authed/dashboard/fhir/validations/$validationId'
 import { Route as AuthedDashboardProductsReleasesIndexRouteImport } from './routes/_authed/dashboard/products/releases/index'
 import { Route as AuthedDashboardProductsReleasesReleaseIdRouteImport } from './routes/_authed/dashboard/products/releases/$releaseId'
 import { Route as AuthedDashboardExplorerCanonicalObservationsIndexRouteImport } from './routes/_authed/dashboard/explorer/canonical/observations/index'
@@ -54,6 +59,12 @@ const AuthedDashboardAcquisitionsAcquisitionIdRoute =
   AuthedDashboardAcquisitionsAcquisitionIdRouteImport.update({
     id: '/dashboard/acquisitions/$acquisitionId',
     path: '/dashboard/acquisitions/$acquisitionId',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedDashboardFhirIndexRoute =
+  AuthedDashboardFhirIndexRouteImport.update({
+    id: '/dashboard/fhir/',
+    path: '/dashboard/fhir/',
     getParentRoute: () => AuthedRoute,
   } as any)
 const AuthedDashboardProductsIndexRoute =
@@ -122,6 +133,30 @@ const AuthedDashboardExplorerPopulationPopulationIdRoute =
     path: '/dashboard/explorer/population/$populationId',
     getParentRoute: () => AuthedRoute,
   } as any)
+const AuthedDashboardFhirBundlesExportIdRoute =
+  AuthedDashboardFhirBundlesExportIdRouteImport.update({
+    id: '/dashboard/fhir/bundles/$exportId',
+    path: '/dashboard/fhir/bundles/$exportId',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedDashboardFhirExportsExportIdRoute =
+  AuthedDashboardFhirExportsExportIdRouteImport.update({
+    id: '/dashboard/fhir/exports/$exportId',
+    path: '/dashboard/fhir/exports/$exportId',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedDashboardFhirReportsValidationIdRoute =
+  AuthedDashboardFhirReportsValidationIdRouteImport.update({
+    id: '/dashboard/fhir/reports/$validationId',
+    path: '/dashboard/fhir/reports/$validationId',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedDashboardFhirValidationsValidationIdRoute =
+  AuthedDashboardFhirValidationsValidationIdRouteImport.update({
+    id: '/dashboard/fhir/validations/$validationId',
+    path: '/dashboard/fhir/validations/$validationId',
+    getParentRoute: () => AuthedRoute,
+  } as any)
 const AuthedDashboardProductsReleasesIndexRoute =
   AuthedDashboardProductsReleasesIndexRouteImport.update({
     id: '/dashboard/products/releases/',
@@ -153,6 +188,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/acquisitions/$acquisitionId': typeof AuthedDashboardAcquisitionsAcquisitionIdRouteWithChildren
   '/dashboard/products/$code': typeof AuthedDashboardProductsCodeRoute
   '/dashboard/acquisitions/': typeof AuthedDashboardAcquisitionsIndexRoute
+  '/dashboard/fhir/': typeof AuthedDashboardFhirIndexRoute
   '/dashboard/products/': typeof AuthedDashboardProductsIndexRoute
   '/dashboard/roles/': typeof AuthedDashboardRolesIndexRoute
   '/dashboard/users/': typeof AuthedDashboardUsersIndexRoute
@@ -161,6 +197,10 @@ export interface FileRoutesByFullPath {
   '/dashboard/explorer/canonical/measures': typeof AuthedDashboardExplorerCanonicalMeasuresRoute
   '/dashboard/explorer/districts/$districtId': typeof AuthedDashboardExplorerDistrictsDistrictIdRoute
   '/dashboard/explorer/population/$populationId': typeof AuthedDashboardExplorerPopulationPopulationIdRoute
+  '/dashboard/fhir/bundles/$exportId': typeof AuthedDashboardFhirBundlesExportIdRoute
+  '/dashboard/fhir/exports/$exportId': typeof AuthedDashboardFhirExportsExportIdRoute
+  '/dashboard/fhir/reports/$validationId': typeof AuthedDashboardFhirReportsValidationIdRoute
+  '/dashboard/fhir/validations/$validationId': typeof AuthedDashboardFhirValidationsValidationIdRoute
   '/dashboard/products/releases/$releaseId': typeof AuthedDashboardProductsReleasesReleaseIdRoute
   '/dashboard/explorer/districts/': typeof AuthedDashboardExplorerDistrictsIndexRoute
   '/dashboard/explorer/population/': typeof AuthedDashboardExplorerPopulationIndexRoute
@@ -174,6 +214,7 @@ export interface FileRoutesByTo {
   '/dashboard/acquisitions/$acquisitionId': typeof AuthedDashboardAcquisitionsAcquisitionIdRouteWithChildren
   '/dashboard/products/$code': typeof AuthedDashboardProductsCodeRoute
   '/dashboard/acquisitions': typeof AuthedDashboardAcquisitionsIndexRoute
+  '/dashboard/fhir': typeof AuthedDashboardFhirIndexRoute
   '/dashboard/products': typeof AuthedDashboardProductsIndexRoute
   '/dashboard/roles': typeof AuthedDashboardRolesIndexRoute
   '/dashboard/users': typeof AuthedDashboardUsersIndexRoute
@@ -182,6 +223,10 @@ export interface FileRoutesByTo {
   '/dashboard/explorer/canonical/measures': typeof AuthedDashboardExplorerCanonicalMeasuresRoute
   '/dashboard/explorer/districts/$districtId': typeof AuthedDashboardExplorerDistrictsDistrictIdRoute
   '/dashboard/explorer/population/$populationId': typeof AuthedDashboardExplorerPopulationPopulationIdRoute
+  '/dashboard/fhir/bundles/$exportId': typeof AuthedDashboardFhirBundlesExportIdRoute
+  '/dashboard/fhir/exports/$exportId': typeof AuthedDashboardFhirExportsExportIdRoute
+  '/dashboard/fhir/reports/$validationId': typeof AuthedDashboardFhirReportsValidationIdRoute
+  '/dashboard/fhir/validations/$validationId': typeof AuthedDashboardFhirValidationsValidationIdRoute
   '/dashboard/products/releases/$releaseId': typeof AuthedDashboardProductsReleasesReleaseIdRoute
   '/dashboard/explorer/districts': typeof AuthedDashboardExplorerDistrictsIndexRoute
   '/dashboard/explorer/population': typeof AuthedDashboardExplorerPopulationIndexRoute
@@ -197,6 +242,7 @@ export interface FileRoutesById {
   '/_authed/dashboard/acquisitions/$acquisitionId': typeof AuthedDashboardAcquisitionsAcquisitionIdRouteWithChildren
   '/_authed/dashboard/products/$code': typeof AuthedDashboardProductsCodeRoute
   '/_authed/dashboard/acquisitions/': typeof AuthedDashboardAcquisitionsIndexRoute
+  '/_authed/dashboard/fhir/': typeof AuthedDashboardFhirIndexRoute
   '/_authed/dashboard/products/': typeof AuthedDashboardProductsIndexRoute
   '/_authed/dashboard/roles/': typeof AuthedDashboardRolesIndexRoute
   '/_authed/dashboard/users/': typeof AuthedDashboardUsersIndexRoute
@@ -205,6 +251,10 @@ export interface FileRoutesById {
   '/_authed/dashboard/explorer/canonical/measures': typeof AuthedDashboardExplorerCanonicalMeasuresRoute
   '/_authed/dashboard/explorer/districts/$districtId': typeof AuthedDashboardExplorerDistrictsDistrictIdRoute
   '/_authed/dashboard/explorer/population/$populationId': typeof AuthedDashboardExplorerPopulationPopulationIdRoute
+  '/_authed/dashboard/fhir/bundles/$exportId': typeof AuthedDashboardFhirBundlesExportIdRoute
+  '/_authed/dashboard/fhir/exports/$exportId': typeof AuthedDashboardFhirExportsExportIdRoute
+  '/_authed/dashboard/fhir/reports/$validationId': typeof AuthedDashboardFhirReportsValidationIdRoute
+  '/_authed/dashboard/fhir/validations/$validationId': typeof AuthedDashboardFhirValidationsValidationIdRoute
   '/_authed/dashboard/products/releases/$releaseId': typeof AuthedDashboardProductsReleasesReleaseIdRoute
   '/_authed/dashboard/explorer/districts/': typeof AuthedDashboardExplorerDistrictsIndexRoute
   '/_authed/dashboard/explorer/population/': typeof AuthedDashboardExplorerPopulationIndexRoute
@@ -220,6 +270,7 @@ export interface FileRouteTypes {
     | '/dashboard/acquisitions/$acquisitionId'
     | '/dashboard/products/$code'
     | '/dashboard/acquisitions/'
+    | '/dashboard/fhir/'
     | '/dashboard/products/'
     | '/dashboard/roles/'
     | '/dashboard/users/'
@@ -228,6 +279,10 @@ export interface FileRouteTypes {
     | '/dashboard/explorer/canonical/measures'
     | '/dashboard/explorer/districts/$districtId'
     | '/dashboard/explorer/population/$populationId'
+    | '/dashboard/fhir/bundles/$exportId'
+    | '/dashboard/fhir/exports/$exportId'
+    | '/dashboard/fhir/reports/$validationId'
+    | '/dashboard/fhir/validations/$validationId'
     | '/dashboard/products/releases/$releaseId'
     | '/dashboard/explorer/districts/'
     | '/dashboard/explorer/population/'
@@ -241,6 +296,7 @@ export interface FileRouteTypes {
     | '/dashboard/acquisitions/$acquisitionId'
     | '/dashboard/products/$code'
     | '/dashboard/acquisitions'
+    | '/dashboard/fhir'
     | '/dashboard/products'
     | '/dashboard/roles'
     | '/dashboard/users'
@@ -249,6 +305,10 @@ export interface FileRouteTypes {
     | '/dashboard/explorer/canonical/measures'
     | '/dashboard/explorer/districts/$districtId'
     | '/dashboard/explorer/population/$populationId'
+    | '/dashboard/fhir/bundles/$exportId'
+    | '/dashboard/fhir/exports/$exportId'
+    | '/dashboard/fhir/reports/$validationId'
+    | '/dashboard/fhir/validations/$validationId'
     | '/dashboard/products/releases/$releaseId'
     | '/dashboard/explorer/districts'
     | '/dashboard/explorer/population'
@@ -263,6 +323,7 @@ export interface FileRouteTypes {
     | '/_authed/dashboard/acquisitions/$acquisitionId'
     | '/_authed/dashboard/products/$code'
     | '/_authed/dashboard/acquisitions/'
+    | '/_authed/dashboard/fhir/'
     | '/_authed/dashboard/products/'
     | '/_authed/dashboard/roles/'
     | '/_authed/dashboard/users/'
@@ -271,6 +332,10 @@ export interface FileRouteTypes {
     | '/_authed/dashboard/explorer/canonical/measures'
     | '/_authed/dashboard/explorer/districts/$districtId'
     | '/_authed/dashboard/explorer/population/$populationId'
+    | '/_authed/dashboard/fhir/bundles/$exportId'
+    | '/_authed/dashboard/fhir/exports/$exportId'
+    | '/_authed/dashboard/fhir/reports/$validationId'
+    | '/_authed/dashboard/fhir/validations/$validationId'
     | '/_authed/dashboard/products/releases/$releaseId'
     | '/_authed/dashboard/explorer/districts/'
     | '/_authed/dashboard/explorer/population/'
@@ -319,6 +384,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard/acquisitions/$acquisitionId'
       fullPath: '/dashboard/acquisitions/$acquisitionId'
       preLoaderRoute: typeof AuthedDashboardAcquisitionsAcquisitionIdRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/dashboard/fhir/': {
+      id: '/_authed/dashboard/fhir/'
+      path: '/dashboard/fhir'
+      fullPath: '/dashboard/fhir/'
+      preLoaderRoute: typeof AuthedDashboardFhirIndexRouteImport
       parentRoute: typeof AuthedRoute
     }
     '/_authed/dashboard/products/': {
@@ -398,6 +470,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedDashboardExplorerPopulationPopulationIdRouteImport
       parentRoute: typeof AuthedRoute
     }
+    '/_authed/dashboard/fhir/bundles/$exportId': {
+      id: '/_authed/dashboard/fhir/bundles/$exportId'
+      path: '/dashboard/fhir/bundles/$exportId'
+      fullPath: '/dashboard/fhir/bundles/$exportId'
+      preLoaderRoute: typeof AuthedDashboardFhirBundlesExportIdRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/dashboard/fhir/exports/$exportId': {
+      id: '/_authed/dashboard/fhir/exports/$exportId'
+      path: '/dashboard/fhir/exports/$exportId'
+      fullPath: '/dashboard/fhir/exports/$exportId'
+      preLoaderRoute: typeof AuthedDashboardFhirExportsExportIdRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/dashboard/fhir/reports/$validationId': {
+      id: '/_authed/dashboard/fhir/reports/$validationId'
+      path: '/dashboard/fhir/reports/$validationId'
+      fullPath: '/dashboard/fhir/reports/$validationId'
+      preLoaderRoute: typeof AuthedDashboardFhirReportsValidationIdRouteImport
+      parentRoute: typeof AuthedRoute
+    }
+    '/_authed/dashboard/fhir/validations/$validationId': {
+      id: '/_authed/dashboard/fhir/validations/$validationId'
+      path: '/dashboard/fhir/validations/$validationId'
+      fullPath: '/dashboard/fhir/validations/$validationId'
+      preLoaderRoute: typeof AuthedDashboardFhirValidationsValidationIdRouteImport
+      parentRoute: typeof AuthedRoute
+    }
     '/_authed/dashboard/products/releases/': {
       id: '/_authed/dashboard/products/releases/'
       path: '/dashboard/products/releases'
@@ -449,6 +549,7 @@ interface AuthedRouteChildren {
   AuthedDashboardAcquisitionsAcquisitionIdRoute: typeof AuthedDashboardAcquisitionsAcquisitionIdRouteWithChildren
   AuthedDashboardProductsCodeRoute: typeof AuthedDashboardProductsCodeRoute
   AuthedDashboardAcquisitionsIndexRoute: typeof AuthedDashboardAcquisitionsIndexRoute
+  AuthedDashboardFhirIndexRoute: typeof AuthedDashboardFhirIndexRoute
   AuthedDashboardProductsIndexRoute: typeof AuthedDashboardProductsIndexRoute
   AuthedDashboardRolesIndexRoute: typeof AuthedDashboardRolesIndexRoute
   AuthedDashboardUsersIndexRoute: typeof AuthedDashboardUsersIndexRoute
@@ -456,6 +557,10 @@ interface AuthedRouteChildren {
   AuthedDashboardExplorerCanonicalMeasuresRoute: typeof AuthedDashboardExplorerCanonicalMeasuresRoute
   AuthedDashboardExplorerDistrictsDistrictIdRoute: typeof AuthedDashboardExplorerDistrictsDistrictIdRoute
   AuthedDashboardExplorerPopulationPopulationIdRoute: typeof AuthedDashboardExplorerPopulationPopulationIdRoute
+  AuthedDashboardFhirBundlesExportIdRoute: typeof AuthedDashboardFhirBundlesExportIdRoute
+  AuthedDashboardFhirExportsExportIdRoute: typeof AuthedDashboardFhirExportsExportIdRoute
+  AuthedDashboardFhirReportsValidationIdRoute: typeof AuthedDashboardFhirReportsValidationIdRoute
+  AuthedDashboardFhirValidationsValidationIdRoute: typeof AuthedDashboardFhirValidationsValidationIdRoute
   AuthedDashboardProductsReleasesReleaseIdRoute: typeof AuthedDashboardProductsReleasesReleaseIdRoute
   AuthedDashboardExplorerDistrictsIndexRoute: typeof AuthedDashboardExplorerDistrictsIndexRoute
   AuthedDashboardExplorerPopulationIndexRoute: typeof AuthedDashboardExplorerPopulationIndexRoute
@@ -470,6 +575,7 @@ const AuthedRouteChildren: AuthedRouteChildren = {
     AuthedDashboardAcquisitionsAcquisitionIdRouteWithChildren,
   AuthedDashboardProductsCodeRoute: AuthedDashboardProductsCodeRoute,
   AuthedDashboardAcquisitionsIndexRoute: AuthedDashboardAcquisitionsIndexRoute,
+  AuthedDashboardFhirIndexRoute: AuthedDashboardFhirIndexRoute,
   AuthedDashboardProductsIndexRoute: AuthedDashboardProductsIndexRoute,
   AuthedDashboardRolesIndexRoute: AuthedDashboardRolesIndexRoute,
   AuthedDashboardUsersIndexRoute: AuthedDashboardUsersIndexRoute,
@@ -481,6 +587,14 @@ const AuthedRouteChildren: AuthedRouteChildren = {
     AuthedDashboardExplorerDistrictsDistrictIdRoute,
   AuthedDashboardExplorerPopulationPopulationIdRoute:
     AuthedDashboardExplorerPopulationPopulationIdRoute,
+  AuthedDashboardFhirBundlesExportIdRoute:
+    AuthedDashboardFhirBundlesExportIdRoute,
+  AuthedDashboardFhirExportsExportIdRoute:
+    AuthedDashboardFhirExportsExportIdRoute,
+  AuthedDashboardFhirReportsValidationIdRoute:
+    AuthedDashboardFhirReportsValidationIdRoute,
+  AuthedDashboardFhirValidationsValidationIdRoute:
+    AuthedDashboardFhirValidationsValidationIdRoute,
   AuthedDashboardProductsReleasesReleaseIdRoute:
     AuthedDashboardProductsReleasesReleaseIdRoute,
   AuthedDashboardExplorerDistrictsIndexRoute:

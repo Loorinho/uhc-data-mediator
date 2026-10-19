@@ -3,6 +3,8 @@ import { z } from "zod";
 
 import { DataTable } from "@/components/data-table";
 import { Detail, JsonDetails } from "@/components/detail";
+import { FHIRAction } from "@/components/fhir/shared";
+import { toast } from "@/components/ui/toast";
 import { PageError } from "@/components/page-error";
 import {
 	QualityStatusBadge,
@@ -13,6 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toDataTablePagination } from "@/lib/pagination";
 import { formatDateTime } from "@/lib/utils";
 import { canonicalObservationColumns } from "@/routes/_authed/dashboard/explorer/canonical/observations";
+import { createFHIRExportFn, getFHIRManagementAccessFn } from "@/server-functions/fhir.api";
 import {
 	getReleaseDetailFn,
 	getReleaseLineageFn,
@@ -30,12 +33,13 @@ export const Route = createFileRoute(
 	validateSearch: (search) => releaseDetailSearchSchema.parse(search),
 	loaderDeps: ({ search }) => search,
 	loader: async ({ params, deps }) => {
-		const [release, observations, lineage] = await Promise.all([
+		const [release, observations, lineage, canManageFHIR] = await Promise.all([
 			getReleaseDetailFn({ data: { releaseId: params.releaseId } }),
 			getReleaseObservationsFn({ data: { releaseId: params.releaseId, ...deps } }),
 			getReleaseLineageFn({ data: { releaseId: params.releaseId } }),
+			getFHIRManagementAccessFn({ data: { releaseId: params.releaseId } }),
 		]);
-		return { release, observations, lineage };
+		return { release, observations, lineage, canManageFHIR };
 	},
 	errorComponent: PageError,
 	component: RouteComponent,
@@ -45,7 +49,7 @@ export const Route = createFileRoute(
 });
 
 function RouteComponent() {
-	const { release, observations, lineage } = Route.useLoaderData();
+	const { release, observations, lineage, canManageFHIR } = Route.useLoaderData();
 	const releaseData = release.data;
 	const lineageData = lineage.data;
 	const { items, pagination } = observations.data;
@@ -61,6 +65,13 @@ function RouteComponent() {
 			resetScroll: false,
 		});
 	};
+	const exportUnavailable = releaseData.product_code !== "sl-district-anc-activity"
+		? "FHIR export currently supports only the ANC activity product."
+		: releaseData.transformation_status !== "SUCCEEDED"
+			? "Transformation must succeed before exporting."
+			: releaseData.status === "REJECTED" || releaseData.quality_status === "FAILED"
+				? "Rejected or quality-failed releases cannot be exported."
+				: null;
 
 	return (
 		<div className="flex flex-col gap-6">
@@ -128,6 +139,18 @@ function RouteComponent() {
 						)}
 					</Detail>
 				</dl>
+			</section>
+
+			<section className="flex flex-wrap items-center justify-between gap-4 rounded-xl border bg-card p-5">
+				<div className="space-y-1"><h2 className="font-semibold">FHIR interoperability</h2><p className="text-sm text-muted-foreground">Generate FHIR R4 bundles and inspect validation and conformity evidence.</p>{canManageFHIR && exportUnavailable && <p className="text-sm text-muted-foreground">{exportUnavailable}</p>}</div>
+				<div className="flex flex-wrap items-center gap-3">
+					<Link className="rounded-md border px-4 py-2 text-sm font-medium hover:bg-muted" to="/dashboard/fhir" search={{ page: 1, page_size: 20, release_id: releaseData.id }}>View FHIR exports</Link>
+					{canManageFHIR && <FHIRAction label="Export FHIR bundle" disabled={exportUnavailable !== null} action={async () => {
+						const response = await createFHIRExportFn({ data: { releaseId: releaseData.id } });
+						toast.add({ title: "FHIR generation queued", description: response.message });
+						await router.navigate({ to: "/dashboard/fhir/exports/$exportId", params: { exportId: response.data.id }, search: { page: 1, page_size: 20 } });
+					}} />}
+				</div>
 			</section>
 
 			<Tabs defaultValue="observations">
