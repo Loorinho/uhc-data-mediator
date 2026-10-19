@@ -1,6 +1,5 @@
 import { getRequest } from "@tanstack/react-start/server";
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from "axios";
-import { getCurrentUser } from "./auth.api";
 import { getAppSession } from "./session.server";
 
 const rawUrl = process.env.API_BASE_URL;
@@ -24,7 +23,6 @@ const api = axios.create({
 
 const publicRoutes = [
 	"auth/login",
-	"auth/register",
 	"auth/refresh",
 ];
 
@@ -46,7 +44,7 @@ async function refreshAccessToken(): Promise<string> {
 	}
 
 	refreshPromise = (async () => {
-		const { user } = await getCurrentUser();
+		const { user } = await getAppSession();
 
 		if (!user?.token || !user?.refreshToken) {
 			throw new Error("No refresh token available.");
@@ -55,8 +53,7 @@ async function refreshAccessToken(): Promise<string> {
 		const refreshResponse = await axios.post(
 			`${url}auth/refresh/`,
 			{
-				accessToken: user.token,
-				refreshToken: user.refreshToken,
+				refresh: user.refreshToken,
 			},
 			{
 				headers: {
@@ -80,8 +77,7 @@ async function refreshAccessToken(): Promise<string> {
 		const userSession = await getAppSession();
 
 		userSession.user = {
-			username: user.username,
-			roles: user.roles,
+			...user,
 			token: response.data.tokens.access,
 			refreshToken: response.data.tokens.refresh,
 		};

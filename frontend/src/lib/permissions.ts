@@ -2,14 +2,14 @@ import type { AuthUser } from "@/server-functions/session.server";
 
 export type Role = "admin" | "data_provider" | "analyst";
 
-type RoleUser = Pick<AuthUser, "roles"> | null | undefined;
+type RoleUser = Pick<AuthUser, "roles" | "is_superuser"> | null | undefined;
 
 export function hasRole(user: RoleUser, role: Role) {
-	return (user?.roles ?? []).includes(role);
+	return (user?.roles ?? []).some((name) => name.toLowerCase() === role);
 }
 
 export function isAdmin(user: RoleUser) {
-	return hasRole(user, "admin");
+	return user?.is_superuser === true || hasRole(user, "admin");
 }
 
 export function isDataProvider(user: RoleUser) {

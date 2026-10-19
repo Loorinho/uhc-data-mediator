@@ -1,18 +1,9 @@
 import type { AuthUser } from "@/server-functions/session.server";
+import { isAdmin, isDataProvider } from "@/lib/permissions";
 
-type NavigationUser = Pick<AuthUser, "roles">;
+export { isAdmin, isDataProvider };
 
-export function isAdmin(user: Pick<AuthUser, "roles"> | null | undefined) {
-	const roles = user?.roles || [];
-	return roles.includes("admin");
-}
-
-export function isDataProvider(
-	user: Pick<AuthUser, "roles"> | null | undefined,
-) {
-	const roles = user?.roles || [];
-	return roles.includes("data_provider");
-}
+type NavigationUser = Pick<AuthUser, "roles" | "is_superuser">;
 
 const navigationItems = {
 	dashboard: { title: "Dashboard", url: "/dashboard" },
