@@ -1,6 +1,6 @@
 import type { AuthUser } from "@/server-functions/session.server";
 
-export type Role = "admin" | "data_provider" | "analyst";
+export type Role = "admin" | "data_provider" | "analyst" | "auditor";
 
 type RoleUser = Pick<AuthUser, "roles" | "is_superuser"> | null | undefined;
 
@@ -18,6 +18,24 @@ export function isDataProvider(user: RoleUser) {
 
 export function isAnalyst(user: RoleUser) {
 	return hasRole(user, "analyst");
+}
+
+export function isAuditor(user: RoleUser) {
+	return hasRole(user, "auditor");
+}
+
+/** Security audit records are reserved for auditors, not administrators. */
+export function canViewAuditEvents(user: RoleUser) {
+	return isAuditor(user);
+}
+
+/** Auditors may inspect FHIR evidence without acquiring generation rights. */
+export function canViewFHIR(user: RoleUser) {
+	return isAuditor(user) || isAdmin(user) || isDataProvider(user) || isAnalyst(user);
+}
+
+export function canTriggerFHIRValidation(user: RoleUser) {
+	return isAuditor(user);
 }
 
 /**

@@ -70,7 +70,7 @@ function Home() {
 		await router.invalidate();
 
         // Redirect to authenticated route
-        await navigate({ to: response.data.roles.includes("admin") ? "/dashboard/users" : "/dashboard" });
+        await navigate({ to: response.data.roles.includes("admin") ? "/dashboard/users" :response.data.roles.includes("auditor") ? "/dashboard/audit" :"/dashboard" });
 
       }catch(error){
         toast.add({

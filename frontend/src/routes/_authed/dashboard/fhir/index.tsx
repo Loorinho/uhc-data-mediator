@@ -4,6 +4,7 @@ import { DataTable } from "@/components/data-table";
 import { FHIRHeading, FHIRRefresh, FHIRStatus } from "@/components/fhir/shared";
 import { PageError } from "@/components/page-error";
 import { Button } from "@/components/ui/button";
+import { canViewDataProducts } from "@/lib/permissions";
 import { formatDateTime } from "@/lib/utils";
 import { fhirExportSearchSchema, getFHIRExportsFn } from "@/server-functions/fhir.api";
 import type { FHIRExport } from "@/types/fhir";
@@ -29,6 +30,7 @@ const columns: ColumnDef<typeof features, FHIRExport>[] = [
 ];
 
 function FHIRExportsPage() {
+	const { user } = Route.useRouteContext();
 	const { items, pagination } = Route.useLoaderData().data;
 	const search = Route.useSearch();
 	const navigate = Route.useNavigate();
@@ -37,8 +39,8 @@ function FHIRExportsPage() {
 	return <div className="flex flex-col gap-6">
 		<FHIRHeading title="FHIR bundles" description="Explore generated bundles, validation history and conformity evidence."><FHIRRefresh active={items.some((item) => ["PENDING", "RUNNING"].includes(item.status))} /></FHIRHeading>
 		<div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-card p-4">
-			<p className="text-sm text-muted-foreground">Analysts can read bundles for published, public releases. Administrators and owning providers can generate exports from release details.</p>
-			<Link className="text-sm font-medium text-primary underline" to="/dashboard/products/releases" search={{ page: 1, page_size: 20 }}>Browse releases</Link>
+			<p className="text-sm text-muted-foreground">Auditors can inspect bundles and request validation. Administrators and owning providers can generate exports from release details.</p>
+			{canViewDataProducts(user.user) && <Link className="text-sm font-medium text-primary underline" to="/dashboard/products/releases" search={{ page: 1, page_size: 20 }}>Browse releases</Link>}
 			{search.release_id && <div className="flex w-full items-center gap-3"><p className="break-all text-sm">Release: {search.release_id}</p><Button variant="outline" size="sm" onClick={() => update({ release_id: undefined, page: 1 })}>Clear filter</Button></div>}
 		</div>
 		<DataTable columns={columns} data={items} getRowId={(item) => item.id} pagination={pagination} isLoading={isLoading} emptyMessage="No FHIR exports are available in your access scope." onPageChange={(page) => update({ page })} onPageSizeChange={(page_size) => update({ page: 1, page_size })} />

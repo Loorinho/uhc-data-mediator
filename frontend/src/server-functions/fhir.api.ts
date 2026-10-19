@@ -82,7 +82,12 @@ export const getFHIRValidationsFn = createServerFn({ method: "GET" })
 
 export const createFHIRValidationFn = createServerFn({ method: "POST" })
 	.validator(exportIdSchema)
-	.handler(({ data }) => queueJob<FHIRValidation>(`fhir-exports/${data.exportId}/validations/`));
+	.handler(({ data }) => queueJob<{
+		validationId: string;
+		fhirExportId: string;
+		status: FHIRValidation["status"];
+		classification: null;
+	}>(`fhir-exports/${data.exportId}/validations/`));
 
 export const getFHIRValidationFn = createServerFn({ method: "GET" })
 	.validator(validationIdSchema)

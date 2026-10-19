@@ -20,6 +20,7 @@ from core.interoperability.fhir_permissions import (
     can_view_release,
     require_manage_release,
     require_view_release,
+    user_roles,
 )
 from core.interoperability.models import (
     FHIRExport,
@@ -192,6 +193,91 @@ def authorized_exports(user):
     return queryset.filter(release_id__in=allowed_release_ids)
 
 
+class TriggerFHIRValidationAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, export_id):
+        # 1. Only the auditor can initiate validation.
+        if "auditor" not in user_roles(request.user):
+            return api_response(
+                message="Only auditors can trigger FHIR validation.",
+                status_code=status.HTTP_403_FORBIDDEN,
+            )
+
+        # 2. Find the generated FHIR export.
+        export = get_object_or_404(
+            FHIRExport.objects.select_related("release"),
+            pk=export_id,
+        )
+
+        # TODO: enforce auditor organisation/review scope
+        # when organisation-specific assignments are available.
+
+        # 3. Only successful exports can be validated.
+        if export.status != FHIRExport.Status.SUCCEEDED:
+            return api_response(
+                message="The FHIR Bundle must be generated successfully before validation.",
+                status_code=status.HTTP_409_CONFLICT,
+            )
+
+        # 4. Create a pending validation job.
+        with transaction.atomic():
+            export = FHIRExport.objects.select_for_update().get(pk=export_id)
+
+            # Prevent duplicate active validation jobs.
+            existing = FHIRValidationResult.objects.filter(
+                fhir_export=export,
+                status__in=[
+                    FHIRValidationResult.Status.PENDING,
+                    FHIRValidationResult.Status.RUNNING,
+                ],
+            ).first()
+
+            if existing:
+                return api_response(
+                    message="Validation is already in progress.",
+                    data={
+                        "validationId": str(existing.id),
+                        "status": existing.status,
+                    },
+                    status_code=status.HTTP_409_CONFLICT,
+                )
+
+            validation = FHIRValidationResult.objects.create(
+                fhir_export=export,
+                requested_by=request.user,
+                status=FHIRValidationResult.Status.PENDING,
+                fhir_version=export.fhir_version,
+                bundle_sha256=export.bundle_sha256,
+            )
+
+            # 5. Audit the validation request.
+            record_after_commit(
+                action="FHIR_VALIDATION_REQUESTED",
+                outcome=AuditEvent.Outcome.SUCCESS,
+                actor=request.user,
+                resource_type="FHIRValidationResult",
+                resource_id=validation.id,
+                correlation_id=validation.id,
+                details={
+                    "fhirExportId": str(export.id),
+                    "releaseId": str(export.release_id),
+                    "validatorVersion": "7.0.2",
+                },
+            )
+
+        return api_response(
+            message="FHIR validation queued successfully.",
+            data={
+                "validationId": str(validation.id),
+                "fhirExportId": str(export.id),
+                "status": validation.status,
+                "classification": None,
+            },
+            status_code=status.HTTP_200_OK,
+        )
+
+
 class ReleaseFHIRExportAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
@@ -346,7 +432,9 @@ class FHIRBundleDownloadAPIView(APIView):
         )
 
 
-class FHIRExportValidationsAPIView(APIView):
+class FHIRExportValidationsAPIView(TriggerFHIRValidationAPIView):
+    """List evidence for viewers; inherit auditor-only validation requests."""
+
     permission_classes = [IsAuthenticated]
 
     def get(self, request, export_id):
@@ -363,61 +451,6 @@ class FHIRExportValidationsAPIView(APIView):
             queryset,
             request,
             validation_data,
-        )
-
-    def post(self, request, export_id):
-        export = get_export_or_404(export_id)
-
-        require_manage_release(
-            request.user,
-            export.release,
-        )
-
-        if export.status != FHIRExport.Status.SUCCEEDED:
-            return api_response(
-                message=("FHIR generation must succeed before validation."),
-                status_code=status.HTTP_409_CONFLICT,
-            )
-
-        with transaction.atomic():
-            export = FHIRExport.objects.select_for_update().get(pk=export_id)
-
-            existing = FHIRValidationResult.objects.filter(
-                fhir_export=export,
-                status__in=["PENDING", "RUNNING"],
-            ).first()
-
-            if existing:
-                return api_response(
-                    message="Validation is already in progress.",
-                    data=validation_data(existing),
-                    status_code=status.HTTP_409_CONFLICT,
-                )
-
-            validation = FHIRValidationResult.objects.create(
-                fhir_export=export,
-                requested_by=request.user,
-                status=FHIRValidationResult.Status.PENDING,
-                fhir_version=export.fhir_version,
-                bundle_sha256=export.bundle_sha256,
-            )
-
-            record_after_commit(
-                action="FHIR_VALIDATION_REQUESTED",
-                outcome=AuditEvent.Outcome.SUCCESS,
-                actor=request.user,
-                resource_type="FHIRValidationResult",
-                resource_id=validation.id,
-                correlation_id=validation.id,
-                details={
-                    "fhirExportId": str(validation.fhir_export_id),
-                },
-            )
-
-        return api_response(
-            message="FHIR validation has been queued.",
-            data=validation_data(validation),
-            status_code=status.HTTP_200_OK,
         )
 
 

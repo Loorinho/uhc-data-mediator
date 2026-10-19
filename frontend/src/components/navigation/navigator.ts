@@ -1,5 +1,5 @@
 import type { AuthUser } from "@/server-functions/session.server";
-import { isAdmin, isAnalyst, isDataProvider } from "@/lib/permissions";
+import { isAdmin, isAnalyst, isAuditor, isDataProvider } from "@/lib/permissions";
 
 export { isAdmin, isDataProvider };
 
@@ -27,12 +27,18 @@ const navigationItems = {
 	},
 	releases: { title: "Releases", url: "/dashboard/products/releases" },
 	fhir: { title: "FHIR Exports", url: "/dashboard/fhir" },
+	audit: { title: "Audit Events", url: "/dashboard/audit" },
 } as const;
 
 export type NavigationKey = keyof typeof navigationItems;
 
 function getNavigationKeys(user: NavigationUser): NavigationKey[] {
 	const keys = new Set<NavigationKey>();
+
+	if (isAuditor(user)) {
+		keys.add("audit");
+		keys.add("fhir");
+	}
 
 
 	if (isAdmin(user)) {
@@ -81,7 +87,7 @@ export function getNavigationItems(user: NavigationUser) {
 }
 
 export function getDefaultRoute(user: NavigationUser) {
-	return navigationItems[getNavigationKeys(user)[0]].url;
+	return navigationItems[getNavigationKeys(user)[0]]?.url ?? "/dashboard";
 }
 
 /** Prefer the deepest section, ignoring query parameters and trailing slashes. */

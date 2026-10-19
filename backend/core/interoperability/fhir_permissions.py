@@ -33,7 +33,9 @@ def can_view_release(user, release):
     if not user.is_authenticated:
         return False
 
-    if is_admin(user):
+    # Auditors review generated evidence, including unpublished releases.
+    # This does not grant export-generation or release-management rights.
+    if is_admin(user) or "auditor" in user_roles(user):
         return True
 
     roles = user_roles(user)

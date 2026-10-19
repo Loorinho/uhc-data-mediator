@@ -66,7 +66,10 @@ class AuditEventListAPIView(APIView):
 
         try:
             if actor_id:
-                queryset = queryset.filter(actor_id=uuid.UUID(actor_id))
+                actor_id = int(actor_id)
+                if actor_id < 1:
+                    raise ValueError("Invalid actor ID")
+                queryset = queryset.filter(actor_id=actor_id)
 
             if correlation_id:
                 queryset = queryset.filter(correlation_id=uuid.UUID(correlation_id))

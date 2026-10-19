@@ -45,6 +45,7 @@ const navigationIcons: Record<NavigationKey, React.ReactNode> = {
 	canonicalObservations: <BellIcon />,
 	releases: <Badge />,
 	fhir: <FileJson />,
+	audit: <ShieldCogCorner />,
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {

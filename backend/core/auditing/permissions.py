@@ -11,4 +11,7 @@ class IsAuditor(BasePermission):
         if not user or not user.is_authenticated:
             return False
 
-        return get_role(user).lower() == "auditor"
+        return (
+            get_role(user).lower() == "auditor"
+            or user.groups.filter(name__iexact="auditor").exists()
+        )

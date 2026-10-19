@@ -5,20 +5,20 @@ import { Detail, JsonDetails } from "@/components/detail";
 import { FHIRAction, FHIRHeading, FHIRJobError, FHIRRefresh, FHIRStatus } from "@/components/fhir/shared";
 import { PageError } from "@/components/page-error";
 import { toast } from "@/components/ui/toast";
+import { canTriggerFHIRValidation } from "@/lib/permissions";
 import { formatDateTime } from "@/lib/utils";
-import { createFHIRValidationFn, fhirPageSchema, getFHIRExportFn, getFHIRManagementAccessFn, getFHIRValidationsFn } from "@/server-functions/fhir.api";
+import { createFHIRValidationFn, fhirPageSchema, getFHIRExportFn, getFHIRValidationsFn } from "@/server-functions/fhir.api";
 import type { FHIRValidation } from "@/types/fhir";
 
 export const Route = createFileRoute("/_authed/dashboard/fhir/exports/$exportId")({
 	validateSearch: (search) => fhirPageSchema.parse(search),
 	loaderDeps: ({ search }) => search,
-	loader: async ({ params, deps }) => {
+	loader: async ({ params, deps, context }) => {
 		const [exportResponse, validations] = await Promise.all([
 			getFHIRExportFn({ data: params }),
 			getFHIRValidationsFn({ data: { ...params, ...deps } }),
 		]);
-		const canManage = await getFHIRManagementAccessFn({ data: { releaseId: exportResponse.data.releaseId } });
-		return { exported: exportResponse.data, validations: validations.data, canManage };
+		return { exported: exportResponse.data, validations: validations.data, canValidate: canTriggerFHIRValidation(context.user.user) };
 	},
 	errorComponent: PageError,
 	head: () => ({ meta: [{ title: "FHIR export · UHC Data Mediator" }] }),
@@ -36,7 +36,7 @@ const columns: ColumnDef<typeof features, FHIRValidation>[] = [
 ];
 
 function ExportPage() {
-	const { exported, validations, canManage } = Route.useLoaderData();
+	const { exported, validations, canValidate } = Route.useLoaderData();
 	const navigate = Route.useNavigate();
 	const search = Route.useSearch();
 	const router = useRouter();
@@ -48,10 +48,10 @@ function ExportPage() {
 		<FHIRHeading title="FHIR export" description={exported.id}>
 			<FHIRRefresh active={busy} />
 			{exported.status === "SUCCEEDED" && <Link className="rounded-md border bg-background px-4 py-2 text-sm font-medium hover:bg-muted" to="/dashboard/fhir/bundles/$exportId" params={{ exportId: exported.id }}>View / download bundle</Link>}
-			{canManage && <FHIRAction label="Run validation" disabled={exported.status !== "SUCCEEDED" || validations.items.some((validation) => ["PENDING", "RUNNING"].includes(validation.status))} action={async () => {
+			{canValidate && <FHIRAction label="Run validation" disabled={exported.status !== "SUCCEEDED" || validations.items.some((validation) => ["PENDING", "RUNNING"].includes(validation.status))} action={async () => {
 				const response = await createFHIRValidationFn({ data: { exportId: exported.id } });
 				toast.add({ title: "Validation queued", description: response.message });
-				await router.navigate({ to: "/dashboard/fhir/validations/$validationId", params: { validationId: response.data.id }, search: { page: 1, page_size: 20 } });
+				await router.navigate({ to: "/dashboard/fhir/validations/$validationId", params: { validationId: response.data.validationId }, search: { page: 1, page_size: 20 } });
 			}} />}
 		</FHIRHeading>
 		<FHIRJobError message={exported.errorMessage} />
