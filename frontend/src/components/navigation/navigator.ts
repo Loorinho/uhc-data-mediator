@@ -34,7 +34,6 @@ export type NavigationKey = keyof typeof navigationItems;
 function getNavigationKeys(user: NavigationUser): NavigationKey[] {
 	const keys = new Set<NavigationKey>();
 
-	keys.add("dashboard");
 
 	if (isAdmin(user)) {
 		for (const key of ["users", "roles"] as const) {
@@ -44,18 +43,20 @@ function getNavigationKeys(user: NavigationUser): NavigationKey[] {
 
 	if (isDataProvider(user)) {
 		keys.add("acquisitions");
-	}
+	keys.add("dashboard");
 
-	// Data exploration & products are visible to all authenticated roles;
-	// the backend enforces the actual authorization scope.
+
 	keys.add("districts");
 	keys.add("population");
+
 	keys.add("canonicalMeasures");
 	keys.add("measureMappings");
 	keys.add("canonicalObservations");
 	keys.add("products");
 	keys.add("releases");
 	keys.add("fhir");
+	}
+
 
 	return Array.from(keys);
 }
