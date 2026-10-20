@@ -1,4 +1,4 @@
-import { createFileRoute, redirect, useRouter, useRouterState } from "@tanstack/react-router";
+import { createFileRoute, useRouter, useRouterState } from "@tanstack/react-router";
 import { ChevronDownIcon } from "lucide-react";
 import { useState } from "react";
 
@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "@/components/ui/toast";
+import { useAuth } from "@/lib/auth";
+import { canTriggerAcquisition } from "@/lib/permissions";
 import {
 	acquisitionSearchSchema,
 	getAcquisitionsFn,
@@ -23,12 +25,6 @@ import { AcquisitionError } from "./-error";
 
 export const Route = createFileRoute("/_authed/dashboard/acquisitions/")({
 	validateSearch: (search) => acquisitionSearchSchema.parse(search),
-	beforeLoad: ({ context }) => {
-		const roles = context.user.user?.roles ?? [];
-		if (!roles.includes("data_provider")) {
-			throw redirect({ to: "/dashboard" });
-		}
-	},
 	loaderDeps: ({ search }) => search,
 	loader: ({ deps }) => getAcquisitionsFn({ data: deps }),
 	errorComponent: AcquisitionError,
@@ -56,6 +52,8 @@ function RouteComponent() {
 		});
 	};
 
+	const { user } = useAuth();
+	const mayTrigger = canTriggerAcquisition(user);
 	const [open, setOpen] = useState(false);
 	const [pendingMode, setPendingMode] = useState<AcquisitionMode | null>(null);
 
@@ -102,33 +100,45 @@ function RouteComponent() {
 					</p>
 				</div>
 
-				<DropdownMenu
-					open={open}
-					onOpenChange={(nextOpen) => {
-						if (pendingMode === null) setOpen(nextOpen);
-					}}
-				>
-					<DropdownMenuTrigger
-						render={
-							<Button disabled={pendingMode !== null}>
-								Trigger Acquisition
-								<ChevronDownIcon data-icon="inline-end" />
-							</Button>
-						}
-					/>
-					<DropdownMenuContent align="end">
-						<DropdownMenuItem
-							disabled={pendingMode !== null}
-							closeOnClick={false}
-							onClick={() => {
-								void triggerAcquisition("LIVE");
-							}}
-						>
-							{pendingMode === "LIVE" ? <Spinner /> : null}
-							LIVE acquisition
-						</DropdownMenuItem>
-					</DropdownMenuContent>
-				</DropdownMenu>
+{mayTrigger && (
+					<DropdownMenu
+						open={open}
+						onOpenChange={(nextOpen) => {
+							if (pendingMode === null) setOpen(nextOpen);
+						}}
+					>
+						<DropdownMenuTrigger
+							render={
+								<Button disabled={pendingMode !== null}>
+									Trigger Acquisition
+									<ChevronDownIcon data-icon="inline-end" />
+								</Button>
+							}
+						/>
+						<DropdownMenuContent align="end">
+							<DropdownMenuItem
+								disabled={pendingMode !== null}
+								closeOnClick={false}
+								onClick={() => {
+									void triggerAcquisition("LIVE");
+								}}
+							>
+								{pendingMode === "LIVE" ? <Spinner /> : null}
+								LIVE acquisition
+							</DropdownMenuItem>
+							<DropdownMenuItem
+								disabled={pendingMode !== null}
+								closeOnClick={false}
+								onClick={() => {
+									void triggerAcquisition("FIXTURE");
+								}}
+							>
+								{pendingMode === "FIXTURE" ? <Spinner /> : null}
+								FIXTURE acquisition
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
+				)}
 			</div>
 
 			<div className="flex flex-wrap items-end gap-3 rounded-lg border bg-muted/20 p-4">

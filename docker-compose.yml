@@ -43,8 +43,8 @@ services:
     env_file:
       - .env
     environment:
-      DB_HOST: uhc-db
-      DB_PORT: 5432
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
     ports:
       - "127.0.0.1:8000:8000"
     volumes:
@@ -64,8 +64,8 @@ services:
     env_file:
       - .env
     environment:
-      DB_HOST: uhc-db
-      DB_PORT: 5432
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
     command: >
       sh -c "python manage.py run_acquisition_worker --poll-seconds 3"
     restart: unless-stopped
@@ -80,8 +80,8 @@ services:
     env_file:
       - .env
     environment:
-      DB_HOST: uhc-db
-      DB_PORT: 5432
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
     command: >
       sh -c "python manage.py run_transformation_worker --poll-seconds 3"
     restart: unless-stopped
@@ -89,7 +89,29 @@ services:
     depends_on:
       - uhc-api
 
-   
+  uhc-fhir-worker:
+    build:
+      context: ./backend
+    env_file:
+      - .env
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+
+    volumes:
+      - ./backend:/app
+      - ./backend/output/fhir_exports:/app/output/fhir_exports
+      - ./fhir_validator:/app/fhir_validator:ro
+
+    depends_on:
+      uhc-db:
+        condition: service_healthy
+
+    command: >
+      sh -c "python manage.py run_fhir_worker --poll-seconds ${FHIR_WORKER_POLL_SECONDS:-3}"
+
+    restart: unless-stopped
+
 volumes:
   postgres_data:
   frontend_node_modules:

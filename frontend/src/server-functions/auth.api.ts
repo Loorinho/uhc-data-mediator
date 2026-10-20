@@ -18,7 +18,34 @@ type LoginResponse = {
 export const getCurrentUser = createServerFn({ method: "GET" }).handler(
 	async () => {
 		const session = await getAppSession();
-		return { user: session.user ?? null };
+		if (!session.user) return { user: null };
+
+		// Resolve current permissions from the API, not stale roles in the cookie.
+		try {
+			const response = await api.get<TypedApiResponse<{
+				username: string;
+				roles: string[];
+				is_superuser: boolean;
+			}>>("auth/me/");
+			const profile = response.data.data;
+			if (!profile) throw new Error("Unable to retrieve the current user.");
+			const currentSession = await getAppSession();
+			const user = { ...currentSession.user!, ...profile };
+			if (
+				JSON.stringify(user.roles) !== JSON.stringify(currentSession.user?.roles) ||
+				user.is_superuser !== currentSession.user?.is_superuser
+			) {
+				currentSession.user = user;
+				await currentSession.save();
+			}
+			return { user };
+		} catch (error) {
+			if (axios.isAxiosError(error) && error.response?.status === 401) {
+				await session.destroy();
+				return { user: null };
+			}
+			throw error;
+		}
 	},
 );
 

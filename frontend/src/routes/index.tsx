@@ -16,7 +16,7 @@ export const Route = createFileRoute('/')({
 		const { user } = await getCurrentUser();
 
 		if (user) {
-			throw redirect({ to: "/dashboard" });
+			throw redirect({ to: user.roles.includes("admin") ? "/dashboard/users" : "/dashboard" });
 		}
 	},
   component: Home,
@@ -70,7 +70,7 @@ function Home() {
 		await router.invalidate();
 
         // Redirect to authenticated route
-        await navigate({ to: '/dashboard' });
+        await navigate({ to: response.data.roles.includes("admin") ? "/dashboard/users" :response.data.roles.includes("auditor") ? "/dashboard/audit" :"/dashboard" });
 
       }catch(error){
         toast.add({
@@ -86,8 +86,12 @@ function Home() {
   return (
    <div className="flex justify-center items-center h-screen" >
       <Card className="w-full max-w-sm">
-        <CardHeader className="text-center">
-          <CardTitle className="text-xl">Welcome back</CardTitle>
+        <CardHeader className="text-center mb-5">
+			<div className="flex justify-center items-center h-20">
+
+			<img src="/images/speedykom-long.png" alt="UHC Data Mediator Logo" className="w-50"/>
+			</div>
+          <CardTitle className="text-xl text-primary">Welcome back</CardTitle>
           <CardDescription>
             Login with your UHC Data Mediator account
           </CardDescription>

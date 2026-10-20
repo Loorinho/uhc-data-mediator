@@ -1,9 +1,10 @@
 from django.conf import settings
-
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 
+from core.auditing.models import AuditEvent
+from core.auditing.services import record_after_commit
 from core.ingestion.models import AcquisitionAttempt
 from core.ingestion.pagination import AcquisitionPagination
 from core.ingestion.permissions import IsDataProvider
@@ -15,7 +16,7 @@ from core.responses import api_response
 
 
 class AcquisitionView(APIView):
-    """POST -> trigger a DHIS2 data acquisition.
+    """POST -> queue a LIVE or FIXTURE DHIS2 acquisition.
 
     Requires authentication plus the 'data_provider' role. For now the
     endpoint only records the acquisition attempt; a worker will pick it
@@ -35,9 +36,9 @@ class AcquisitionView(APIView):
 
         mode = serializer.validated_data["mode"]
 
-        if mode != AcquisitionAttempt.Mode.LIVE:
+        if mode not in (AcquisitionAttempt.Mode.LIVE, AcquisitionAttempt.Mode.FIXTURE):
             return api_response(
-                message="Only LIVE acquisition is currently supported.",
+                message="Acquisition mode must be LIVE or FIXTURE.",
                 status_code=status.HTTP_400_BAD_REQUEST,
             )
 
@@ -64,12 +65,31 @@ class AcquisitionView(APIView):
             source="DHIS2-SL-DEMO",
             request_config=request_config,
         )
+
+        record_after_commit(
+            action="ACQUISITION_REQUESTED",
+            outcome=AuditEvent.Outcome.SUCCESS,
+            actor=request.user,
+            resource_type="AcquisitionAttempt",
+            resource_id=attempt.id,
+            correlation_id=attempt.correlation_id,
+            details={
+                "mode": attempt.mode,
+                "source": attempt.source,
+            },
+            http_status=200,
+        )
         return api_response(
-            message="DHIS2 data acquisition has been queued.",
+            message=(
+                "DHIS2 LIVE acquisition has been queued."
+                if mode == AcquisitionAttempt.Mode.LIVE
+                else "DHIS2 FIXTURE replay has been queued."
+            ),
             data={
                 "acquisitionId": str(attempt.id),
                 "correlationId": str(attempt.correlation_id),
                 "mode": attempt.mode,
+                "isLiveRequest": mode == AcquisitionAttempt.Mode.LIVE,
                 "status": attempt.status,
                 "requestedAt": attempt.requested_at,
                 "configuration": request_config,
@@ -88,9 +108,7 @@ class AcquisitionView(APIView):
         statuses = sorted(
             queryset.order_by().values_list("status", flat=True).distinct()
         )
-        modes = sorted(
-            queryset.order_by().values_list("mode", flat=True).distinct()
-        )
+        modes = sorted(queryset.order_by().values_list("mode", flat=True).distinct())
 
         acquisition_status = request.query_params.get("status")
         if acquisition_status:

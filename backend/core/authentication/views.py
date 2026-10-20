@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 
 from core.responses import api_response
 
+from .permissions import IsApplicationAdmin
 from .serializers import (
     LoginSerializer,
     RefreshSerializer,
@@ -60,8 +61,9 @@ class RefreshView(APIView):
 class RegisterView(generics.CreateAPIView):
     """POST username + password + role -> create a user (unique username).
 
-    Requires authentication — only a logged-in user can create accounts."""
+    Only application administrators can create accounts."""
 
+    permission_classes = (permissions.IsAuthenticated, IsApplicationAdmin)
     serializer_class = RegisterSerializer
 
     def create(self, request, *args, **kwargs):
@@ -78,7 +80,9 @@ class RegisterView(generics.CreateAPIView):
 
 
 class RoleListCreateView(APIView):
-    """GET -> all roles.  POST -> create a new role."""
+    """Admin-only: GET all roles or POST a new role."""
+
+    permission_classes = (permissions.IsAuthenticated, IsApplicationAdmin)
 
     def get(self, request):
         roles = Group.objects.all().order_by("name")
@@ -108,9 +112,10 @@ class MeView(APIView):
 
 
 class UserListView(generics.ListAPIView):
-    """GET -> all users."""
+    """Admin-only: GET all users."""
 
-    queryset = get_user_model().objects.all().order_by("id")
+    permission_classes = (permissions.IsAuthenticated, IsApplicationAdmin)
+    queryset = get_user_model().objects.prefetch_related("groups").order_by("id")
     serializer_class = UserSerializer
 
     def list(self, request, *args, **kwargs):

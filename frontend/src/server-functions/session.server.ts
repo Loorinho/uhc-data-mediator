@@ -4,6 +4,7 @@ import { getCookie, setCookie } from "@tanstack/react-start/server";
 export type AuthUser = {
 	username: string;
 	roles: string[];
+	is_superuser?: boolean;
 	token: string;
 	refreshToken: string;
 };

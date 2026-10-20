@@ -4,6 +4,7 @@ import {
 	BellIcon,
 	Building2,
 	CommandIcon,
+	FileJson,
 	HomeIcon,
 	Podium,
 	RefreshCcwDot,
@@ -17,7 +18,6 @@ import type * as React from "react";
 import {
 	Sidebar,
 	SidebarContent,
-	SidebarFooter,
 	SidebarHeader,
 	SidebarMenu,
 	SidebarMenuButton,
@@ -38,6 +38,14 @@ const navigationIcons: Record<NavigationKey, React.ReactNode> = {
 	dashboard: <HomeIcon />,
 	products: <Podium />,
 	acquisitions: <RefreshCcwDot />,
+	districts: <Building2 />,
+	population: <UserGroupIcon />,
+	canonicalMeasures: <Trophy />,
+	measureMappings: <SunSnow />,
+	canonicalObservations: <BellIcon />,
+	releases: <Badge />,
+	fhir: <FileJson />,
+	audit: <ShieldCogCorner />,
 };
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {

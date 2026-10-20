@@ -1,4 +1,3 @@
-
 import hashlib
 import json
 import re
@@ -6,6 +5,9 @@ import re
 from django.db import transaction
 from django.utils import timezone
 
+from core.auditing.models import AuditEvent
+from core.auditing.services import record_audit_event
+from core.governance.models import DataProductRelease
 from core.ingestion.models import (
     AcquisitionAttempt,
     Observation,
@@ -14,7 +16,6 @@ from core.interoperability.models import (
     CanonicalObservation,
     MeasureSourceMapping,
 )
-from core.governance.models import DataProductRelease
 
 
 def period_type(period):
@@ -52,17 +53,13 @@ def hash_dimensions(dimensions):
         separators=(",", ":"),
     )
 
-    return hashlib.sha256(
-        canonical.encode("utf-8")
-    ).hexdigest()
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
 def transform_release(release_id):
-    release = (
-        DataProductRelease.objects
-        .select_related("source_acquisition", "product")
-        .get(pk=release_id)
-    )
+    release = DataProductRelease.objects.select_related(
+        "source_acquisition", "product"
+    ).get(pk=release_id)
 
     if release.status != DataProductRelease.Status.DRAFT:
         raise ValueError("Only DRAFT releases can be transformed")
@@ -73,17 +70,14 @@ def transform_release(release_id):
         AcquisitionAttempt.Status.SUCCEEDED,
         AcquisitionAttempt.Status.PARTIAL,
     ):
-        raise ValueError(
-            "Acquisition has no completed usable result"
-        )
+        raise ValueError("Acquisition has no completed usable result")
 
     config = acquisition.request_config or {}
 
     source = acquisition.source
 
     observations = list(
-        Observation.objects
-        .select_related("district")
+        Observation.objects.select_related("district")
         .filter(attempt=acquisition)
         .order_by("id")
     )
@@ -100,9 +94,9 @@ def transform_release(release_id):
 
     mappings = {
         item.source_measure_id: item.measure
-        for item in MeasureSourceMapping.objects
-        .select_related("measure")
-        .filter(source=source)
+        for item in MeasureSourceMapping.objects.select_related("measure").filter(
+            source=source
+        )
     }
 
     transformed = []
@@ -123,30 +117,19 @@ def transform_release(release_id):
 
         if source_row.indicator_id not in mappings:
             raise ValueError(
-                "No canonical measure mapping for "
-                f"{source_row.indicator_id}"
+                f"No canonical measure mapping for {source_row.indicator_id}"
             )
 
         if source_row.district_id is None:
             raise ValueError("Unmapped district")
 
-        if (
-            source_row.district.dhis2_org_unit_id
-            != source_row.org_unit_id
-        ):
+        if source_row.district.dhis2_org_unit_id != source_row.org_unit_id:
             raise ValueError("District identity mismatch")
 
-        if (
-            source_row.district.mapping_status
-            != "VERIFIED"
-        ):
-            raise ValueError(
-                "District mapping is not verified"
-            )
+        if source_row.district.mapping_status != "VERIFIED":
+            raise ValueError("District mapping is not verified")
 
-        dimensions = normalize_dimensions(
-            source_row.dimensions
-        )
+        dimensions = normalize_dimensions(source_row.dimensions)
 
         transformed.append(
             CanonicalObservation(
@@ -164,25 +147,17 @@ def transform_release(release_id):
         )
 
     with transaction.atomic():
-        locked_release = (
-            DataProductRelease.objects
-            .select_for_update()
-            .get(pk=release_id)
+        locked_release = DataProductRelease.objects.select_for_update().get(
+            pk=release_id
         )
 
         if locked_release.status != "DRAFT":
-            raise ValueError(
-                "Release changed while transforming"
-            )
+            raise ValueError("Release changed while transforming")
 
         if locked_release.observations.exists():
-            raise ValueError(
-                "Release already contains observations"
-            )
+            raise ValueError("Release already contains observations")
 
-        CanonicalObservation.objects.bulk_create(
-            transformed
-        )
+        CanonicalObservation.objects.bulk_create(transformed)
 
         locked_release.transformation_status = (
             DataProductRelease.TransformationStatus.SUCCEEDED
@@ -193,45 +168,48 @@ def transform_release(release_id):
         locked_release.geographic_coverage = {
             "level": "DISTRICT",
             "requested_org_units": sorted(expected_units),
-            "observed_districts": sorted({
-                row.district.name for row in transformed
-            }),
+            "observed_districts": sorted({row.district.name for row in transformed}),
             "expected_count": len(expected_units),
-            "observed_count": len({
-                row.district_id for row in transformed
-            }),
+            "observed_count": len({row.district_id for row in transformed}),
         }
 
         locked_release.temporal_coverage = {
             "requested_periods": sorted(expected_periods),
-            "observed_periods": sorted({
-                row.period for row in transformed
-            }),
+            "observed_periods": sorted({row.period for row in transformed}),
         }
 
         locked_release.lineage = {
             "source": source,
             "acquisition_id": str(acquisition.id),
-            "correlation_id": str(
-                acquisition.correlation_id
-            ),
-            "canonical_schema_version": (
-                locked_release.schema_version
-            ),
-            "transformation": (
-                "district-activity-v1"
-            ),
+            "correlation_id": str(acquisition.correlation_id),
+            "canonical_schema_version": (locked_release.schema_version),
+            "transformation": ("district-activity-v1"),
             "source_measure_ids": sorted(expected_measures),
         }
 
         # Transformation completed, but quality review
         # and publication have not occurred yet.
-        locked_release.status = (
-            DataProductRelease.Status.VALIDATING
-        )
-        locked_release.quality_status = (
-            DataProductRelease.QualityStatus.NOT_CHECKED
-        )
+        locked_release.status = DataProductRelease.Status.VALIDATING
+        locked_release.quality_status = DataProductRelease.QualityStatus.NOT_CHECKED
         locked_release.save()
+
+        record_audit_event(
+            action="TRANSFORMATION_SUCCEEDED",
+            outcome=AuditEvent.Outcome.SUCCESS,
+            resource_type="DataProductRelease",
+            resource_id=locked_release.id,
+            correlation_id=locked_release.id,
+            details={
+                "dataProductId": str(locked_release.product_id),
+                "acquisitionId": str(acquisition.id),
+                "acquisitionCorrelationId": str(acquisition.correlation_id),
+                "source": source,
+                "canonicalObservationCount": len(transformed),
+                "transformationStatus": locked_release.transformation_status,
+                "releaseStatus": locked_release.status,
+                "schemaVersion": locked_release.schema_version,
+                "executor": "transformation-worker",
+            },
+        )
 
     return len(transformed)

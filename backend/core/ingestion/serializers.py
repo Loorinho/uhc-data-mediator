@@ -10,10 +10,7 @@ class AcquisitionRequestSerializer(serializers.Serializer):
     mode = serializers.ChoiceField(choices=AcquisitionAttempt.Mode.choices)
 
 
-
-class AcquisitionAttemptListSerializer(
-    serializers.ModelSerializer
-):
+class AcquisitionAttemptListSerializer(serializers.ModelSerializer):
     acquisitionId = serializers.UUIDField(
         source="id",
         read_only=True,
@@ -91,9 +88,7 @@ class AcquisitionAttemptListSerializer(
         ]
 
 
-class AcquisitionAttemptDetailSerializer(
-    AcquisitionAttemptListSerializer
-):
+class AcquisitionAttemptDetailSerializer(AcquisitionAttemptListSerializer):
     errorMessage = serializers.CharField(
         source="error_message",
         read_only=True,
@@ -120,21 +115,16 @@ class AcquisitionAttemptDetailSerializer(
     )
 
     class Meta(AcquisitionAttemptListSerializer.Meta):
-        fields = (
-            AcquisitionAttemptListSerializer.Meta.fields
-            + [
-                "errorMessage",
-                "missingCombinations",
-                "httpStatusCode",
-                "apiUrl",
-                "requestPayload",
-            ]
-        )
+        fields = AcquisitionAttemptListSerializer.Meta.fields + [
+            "errorMessage",
+            "missingCombinations",
+            "httpStatusCode",
+            "apiUrl",
+            "requestPayload",
+        ]
 
 
-class AcquisitionObservationSerializer(
-    serializers.ModelSerializer
-):
+class AcquisitionObservationSerializer(serializers.ModelSerializer):
     observationId = serializers.UUIDField(
         source="id",
         read_only=True,

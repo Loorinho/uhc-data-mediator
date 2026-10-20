@@ -1,4 +1,3 @@
-
 import hashlib
 import json
 import logging
@@ -12,12 +11,11 @@ from core.ingestion.models import (
     District,
     Observation,
 )
-
 from core.ingestion.services.dhis2 import (
-    DHIS2Service,
     DHIS2RequestError,
+    DHIS2Service,
 )
-
+from core.ingestion.services.fixture_replay import fetch_fixture_analytics
 
 logger = logging.getLogger(__name__)
 
@@ -62,9 +60,7 @@ def dimensions_hash(dimensions):
         ensure_ascii=False,
     )
 
-    return hashlib.sha256(
-        canonical.encode("utf-8")
-    ).hexdigest()
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
 def parse_analytics_rows(payload):
@@ -78,10 +74,7 @@ def parse_analytics_rows(payload):
         fbfJHSPpUQD, 2025, O6uvpzGd5pu, 33765
     """
 
-    headers = [
-        item.get("name")
-        for item in payload.get("headers", [])
-    ]
+    headers = [item.get("name") for item in payload.get("headers", [])]
 
     required = {"dx", "pe", "ou", "value"}
 
@@ -89,24 +82,17 @@ def parse_analytics_rows(payload):
 
     if missing_headers:
         raise ValueError(
-            "DHIS2 response is missing headers: "
-            f"{sorted(missing_headers)}"
+            f"DHIS2 response is missing headers: {sorted(missing_headers)}"
         )
 
     if len(headers) != len(set(headers)):
-        raise ValueError(
-            "DHIS2 response contains duplicate headers"
-        )
+        raise ValueError("DHIS2 response contains duplicate headers")
 
     records = []
 
-    for index, values in enumerate(
-        payload.get("rows", [])
-    ):
+    for index, values in enumerate(payload.get("rows", [])):
         if len(values) != len(headers):
-            raise ValueError(
-                f"Invalid column count in row {index}"
-            )
+            raise ValueError(f"Invalid column count in row {index}")
 
         row = dict(zip(headers, values))
 
@@ -117,36 +103,29 @@ def parse_analytics_rows(payload):
             TypeError,
             ValueError,
         ):
-            raise ValueError(
-                f"Invalid numeric value in row {index}"
-            )
+            raise ValueError(f"Invalid numeric value in row {index}")
 
         if not value.is_finite():
-            raise ValueError(
-                f"Non-finite value in row {index}"
-            )
+            raise ValueError(f"Non-finite value in row {index}")
 
         dimensions = {
             key: val
             for key, val in row.items()
-            if key not in {
-                "dx", "pe", "ou", "value"
-            }
+            if key not in {"dx", "pe", "ou", "value"}
         }
 
-        records.append({
-            "indicator_id": row["dx"],
-            "period": row["pe"],
-            "org_unit_id": row["ou"],
-            "value": value,
-            "dimensions": dimensions,
-            "dimensions_hash": dimensions_hash(
-                dimensions
-            ),
-        })
+        records.append(
+            {
+                "indicator_id": row["dx"],
+                "period": row["pe"],
+                "org_unit_id": row["ou"],
+                "value": value,
+                "dimensions": dimensions,
+                "dimensions_hash": dimensions_hash(dimensions),
+            }
+        )
 
     return records
-
 
 
 def get_acquisition_config(attempt):
@@ -171,10 +150,7 @@ def get_acquisition_config(attempt):
                 f"{type(values).__name__}."
             )
 
-        if any(
-            not isinstance(value, str) or not value.strip()
-            for value in values
-        ):
+        if any(not isinstance(value, str) or not value.strip() for value in values):
             raise ValueError(
                 f"Invalid acquisition configuration: {name}. "
                 "All items must be non-empty strings."
@@ -196,6 +172,7 @@ def get_acquisition_config(attempt):
         validated["org_unit_ids"],
     )
 
+
 def save_failed_attempt(attempt_id, error):
     """
     Mark a failed acquisition while preserving
@@ -203,11 +180,7 @@ def save_failed_attempt(attempt_id, error):
     """
 
     with transaction.atomic():
-        attempt = (
-            AcquisitionAttempt.objects
-            .select_for_update()
-            .get(pk=attempt_id)
-        )
+        attempt = AcquisitionAttempt.objects.select_for_update().get(pk=attempt_id)
 
         attempt.status = AcquisitionAttempt.Status.FAILED
         attempt.outcome = AcquisitionAttempt.Outcome.ERROR
@@ -216,79 +189,57 @@ def save_failed_attempt(attempt_id, error):
 
         if isinstance(error, DHIS2RequestError):
             if error.request_info:
-                attempt.request_payload = (
-                    error.request_info
-                )
-                attempt.api_url = (
-                    error.request_info.get("url", "")
-                )
+                attempt.request_payload = error.request_info
+                attempt.api_url = error.request_info.get("url", "")
 
             if error.response_body is not None:
-                attempt.response_payload = (
-                    error.response_body
-                )
+                attempt.response_payload = error.response_body
 
             if error.status_code is not None:
-                attempt.http_status_code = (
-                    error.status_code
-                )
+                attempt.http_status_code = error.status_code
 
         attempt.save()
 
 
 def process_acquisition(attempt_id):
     """
-    Process one claimed LIVE acquisition.
+    Process one claimed LIVE or FIXTURE acquisition.
 
     The background worker must have set its
     status to RUNNING before calling this.
     """
 
-    attempt = AcquisitionAttempt.objects.get(
-        pk=attempt_id
-    )
+    attempt = AcquisitionAttempt.objects.get(pk=attempt_id)
 
     if attempt.status != AcquisitionAttempt.Status.RUNNING:
-        raise ValueError(
-            "Acquisition must be RUNNING before processing"
-        )
+        raise ValueError("Acquisition must be RUNNING before processing")
 
-    if attempt.mode != AcquisitionAttempt.Mode.LIVE:
-        raise ValueError(
-            "This processor only supports LIVE acquisition"
-        )
+    if attempt.mode not in (
+        AcquisitionAttempt.Mode.LIVE,
+        AcquisitionAttempt.Mode.FIXTURE,
+    ):
+        raise ValueError(f"Unsupported acquisition mode: {attempt.mode}")
 
     try:
-        dx_ids, periods, org_unit_ids = (
-            get_acquisition_config(attempt)
-        )
+        dx_ids, periods, org_unit_ids = get_acquisition_config(attempt)
 
         # Validate requested measures before calling DHIS2.
-        unknown_measures = (
-            set(dx_ids) - set(MEASURES)
-        )
+        unknown_measures = set(dx_ids) - set(MEASURES)
 
         if unknown_measures:
-            raise ValueError(
-                "Unknown measure metadata: "
-                f"{sorted(unknown_measures)}"
-            )
+            raise ValueError(f"Unknown measure metadata: {sorted(unknown_measures)}")
 
         # Resolve local district mappings.
         districts = {
             district.dhis2_org_unit_id: district
             for district in District.objects.filter(
                 dhis2_org_unit_id__in=org_unit_ids,
-                mapping_status=(
-                    District.MappingStatus.VERIFIED
-                ),
+                mapping_status=(District.MappingStatus.VERIFIED),
                 is_active=True,
             )
         }
 
-        unmapped = (
-            set(org_unit_ids) - set(districts)
-        )
+        unmapped = set(org_unit_ids) - set(districts)
 
         if unmapped:
             raise ValueError(
@@ -305,19 +256,24 @@ def process_acquisition(attempt_id):
             for org_unit in org_unit_ids
         }
 
-        service = DHIS2Service()
+        # The worker selects the source, but parsing and persistence remain shared.
+        if attempt.mode == AcquisitionAttempt.Mode.FIXTURE:
+            request_info, payload, http_status, duration_ms = fetch_fixture_analytics(
+                attempt=attempt,
+                dx_ids=dx_ids,
+                periods=periods,
+                org_unit_ids=org_unit_ids,
+            )
+        else:
+            service = DHIS2Service()
+            request_info, payload, http_status, duration_ms = service.fetch_analytics(
+                dx_ids=dx_ids,
+                periods=periods,
+                org_unit_ids=org_unit_ids,
+            )
 
-        (
-            request_info,
-            payload,
-            http_status,
-            duration_ms,
-        ) = service.fetch_analytics(
-            dx_ids=dx_ids,
-            periods=periods,
-            org_unit_ids=org_unit_ids,
-        )
-
+        # FIXTURE metadata identifies the original captured LIVE acquisition.
+        # Existing Observation upsert semantics are unchanged (see README caveat).
         # Preserve raw DHIS2 response independently
         # from the observation upsert transaction.
         attempt.api_url = request_info["url"]
@@ -326,14 +282,16 @@ def process_acquisition(attempt_id):
         attempt.http_status_code = http_status
         attempt.duration_ms = duration_ms
 
-        attempt.save(update_fields=[
-            "api_url",
-            "request_payload",
-            "response_payload",
-            "http_status_code",
-            "duration_ms",
-            "updated_at",
-        ])
+        attempt.save(
+            update_fields=[
+                "api_url",
+                "request_payload",
+                "response_payload",
+                "http_status_code",
+                "duration_ms",
+                "updated_at",
+            ]
+        )
 
         records = parse_analytics_rows(payload)
 
@@ -353,18 +311,19 @@ def process_acquisition(attempt_id):
                 for dx, period, org_unit in sorted(expected)
             ]
 
-            attempt.save(update_fields=[
-                "records_received",
-                "records_saved",
-                "expected_combinations",
-                "received_combinations",
-                "missing_combinations",
-                "updated_at",
-            ])
+            attempt.save(
+                update_fields=[
+                    "records_received",
+                    "records_saved",
+                    "expected_combinations",
+                    "received_combinations",
+                    "missing_combinations",
+                    "updated_at",
+                ]
+            )
 
             raise ValueError(
-                "DHIS2 returned zero analytics rows. "
-                "Missing data is not zero activity."
+                "DHIS2 returned zero analytics rows. Missing data is not zero activity."
             )
 
         # Verify that DHIS2 returned only
@@ -382,8 +341,7 @@ def process_acquisition(attempt_id):
 
         if unexpected:
             raise ValueError(
-                "DHIS2 returned unexpected combinations: "
-                f"{sorted(unexpected)[:10]}"
+                f"DHIS2 returned unexpected combinations: {sorted(unexpected)[:10]}"
             )
 
         # Check duplicate observation identities.
@@ -398,9 +356,7 @@ def process_acquisition(attempt_id):
             )
 
             if key in unique_rows:
-                raise ValueError(
-                    f"Duplicate DHIS2 observation: {key}"
-                )
+                raise ValueError(f"Duplicate DHIS2 observation: {key}")
 
             unique_rows.add(key)
 
@@ -422,41 +378,23 @@ def process_acquisition(attempt_id):
             saved_count = 0
 
             for row in records:
-                district = districts[
-                    row["org_unit_id"]
-                ]
+                district = districts[row["org_unit_id"]]
 
-                metadata = MEASURES[
-                    row["indicator_id"]
-                ]
+                metadata = MEASURES[row["indicator_id"]]
 
                 Observation.objects.update_or_create(
                     source=SOURCE,
-                    indicator_id=(
-                        row["indicator_id"]
-                    ),
-                    org_unit_id=(
-                        row["org_unit_id"]
-                    ),
+                    indicator_id=(row["indicator_id"]),
+                    org_unit_id=(row["org_unit_id"]),
                     period=row["period"],
-                    dimensions_hash=(
-                        row["dimensions_hash"]
-                    ),
+                    dimensions_hash=(row["dimensions_hash"]),
                     defaults={
-                        "indicator_name": (
-                            metadata["name"]
-                        ),
-                        "measure_type": (
-                            metadata["type"]
-                        ),
-                        "org_unit_name": (
-                            district.name
-                        ),
+                        "indicator_name": (metadata["name"]),
+                        "measure_type": (metadata["type"]),
+                        "org_unit_name": (district.name),
                         "district": district,
                         "value": row["value"],
-                        "dimensions": (
-                            row["dimensions"]
-                        ),
+                        "dimensions": (row["dimensions"]),
                         "attempt": attempt,
                     },
                 )
@@ -468,17 +406,11 @@ def process_acquisition(attempt_id):
             attempt.records_saved = saved_count
             attempt.expected_combinations = len(expected)
             attempt.received_combinations = len(received)
-            attempt.missing_combinations = (
-                missing_combinations
-            )
+            attempt.missing_combinations = missing_combinations
 
             if missing:
-                attempt.status = (
-                    AcquisitionAttempt.Status.PARTIAL
-                )
-                attempt.outcome = (
-                    AcquisitionAttempt.Outcome.INCOMPLETE
-                )
+                attempt.status = AcquisitionAttempt.Status.PARTIAL
+                attempt.outcome = AcquisitionAttempt.Outcome.INCOMPLETE
 
                 attempt.error_message = (
                     f"Received {len(received)} of "
@@ -487,12 +419,8 @@ def process_acquisition(attempt_id):
                     f"{len(missing)} are missing."
                 )
             else:
-                attempt.status = (
-                    AcquisitionAttempt.Status.SUCCEEDED
-                )
-                attempt.outcome = (
-                    AcquisitionAttempt.Outcome.OK
-                )
+                attempt.status = AcquisitionAttempt.Status.SUCCEEDED
+                attempt.outcome = AcquisitionAttempt.Outcome.OK
                 attempt.error_message = ""
 
             attempt.finished_at = timezone.now()

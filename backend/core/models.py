@@ -32,7 +32,9 @@ class RefreshToken(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="refresh_tokens"
     )
-    token = models.CharField(max_length=255, unique=True, default=generate_refresh_token)
+    token = models.CharField(
+        max_length=255, unique=True, default=generate_refresh_token
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     expires_at = models.DateTimeField()
     is_valid = models.BooleanField(default=True)
@@ -58,11 +60,14 @@ class RefreshToken(models.Model):
 
 
 # Register models that live in feature submodules (e.g. ingestion).
-from .ingestion.models import AcquisitionAttempt  # noqa: E402,F401
+from .auditing.models import AuditEvent  # noqa: E402,F401
 from .governance.models import DataProduct, DataProductRelease  # noqa: E402,F401
+from .ingestion.models import AcquisitionAttempt  # noqa: E402,F401
 from .interoperability.models import (  # noqa: E402,F401
     CanonicalMeasure,
     CanonicalObservation,
+    FHIRExport,
+    FHIRValidationIssue,
+    FHIRValidationResult,
     MeasureSourceMapping,
 )
-
